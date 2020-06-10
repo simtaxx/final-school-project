@@ -3,10 +3,9 @@ module.exports = {
   css: {
     loaderOptions: {
       sass: {
-        prependData: `
-          @import "@/scss/styles.scss";
-        `
+        prependData: '\n          @import "@/scss/styles.scss";\n        '
       }
     }
-  }
+  },
+  transpileDependencies: ["vuetify"]
 };
