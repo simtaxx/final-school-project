@@ -1,14 +1,14 @@
 <template>
-  <div :class="$style.inscription"></div>
+  <div :class="$style.signUp"></div>
 </template>
 
 <script>
 export default {
-  name: "inscription"
+  name: "SignUp"
 };
 </script>
 
 <style lang="scss" module>
-.inscription {
+.signUp {
 }
 </style>

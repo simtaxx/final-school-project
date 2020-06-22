@@ -1,14 +1,14 @@
 <template>
-  <div :class="$style.connexion"></div>
+  <div :class="$style.signIn"></div>
 </template>
 
 <script>
 export default {
-  name: "connexion"
+  name: "SignIn"
 };
 </script>
 
 <style lang="scss" module>
-.connexion {
+.signIn {
 }
 </style>

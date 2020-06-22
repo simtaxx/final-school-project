@@ -6,8 +6,7 @@ Vue.use(VueRouter);
 const routes = [
   {
     path: "*",
-    name: "Homepage",
-    component: () => import("@/views/Homepage.vue")
+    redirect: "/"
   },
   {
     path: "/",
@@ -35,14 +34,14 @@ const routes = [
     component: () => import("@/views/Quizz.vue")
   },
   {
-    path: "/inscription",
-    name: "Inscription",
-    component: () => import("@/views/Inscription.vue")
+    path: "/sign-in",
+    name: "SignIn",
+    component: () => import("@/views/SignIn.vue")
   },
   {
-    path: "/connexion",
-    name: "Connexion",
-    component: () => import("@/views/Connexion.vue")
+    path: "/sign-up",
+    name: "SignUp",
+    component: () => import("@/views/SignUp.vue")
   },
   {
     path: "/account",
