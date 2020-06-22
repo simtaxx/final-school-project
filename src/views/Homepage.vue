@@ -1,7 +1,6 @@
-<template>
-  <div :class="$style.homepage">
-    <h1>lol</h1>
-  </div>
+<template lang="pug">
+  div(:class="$style.homepage")
+    h1 lol
 </template>
 
 <script>
