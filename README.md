@@ -19,3 +19,7 @@ De plus, et encore une fois dans l'idée d'être disponibles à tous, nous somme
 ### Vuetify
 
 Nous allons utiliser Vuetify pour accélérer le développement de l'application grâce à tous les composants que nous propose la library.
+
+### Lien
+
+https://final-school-project.netlify.app/
