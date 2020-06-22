@@ -32,6 +32,7 @@
         <v-icon>mdi-open-in-new</v-icon>
       </v-btn>
     </v-app-bar>
+    <router-view :class="$style.router" />
   </v-app>
 </template>
 
@@ -40,3 +41,9 @@ export default {
   name: "App"
 };
 </script>
+
+<style lang="scss" module>
+.router {
+  margin-top: 56px;
+}
+</style>
