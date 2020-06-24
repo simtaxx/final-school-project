@@ -1,32 +1,34 @@
 <template lang="pug">
-  v-app(:class="$style.app")
+  v-app
     nav
-      div(:class="$style.profile")
-        h3 PROFIL
-        router-link(to="/sign-in" :class="$style.signUp") CONNEXION
-        router-link(to="/sign-up" :class="$style.signIn") INSCRIPTION
-      div(:class="$style.discover")
-        h3 DÉCOUVRIR
-        router-link(to="/")
-          img(src="@/assets/icons/institution.svg") 
-          p L'institution
-        router-link(to="/") 
-          img(src="@/assets/icons/citoyennete.svg") 
-          p La citoyenneté
-        router-link(to="/") 
-          img(src="@/assets/icons/justice.svg") 
-          p La justice
-        router-link(to="/") 
-          img(src="@/assets/icons/citoyennete.svg") 
-          p La citoyenneté
-        router-link(to="/") 
-          img(src="@/assets/icons/citoyennete.svg") 
-          p La citoyenneté
-        router-link(to="/") 
-          img(src="@/assets/icons/citoyennete.svg") 
-          p La citoyenneté
-      div(:class="$style.challenge")
-    router-view
+      div(:class="$style.navContainer")
+        div(:class="$style.profile")
+          h3 PROFIL
+          router-link(to="/sign-in" :class="$style.signIn") CONNEXION
+        div(:class="$style.discover")
+          h3 DÉCOUVRIR
+          router-link(to="/sign-in" :exact-active-class="$style.active")
+            img(src="@/assets/icons/institution.svg") 
+            p L'institution
+          router-link(to="/" :exact-active-class="$style.active") 
+            img(src="@/assets/icons/citoyennete.svg") 
+            p La citoyenneté
+          router-link(to="/" :exact-active-class="$style.active") 
+            img(src="@/assets/icons/justice.svg") 
+            p La justice
+          router-link(to="/" :exact-active-class="$style.active") 
+            img(src="@/assets/icons/citoyennete.svg") 
+            p La citoyenneté
+          router-link(to="/" :exact-active-class="$style.active") 
+            img(src="@/assets/icons/citoyennete.svg") 
+            p La citoyenneté
+          router-link(to="/" :exact-active-class="$style.active") 
+            img(src="@/assets/icons/citoyennete.svg") 
+            p La citoyenneté
+        div(:class="$style.challenge")
+          h3 TES CHALLENGES
+          p #[router-link(to="/sign-in" :class="$style.signUp" ) Connecte toi] ou #[router-link(to="/sign-up" :class="$style.signUp") créer un compte] pour pouvoir jouer !
+    router-view(:class="$style.app")
 </template>
 
 <script>
@@ -38,11 +40,18 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .app {
-  padding: 0 50px;
+  padding: 0 50px 0 290px;
 }
 
 nav {
-  padding-top: 70px;
+  position: fixed;
+  width: 290px;
+  height: 100%;
+  background-color: $greyLight;
+
+  .navContainer {
+    margin-left: 50px;
+  }
 }
 
 h3 {
@@ -55,8 +64,9 @@ h3 {
 .profile {
   display: flex;
   flex-direction: column;
+  margin-top: 70px;
 
-  .signUp {
+  .signIn {
     font-size: 12px;
     font-family: "GothamMedium", sans-serif;
     padding: 8px 16px;
@@ -65,16 +75,6 @@ h3 {
     border-radius: 5px;
     color: #faf9f9 !important;
     margin-bottom: 8px;
-  }
-
-  .signIn {
-    font-size: 12px;
-    font-family: "GothamMedium", sans-serif;
-    padding: 8px 16px;
-    border: 1px solid #09bded;
-    width: 111px;
-    border-radius: 5px;
-    color: $primary !important;
   }
 }
 
@@ -85,12 +85,48 @@ h3 {
 
   a {
     display: flex;
-    align-items: flex-start;
-    margin-bottom: 15px;
+    align-items: center;
+    margin: 0 0 15px -20px;
+    width: max-content;
+    padding: 8px 16px;
+    border-radius: 30px;
+    font-size: 14px;
+    font-family: "GothamMedium", sans-serif;
+
+    &:hover {
+      background-color: $grey;
+    }
 
     img {
       margin-right: 16px;
+      width: 24px;
+      height: auto;
     }
+
+    p {
+      margin: 0;
+    }
+  }
+}
+
+.challenge {
+  p {
+    font-family: "OpenSansSemiBold", sans-serif;
+    font-size: 12px;
+
+    a {
+      color: $primary !important;
+      text-decoration: underline;
+    }
+  }
+}
+
+.active {
+  color: $primary !important;
+  background-color: rgba($primary, 0.1);
+
+  img {
+    fill: currentColor;
   }
 }
 </style>
