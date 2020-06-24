@@ -36,6 +36,7 @@ export default {
 </script>
 
 <style lang="scss" module>
+@import "@/scss/core/colors.scss";
 .app {
   padding: 0 50px;
 }
@@ -59,7 +60,7 @@ h3 {
     font-size: 12px;
     font-family: "GothamMedium", sans-serif;
     padding: 8px 16px;
-    background-color: #09bded;
+    background-color: $primary;
     width: 111px;
     border-radius: 5px;
     color: #faf9f9 !important;
@@ -73,7 +74,7 @@ h3 {
     border: 1px solid #09bded;
     width: 111px;
     border-radius: 5px;
-    color: #09bded !important;
+    color: $primary !important;
   }
 }
 
