@@ -55,7 +55,7 @@ nav {
 }
 
 h3 {
-  font-family: "GothamMedium", sans-serif;
+  font-family: "Gotham", sans-serif;
   font-size: 12px;
   color: #9498a0;
   margin-bottom: 16px;
@@ -68,7 +68,7 @@ h3 {
 
   .signIn {
     font-size: 12px;
-    font-family: "GothamMedium", sans-serif;
+    font-family: "Gotham", sans-serif;
     padding: 8px 16px;
     background-color: $primary;
     width: 111px;
@@ -91,7 +91,7 @@ h3 {
     padding: 8px 16px;
     border-radius: 30px;
     font-size: 14px;
-    font-family: "GothamMedium", sans-serif;
+    font-family: "Gotham", sans-serif;
 
     &:hover {
       background-color: $grey;
@@ -111,8 +111,9 @@ h3 {
 
 .challenge {
   p {
-    font-family: "OpenSansSemiBold", sans-serif;
+    font-family: "OpenSans", sans-serif;
     font-size: 12px;
+    font-weight: 600;
 
     a {
       color: $primary !important;
