@@ -29,11 +29,17 @@
           h3 TES CHALLENGES
           p #[router-link(to="/sign-in" :class="$style.signUp" ) Connecte toi] ou #[router-link(to="/sign-up" :class="$style.signUp") créer un compte] pour pouvoir jouer !
     router-view(:class="$style.app")
+    theme-toggler
 </template>
 
 <script>
+import ThemeToggler from "@/components/ThemeToggler.vue";
+
 export default {
-  name: "App"
+  name: "App",
+  components: {
+    ThemeToggler
+  }
 };
 </script>
 
