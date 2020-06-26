@@ -1,0 +1,16 @@
+{
+  "trailingComma": "none",
+  "tabWidth": 2,
+  "semi": false,
+  "singleQuote": true,
+  "overrides": [
+      {
+          "files": "*.pug",
+          "options": {
+              "parser": "pug",
+              "singleQuote": false
+          }
+      }
+  ],
+  "printWidth": 100
+}
