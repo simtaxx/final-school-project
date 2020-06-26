@@ -1,0 +1,44 @@
+[
+  {
+    "categoryName" : "L'institution",
+    "icon" : "mdi-domain",
+    "articles" : [
+      {
+        "articleName": "La république", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "two"
+      },
+      {
+        "articleName": "Le président", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "left"
+      },
+      {
+        "articleName": "Le premier ministre", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "right"
+      },
+      {
+        "articleName": "Le parlement", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "one"
+      }
+    ]
+  },
+  {
+    "categoryName" : "La citoyenneté",
+    "icon" : "mdi-domain",
+    "articles" : [
+      {
+        "articleName": "La république", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "one"
+      }
+    ]
+  }
+]

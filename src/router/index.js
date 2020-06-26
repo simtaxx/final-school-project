@@ -1,7 +1,7 @@
-import Vue from "vue";
-import VueRouter from "vue-router";
+import Vue from "vue"
+import VueRouter from "vue-router"
 
-Vue.use(VueRouter);
+Vue.use(VueRouter)
 
 const routes = [
   {
@@ -11,7 +11,7 @@ const routes = [
   {
     path: "/",
     name: "Homepage",
-    component: () => import("@/views/Homepage.vue")
+    component: () => import("@/views/HomePage/Homepage.vue")
   },
   {
     path: "/introduction",
@@ -53,12 +53,19 @@ const routes = [
     name: "Challenge",
     component: () => import("@/views/Challenge/Challenge.vue")
   }
-];
+]
 
 const router = new VueRouter({
   mode: "history",
   base: process.env.BASE_URL,
+  scrollBehavior(to) {
+    if (to.hash) {
+      return {
+        selector: to.hash
+      }
+    }
+  },
   routes
-});
+})
 
-export default router;
+export default router

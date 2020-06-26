@@ -33,20 +33,20 @@
 </template>
 
 <script>
-import ThemeToggler from "@/components/ThemeToggler.vue";
+import ThemeToggler from "@/components/ThemeToggler.vue"
 
 export default {
   name: "App",
   components: {
     ThemeToggler
   }
-};
+}
 </script>
 
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .app {
-  padding: 0 50px 0 290px;
+  padding-left: 290px;
 }
 
 nav {
