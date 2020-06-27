@@ -1,31 +1,37 @@
 [
   {
-    "categoryName" : "L'institution",
+    "categoryName" : "Les institutions",
     "icon" : "mdi-domain",
     "articles" : [
       {
         "articleName": "La république", 
         "icon": "mdi-domain",
         "articleId": "123",
-        "branchesModel": "two"
+        "branchesModel": "cube"
       },
       {
         "articleName": "Le président", 
         "icon": "mdi-domain",
         "articleId": "123",
-        "branchesModel": "left"
+        "branchesModel": "cube"
       },
       {
         "articleName": "Le premier ministre", 
         "icon": "mdi-domain",
         "articleId": "123",
-        "branchesModel": "right"
+        "branchesModel": "cube"
+      },
+      {
+        "articleName": "Le gouvernement", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "cube"
       },
       {
         "articleName": "Le parlement", 
         "icon": "mdi-domain",
         "articleId": "123",
-        "branchesModel": "one"
+        "branchesModel": "single"
       }
     ]
   },
