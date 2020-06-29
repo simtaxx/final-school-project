@@ -1,44 +1,30 @@
 <template lang="pug">
   v-app
-    nav
-      div(:class="$style.navContainer")
-        div(:class="$style.profile")
-          h3 PROFIL
-          router-link(to="/sign-in" :class="$style.signIn") CONNEXION
-        div(:class="$style.discover")
-          h3 DÉCOUVRIR
-          router-link(to="/sign-in" :exact-active-class="$style.active")
-            img(src="@/assets/icons/institution.svg") 
-            p L'institution
-          router-link(to="/" :exact-active-class="$style.active") 
-            img(src="@/assets/icons/citoyennete.svg") 
-            p La citoyenneté
-          router-link(to="/" :exact-active-class="$style.active") 
-            img(src="@/assets/icons/justice.svg") 
-            p La justice
-          router-link(to="/" :exact-active-class="$style.active") 
-            img(src="@/assets/icons/citoyennete.svg") 
-            p La citoyenneté
-          router-link(to="/" :exact-active-class="$style.active") 
-            img(src="@/assets/icons/citoyennete.svg") 
-            p La citoyenneté
-          router-link(to="/" :exact-active-class="$style.active") 
-            img(src="@/assets/icons/citoyennete.svg") 
-            p La citoyenneté
-        div(:class="$style.challenge")
-          h3 TES CHALLENGES
-          p #[router-link(to="/sign-in" :class="$style.signUp" ) Connecte toi] ou #[router-link(to="/sign-up" :class="$style.signUp") créer un compte] pour pouvoir jouer !
-    router-view(:class="$style.app")
+    router-view(v-if="!isFirstTime" :class="$style.app")
     theme-toggler
+    Introduction(v-if="isFirstTime" @closeIntroduction="isFirstTime = false")
 </template>
 
 <script>
 import ThemeToggler from "@/components/ThemeToggler.vue"
+import Introduction from "@/components/Introduction.vue"
 
 export default {
   name: "App",
   components: {
-    ThemeToggler
+    ThemeToggler,
+    Introduction
+  },
+  data() {
+    return {
+      isFirstTime: true
+    }
+  },
+  created() {
+    if (JSON.parse(localStorage.getItem("firstTime")) === null) {
+      return (this.isFirstTime = true)
+    }
+    this.isFirstTime = false
   }
 }
 </script>
