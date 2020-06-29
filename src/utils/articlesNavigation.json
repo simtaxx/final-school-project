@@ -1,7 +1,8 @@
 [
   {
-    "categoryName" : "Les institutions",
+    "categoryName" : "L'institution",
     "icon" : "mdi-domain",
+    "path" : "/institution",
     "articles" : [
       {
         "articleName": "La république", 
@@ -36,8 +37,21 @@
     ]
   },
   {
+    "categoryName" : "Les finances publiques",
+    "icon" : "mdi-domain",
+    "path" : "/finances-publiques",
+    "articles" : []
+  },
+  {
+    "categoryName" : "La justice",
+    "icon" : "mdi-domain",
+    "path" : "/justice",
+    "articles" : []
+  },
+  {
     "categoryName" : "La citoyenneté",
     "icon" : "mdi-domain",
+    "path" : "/citoyennete",
     "articles" : [
       {
         "articleName": "La république", 
@@ -46,5 +60,11 @@
         "branchesModel": "one"
       }
     ]
+  },
+  {
+    "categoryName" : "Développer un esprit critique",
+    "icon" : "mdi-domain",
+    "path" : "/esprit-critique",
+    "articles" : []
   }
 ]
