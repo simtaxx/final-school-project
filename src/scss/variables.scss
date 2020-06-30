@@ -1,3 +1,10 @@
 
-$btn-font-weight: 5000px;
 @import '~vuetify/src/styles/styles.sass';
+
+$material-dark : (
+  'background': #293241
+);
+
+$material-light : (
+  'background': #FAF9F9
+);

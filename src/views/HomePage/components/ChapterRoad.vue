@@ -2,12 +2,12 @@
   section(:class="$style.chapterRoad")
     chapter-head(:chapterHead="chapterHead")
     template(v-if="structuredChapterRoad.cube")
-      div(:class="[$style.cube, $style.outer]")
-        div(:class="[$style.cube, $style.inner]")
+      div(:class="[$style.cube, $style.outer, $style.road]")
+        div(:class="[$style.cube, $style.inner, $style.road]")
         article-sticker(
           v-for="(article, index) in structuredChapterRoad.cube" 
           :article="article"
-          :className="'sec' + (index + 1)" 
+          :className="'cube-sticker-' + (index + 1)" 
           :key="chapter.categoryName + 'cubeArticle' + index"
         )
     article-sticker(
@@ -72,6 +72,11 @@ export default {
   width: 400px;
   height: 400px;
   position: relative;
+  box-sizing: border-box;
+}
+
+.inner {
+  box-sizing: border-box;
 }
 
 .cube:before,
@@ -84,24 +89,24 @@ export default {
 
 .outer:before {
   //- Top left corner
-  border-left: 3px solid green;
-  border-top: 3px solid green;
+  border-left: 10px solid;
+  border-top: 10px solid;
   border-radius: 100px 0px 0px 0px;
 }
 
 .outer:after {
   //- Top Right corner
   right: 0;
-  border-right: 3px solid red;
-  border-top: 3px solid red;
+  border-right: 10px solid;
+  border-top: 10px solid;
   border-radius: 0px 100px 0px 0px;
 }
 
 .inner:before {
   //- Bottom Left corner
   bottom: 0;
-  border-left: 3px solid black;
-  border-bottom: 3px solid black;
+  border-left: 10px solid;
+  border-bottom: 10px solid;
   border-radius: 0px 0px 0px 100px;
 }
 
@@ -109,8 +114,23 @@ export default {
   //- Bottom Right corner
   bottom: 0;
   right: 0;
-  border-right: 3px solid blue;
-  border-bottom: 3px solid blue;
+  border-right: 10px solid;
+  border-bottom: 10px solid;
   border-radius: 0px 0px 100px 0px;
+}
+
+// TODO changes these colors with vuetify variables
+.road {
+  &::after,
+  &::before {
+    border-color: grey;
+  }
+}
+
+.active-raod {
+  &::after,
+  &::before {
+    border-color: grey;
+  }
 }
 </style>

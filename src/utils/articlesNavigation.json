@@ -39,25 +39,81 @@
   {
     "categoryName" : "Les finances publiques",
     "icon" : "mdi-domain",
-    "path" : "/finances-publiques",
-    "articles" : []
+    "path" : "/citoyennete",
+    "articles" : [
+      {
+        "articleName": "Introduction", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      },
+      {
+        "articleName": "Impôts et fiscalité", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      },
+      {
+        "articleName": "Financement sociale", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      }
+    ]
   },
   {
     "categoryName" : "La justice",
     "icon" : "mdi-domain",
     "path" : "/justice",
-    "articles" : []
+    "articles" : [
+      {
+        "articleName": "Principes", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      },
+      {
+        "articleName": "Justice pénale", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      },
+      {
+        "articleName": "Justice civile", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      }
+    ]
   },
   {
     "categoryName" : "La citoyenneté",
     "icon" : "mdi-domain",
-    "path" : "/citoyennete",
+    "path" : "/finances-publiques",
     "articles" : [
       {
-        "articleName": "La république", 
+        "articleName": "Liberté et droits", 
         "icon": "mdi-domain",
         "articleId": "123",
-        "branchesModel": "one"
+        "branchesModel": "cube"
+      },
+      {
+        "articleName": "Le devoir civique", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "cube"
+      },
+      {
+        "articleName": "Le vote", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "cube"
+      },
+      {
+        "articleName": "Adhérer à un parti", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "cube"
       }
     ]
   },
