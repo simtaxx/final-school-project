@@ -2,7 +2,7 @@
   {
     "categoryName" : "L'institution",
     "icon" : "mdi-domain",
-    "path" : "/institution",
+    "path" : "/",
     "articles" : [
       {
         "articleName": "La république", 

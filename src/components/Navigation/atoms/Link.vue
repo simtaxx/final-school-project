@@ -17,7 +17,6 @@ export default {
 @import "@/scss/core/colors.scss";
 
 .link {
-  width: 100% !important;
   display: flex;
   align-items: center;
 

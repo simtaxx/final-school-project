@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-app
+  v-app(:style="{background: $vuetify.theme.themes[isDark].background}")
     router-view(v-if="!isFirstTime" :class="$style.app")
     theme-toggler
     Introduction(v-if="isFirstTime" @closeIntroduction="isFirstTime = false")
@@ -28,6 +28,11 @@ export default {
       return (this.isFirstTime = true)
     }
     this.isFirstTime = false
+  },
+  computed: {
+    isDark() {
+      return this.$vuetify.theme.dark ? "dark" : "light"
+    }
   }
 }
 </script>

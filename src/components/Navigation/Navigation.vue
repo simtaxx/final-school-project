@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer(fixed :class="$style.nav")
+  v-navigation-drawer(fixed :class="$style.nav" :style="{background: $vuetify.theme.themes[isDark].nav}" floating)
     v-list( dense nav class="py-0" :class="$style.navContainer")
       v-list-item
         v-list-item-content(:class="$style.profile")
@@ -9,7 +9,7 @@
       v-list-item
         v-list-item-content(:class="$style.discover")
           h3 DÉCOUVRIR
-          Link(v-for="content in navContent" :key="content.categoryName" :content="content")
+          Link(v-for="content in navContent" :key="content.categoryName" :content="content" :style="{color: $vuetify.theme.themes[isDark].text}")
       v-list-item
         v-list-item-content(:class="$style.challenge")
           h3 TES CHALLENGES
@@ -28,16 +28,19 @@ export default {
     return {
       navContent: categories
     }
+  },
+  computed: {
+    isDark() {
+      return this.$vuetify.theme.dark ? "dark" : "light"
+    }
   }
 }
 </script>
 
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
-
 .nav {
   width: 290px !important;
-  background-color: $greyLight;
 
   .navContainer {
     margin-left: 40px;
@@ -72,6 +75,7 @@ h3 {
   margin-bottom: 32px;
   overflow: visible !important;
   padding: 0 !important;
+  width: 70%;
 
   a {
     display: flex;
@@ -100,7 +104,7 @@ h3 {
     font-weight: 600;
 
     a {
-      color: $primary !important;
+      color: $primary;
       text-decoration: underline;
     }
   }
