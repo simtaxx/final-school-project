@@ -14,9 +14,9 @@ export default {
   data() {
     return {
       theme: true
-    };
+    }
   }
-};
+}
 </script>
 
 <style lang="scss">
