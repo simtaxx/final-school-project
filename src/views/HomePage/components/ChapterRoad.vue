@@ -1,6 +1,7 @@
 <template lang="pug">
   section(:class="$style.chapterRoad")
     chapter-head(:chapterHead="chapterHead")
+    div(:class="[$style['previous-road'], $style['single-road']]")
     template(v-if="structuredChapterRoad.cube")
       div(:class="[$style.cube, $style.outer, $style.road]")
         div(:class="[$style.cube, $style.inner, $style.road]")
@@ -10,6 +11,7 @@
           :className="'cube-sticker-' + (index + 1)" 
           :key="chapter.categoryName + 'cubeArticle' + index"
         )
+        div(v-if="chapter.articles.length > 3" :class="[$style['next-road'], $style['single-road']]")
     article-sticker(
       v-for="(article, index) in structuredChapterRoad.single" 
       :article="article"
@@ -39,7 +41,8 @@ export default {
       const chapter = this.chapter
       return {
         title: chapter.categoryName,
-        icon: chapter.icon
+        icon: chapter.icon,
+        index: chapter.index
       }
     },
     structuredChapterRoad() {
@@ -66,6 +69,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .outer {
@@ -73,6 +77,7 @@ export default {
   height: 400px;
   position: relative;
   box-sizing: border-box;
+  margin: 3rem 0;
 }
 
 .inner {
@@ -132,5 +137,23 @@ export default {
   &::before {
     border-color: grey;
   }
+}
+
+.single-road {
+  width: 10px;
+  height: 100px;
+  // TODO get the vutify sass variables colors
+  background-color: gray;
+  position: absolute;
+}
+
+.next-road {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+}
+
+.previous-road {
+  top: 70px;
 }
 </style>

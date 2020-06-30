@@ -8,6 +8,7 @@
       :class="{[$style.stickerText] : className !== 'single'}"
       :style="stickerTextStyle"
     ) {{ article.articleName }}
+    div(v-if="className === 'single'" :class="[$style['next-road'], $style['single-road']]")
 </template>
 
 <script>
@@ -86,6 +87,19 @@ export default {
 }
 
 .single {
-  margin: 6rem 0 2rem 0;
+  margin: 3rem 0 2rem 0;
+}
+
+.single-road {
+  width: 10px;
+  height: 100px;
+  // TODO get the vutify sass variables colors
+  background-color: gray;
+  position: absolute;
+  z-index: 0;
+}
+
+.next-road {
+  top: 50%;
 }
 </style>
