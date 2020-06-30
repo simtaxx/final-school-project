@@ -3,7 +3,7 @@
     router-view(v-if="!isFirstTime" :class="$style.app")
     theme-toggler
     Introduction(v-if="isFirstTime" @closeIntroduction="isFirstTime = false")
-    Navigation
+    Navigation(v-if="!isFirstTime")
 </template>
 
 <script>
