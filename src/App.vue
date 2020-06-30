@@ -1,19 +1,33 @@
 <template lang="pug">
   v-app
-    router-view(:class="$style.app")
+    router-view(v-if="!isFirstTime" :class="$style.app")
     theme-toggler
+    Introduction(v-if="isFirstTime" @closeIntroduction="isFirstTime = false")
     Navigation
 </template>
 
 <script>
 import ThemeToggler from "@/components/ThemeToggler.vue"
+import Introduction from "@/components/Introduction.vue"
 import Navigation from "@/components/Navigation/Navigation.vue"
 
 export default {
   name: "App",
   components: {
     ThemeToggler,
+    Introduction,
     Navigation
+  },
+  data() {
+    return {
+      isFirstTime: true
+    }
+  },
+  created() {
+    if (JSON.parse(localStorage.getItem("firstTime")) === null) {
+      return (this.isFirstTime = true)
+    }
+    this.isFirstTime = false
   }
 }
 </script>
