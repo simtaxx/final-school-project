@@ -16,7 +16,7 @@
     span(
       :class="{[$style.stickerText] : className !== 'single'}"
       :style="stickerTextStyle"
-    ) {{ article.articleName }}
+    ) {{ article.name }}
     div(
       v-if="className === 'single' && !isLastArticle" 
       :class="[$style['next-road'], $style['single-road']]"
@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     updateRoute() {
-      this.$router.push({ name: "Course", params: { courseName: this.article.articleId } })
+      this.$router.push({ name: "Course", params: { courseName: this.article.id } })
     }
   }
 }

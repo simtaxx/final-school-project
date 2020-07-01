@@ -6,33 +6,33 @@
     "path" : "/",
     "articles" : [
       {
-        "articleName": "La république", 
+        "name": "La république", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le président", 
+        "name": "Le président", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le premier ministre", 
+        "name": "Le premier ministre", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le gouvernement", 
+        "name": "Le gouvernement", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le parlement", 
+        "name": "Le parlement", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       }
     ]
@@ -44,21 +44,21 @@
     "path" : "/citoyennete",
     "articles" : [
       {
-        "articleName": "Introduction", 
+        "name": "Introduction", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       },
       {
-        "articleName": "Impôts et fiscalité", 
+        "name": "Impôts et fiscalité", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       },
       {
-        "articleName": "Financement sociale", 
+        "name": "Financement sociale", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       }
     ]
@@ -70,21 +70,21 @@
     "path" : "/justice",
     "articles" : [
       {
-        "articleName": "Principes", 
+        "name": "Principes", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       },
       {
-        "articleName": "Justice pénale", 
+        "name": "Justice pénale", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       },
       {
-        "articleName": "Justice civile", 
+        "name": "Justice civile", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       }
     ]
@@ -96,27 +96,27 @@
     "path" : "/finances-publiques",
     "articles" : [
       {
-        "articleName": "Liberté et droits", 
+        "name": "Liberté et droits", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le devoir civique", 
+        "name": "Le devoir civique", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le vote", 
+        "name": "Le vote", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Adhérer à un parti", 
+        "name": "Adhérer à un parti", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       }
     ]
@@ -128,15 +128,15 @@
     "path" : "/esprit-critique",
     "articles" : [
       {
-        "articleName": "Définitions", 
+        "name": "Définitions", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       },
       {
-        "articleName": "Le discours fallacieu", 
+        "name": "Le discours fallacieu", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       }
     ]
