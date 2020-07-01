@@ -40,6 +40,6 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .app {
-  padding-left: 290px;
+  // padding-left: 290px;
 }
 </style>

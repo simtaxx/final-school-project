@@ -1,0 +1,91 @@
+<template lang="pug">
+  div(
+    :class="$style.tweet"
+    :style="{backgroundColor : tweetBackground}"
+  )
+    tweetos
+    div(:class="$style.message")
+      p kdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsg kdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsg
+    div(:class="$style.options")
+      div(:class="$style.text") 
+        span 6:24 PM - 23 juin 2020
+      hr
+      div(:class="$style.text")
+        span(:class="$style.stat") 236 
+        | Retweets 
+        span(:class="$style.stat") 1.3 k 
+        | J'aime 
+      hr
+      div(:class="$style.icons")
+        span t
+        span t
+        span t
+        span t
+    tweetos
+    div(:class="$style.response")
+      p kdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsg
+
+      
+</template>
+
+<script>
+import Tweetos from "./components/Tweetos.vue"
+
+export default {
+  name: "Tweet",
+  components: {
+    Tweetos
+  },
+  computed: {
+    tweetBackground() {
+      return this.$vuetify.theme.isDark
+        ? this.$vuetify.theme.themes.dark.tweet
+        : this.$vuetify.theme.themes.light.tweet
+    }
+  }
+}
+</script>
+
+<style lang="scss" module>
+@import "~vuetify/src/styles/styles.sass";
+.tweet {
+  width: 450px;
+  // background-color: map-get($material-dark, "tweet");
+  font-size: 12px;
+  padding: 0.5rem;
+  max-width: 80%;
+
+  .options {
+    font-size: 10px;
+
+    .text {
+      margin: 0.5rem 0;
+    }
+
+    .stat {
+      font-weight: bold;
+    }
+
+    .icons {
+      display: flex;
+      justify-content: space-around;
+    }
+  }
+
+  .message {
+    font-size: 16px;
+  }
+
+  .response {
+    display: flex;
+    margin: 0.5rem 0;
+
+    &::before {
+      content: "";
+      margin: 0 25px 0 17px;
+      width: 2px;
+      background-color: gray;
+    }
+  }
+}
+</style>

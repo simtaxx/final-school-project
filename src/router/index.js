@@ -26,7 +26,7 @@ const routes = [
   {
     path: "/course/:courseName",
     name: "Course",
-    component: () => import("@/views/Course.vue")
+    component: () => import("@/views/Course/Course.vue")
   },
   {
     path: "/quizz",
