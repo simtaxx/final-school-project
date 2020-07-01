@@ -2,16 +2,22 @@
   div(:class="$style.course")
     h1 {{ course.title }}
     img(:class="$style['main-image']" :src="course.imageUrl")
-    Tweet
+    section(:class="$style.content")
+      p {{ course.p1 }}
+      Tweet
+      p {{ course.p2 }}
+      remember
 </template>
 
 <script>
 import Tweet from "./components/Tweet/Tweet.vue"
+import Remember from "./components/Remember.vue"
 
 export default {
   name: "Course",
   components: {
-    Tweet
+    Tweet,
+    Remember
   },
   data() {
     return {
@@ -61,6 +67,17 @@ export default {
     object-fit: cover;
     object-position: left top;
     border-radius: 6px;
+  }
+
+  .content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+
+    & > * {
+      margin: 3rem 0;
+    }
   }
 }
 </style>

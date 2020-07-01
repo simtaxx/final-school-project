@@ -9,13 +9,13 @@
     div(:class="$style.options")
       div(:class="$style.text") 
         span 6:24 PM - 23 juin 2020
-      hr
+      v-divider
       div(:class="$style.text")
         span(:class="$style.stat") 236 
         | Retweets 
         span(:class="$style.stat") 1.3 k 
         | J'aime 
-      hr
+      v-divider
       div(:class="$style.icons")
         span t
         span t
@@ -54,6 +54,7 @@ export default {
   font-size: 12px;
   padding: 0.5rem;
   max-width: 80%;
+  border-radius: 4px;
 
   .options {
     font-size: 10px;
