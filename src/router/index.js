@@ -44,12 +44,12 @@ const routes = [
     component: () => import("@/views/SignUp.vue")
   },
   {
-    path: "/account",
+    path: "/profil",
     name: "Account",
     component: () => import("@/views/Account/Account.vue")
   },
   {
-    path: "/Challenge",
+    path: "/challenge",
     name: "Challenge",
     component: () => import("@/views/Challenge/Challenge.vue")
   }

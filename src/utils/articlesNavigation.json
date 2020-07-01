@@ -2,7 +2,7 @@
   {
     "categoryName" : "L'institution",
     "index": 1,
-    "icon" : "mdi-domain",
+    "icon" : "🏛",
     "path" : "/",
     "articles" : [
       {
@@ -40,7 +40,7 @@
   {
     "categoryName" : "Les finances publiques",
     "index": 2,
-    "icon" : "mdi-domain",
+    "icon" : "💸",
     "path" : "/citoyennete",
     "articles" : [
       {
@@ -66,7 +66,7 @@
   {
     "categoryName" : "La justice",
     "index": 3,
-    "icon" : "mdi-domain",
+    "icon" : "⚖️",
     "path" : "/justice",
     "articles" : [
       {
@@ -92,7 +92,7 @@
   {
     "categoryName" : "La citoyenneté",
     "index": 4,
-    "icon" : "mdi-domain",
+    "icon" : "🙋🏽‍♀️",
     "path" : "/finances-publiques",
     "articles" : [
       {
@@ -124,7 +124,7 @@
   {
     "categoryName" : "Développer un esprit critique",
     "index": 5,
-    "icon" : "mdi-domain",
+    "icon" : "🧠",
     "path" : "/esprit-critique",
     "articles" : [
       {

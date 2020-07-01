@@ -29,6 +29,7 @@ export default {
   margin-right: 16px;
   width: 24px;
   height: auto;
+  font-style: inherit !important;
 }
 
 .active {
