@@ -4,6 +4,7 @@
       v-for="(chapter, index) in articleNavigation" 
       :chapter="chapter" 
       :key="'chapter' + index"
+      :isLastChapter="index === articleNavigation.length - 1"
     )
 </template>
 

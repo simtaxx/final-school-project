@@ -1,6 +1,7 @@
 [
   {
     "categoryName" : "L'institution",
+    "index": 1,
     "icon" : "mdi-domain",
     "path" : "/",
     "articles" : [
@@ -38,33 +39,106 @@
   },
   {
     "categoryName" : "Les finances publiques",
-    "icon" : "mdi-domain",
-    "path" : "/finances-publiques",
-    "articles" : []
-  },
-  {
-    "categoryName" : "La justice",
-    "icon" : "mdi-domain",
-    "path" : "/justice",
-    "articles" : []
-  },
-  {
-    "categoryName" : "La citoyenneté",
+    "index": 2,
     "icon" : "mdi-domain",
     "path" : "/citoyennete",
     "articles" : [
       {
-        "articleName": "La république", 
+        "articleName": "Introduction", 
         "icon": "mdi-domain",
         "articleId": "123",
-        "branchesModel": "one"
+        "branchesModel": "single"
+      },
+      {
+        "articleName": "Impôts et fiscalité", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      },
+      {
+        "articleName": "Financement sociale", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      }
+    ]
+  },
+  {
+    "categoryName" : "La justice",
+    "index": 3,
+    "icon" : "mdi-domain",
+    "path" : "/justice",
+    "articles" : [
+      {
+        "articleName": "Principes", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      },
+      {
+        "articleName": "Justice pénale", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      },
+      {
+        "articleName": "Justice civile", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      }
+    ]
+  },
+  {
+    "categoryName" : "La citoyenneté",
+    "index": 4,
+    "icon" : "mdi-domain",
+    "path" : "/finances-publiques",
+    "articles" : [
+      {
+        "articleName": "Liberté et droits", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "cube"
+      },
+      {
+        "articleName": "Le devoir civique", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "cube"
+      },
+      {
+        "articleName": "Le vote", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "cube"
+      },
+      {
+        "articleName": "Adhérer à un parti", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "cube"
       }
     ]
   },
   {
     "categoryName" : "Développer un esprit critique",
+    "index": 5,
     "icon" : "mdi-domain",
     "path" : "/esprit-critique",
-    "articles" : []
+    "articles" : [
+      {
+        "articleName": "Définitions", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      },
+      {
+        "articleName": "Le discours fallacieu", 
+        "icon": "mdi-domain",
+        "articleId": "123",
+        "branchesModel": "single"
+      }
+    ]
   }
 ]

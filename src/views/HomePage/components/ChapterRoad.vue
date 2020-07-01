@@ -1,20 +1,23 @@
 <template lang="pug">
   section(:class="$style.chapterRoad")
     chapter-head(:chapterHead="chapterHead")
+    div(:class="[$style['previous-road'], $style['single-road']]")
     template(v-if="structuredChapterRoad.cube")
-      div(:class="[$style.cube, $style.outer]")
-        div(:class="[$style.cube, $style.inner]")
+      div(:class="[$style.cube, $style.outer, $style.road]")
+        div(:class="[$style.cube, $style.inner, $style.road]")
         article-sticker(
           v-for="(article, index) in structuredChapterRoad.cube" 
           :article="article"
-          :className="'sec' + (index + 1)" 
+          :className="'cube-sticker-' + (index + 1)" 
           :key="chapter.categoryName + 'cubeArticle' + index"
         )
+        div(v-if="chapter.articles.length > 3" :class="[$style['next-road'], $style['single-road']]")
     article-sticker(
       v-for="(article, index) in structuredChapterRoad.single" 
       :article="article"
       className="single"
       :key="chapter.categoryName + 'singleArticle' + index"
+      :isLastArticle="isLastChapter && index === structuredChapterRoad.single.length -1"
     )
 </template>
 
@@ -32,6 +35,10 @@ export default {
     chapter: {
       type: Object,
       required: true
+    },
+    isLastChapter: {
+      type: Boolean,
+      required: true
     }
   },
   computed: {
@@ -39,7 +46,8 @@ export default {
       const chapter = this.chapter
       return {
         title: chapter.categoryName,
-        icon: chapter.icon
+        icon: chapter.icon,
+        index: chapter.index
       }
     },
     structuredChapterRoad() {
@@ -66,12 +74,19 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  position: relative;
 }
 
 .outer {
   width: 400px;
   height: 400px;
   position: relative;
+  box-sizing: border-box;
+  margin: 3rem 0;
+}
+
+.inner {
+  box-sizing: border-box;
 }
 
 .cube:before,
@@ -84,24 +99,24 @@ export default {
 
 .outer:before {
   //- Top left corner
-  border-left: 3px solid green;
-  border-top: 3px solid green;
+  border-left: 10px solid;
+  border-top: 10px solid;
   border-radius: 100px 0px 0px 0px;
 }
 
 .outer:after {
   //- Top Right corner
   right: 0;
-  border-right: 3px solid red;
-  border-top: 3px solid red;
+  border-right: 10px solid;
+  border-top: 10px solid;
   border-radius: 0px 100px 0px 0px;
 }
 
 .inner:before {
   //- Bottom Left corner
   bottom: 0;
-  border-left: 3px solid black;
-  border-bottom: 3px solid black;
+  border-left: 10px solid;
+  border-bottom: 10px solid;
   border-radius: 0px 0px 0px 100px;
 }
 
@@ -109,8 +124,41 @@ export default {
   //- Bottom Right corner
   bottom: 0;
   right: 0;
-  border-right: 3px solid blue;
-  border-bottom: 3px solid blue;
+  border-right: 10px solid;
+  border-bottom: 10px solid;
   border-radius: 0px 0px 100px 0px;
+}
+
+// TODO changes these colors with vuetify variables
+.road {
+  &::after,
+  &::before {
+    border-color: grey;
+  }
+}
+
+.active-raod {
+  &::after,
+  &::before {
+    border-color: grey;
+  }
+}
+
+.single-road {
+  width: 10px;
+  height: 100px;
+  // TODO get the vutify sass variables colors
+  background-color: gray;
+  position: absolute;
+}
+
+.next-road {
+  left: 50%;
+  transform: translateX(-50%);
+  top: 100%;
+}
+
+.previous-road {
+  top: 70px;
 }
 </style>

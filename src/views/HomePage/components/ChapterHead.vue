@@ -1,10 +1,12 @@
 <template lang="pug">
   v-chip(
     :class="$style.chapterHead"
-    outlined
-  ) {{chapterHead.title}}
-  
+    large
+  ) 
     v-icon(v-text="chapterHead.icon")
+    | {{'Chapitre ' + chapterHead.index + ' : ' + chapterHead.title}}
+  
+    
 </template>
 
 <script>
@@ -22,5 +24,13 @@ export default {
 <style lang="scss" module>
 .chapterHead {
   margin: 2rem 1rem;
+  padding: 0 1.2rem;
+  border: solid 2px;
+  border-color: gray;
+  z-index: 2;
+
+  &::before {
+    display: none;
+  }
 }
 </style>
