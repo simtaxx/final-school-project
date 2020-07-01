@@ -17,6 +17,7 @@
       :article="article"
       className="single"
       :key="chapter.categoryName + 'singleArticle' + index"
+      :isLastArticle="isLastChapter && index === structuredChapterRoad.single.length -1"
     )
 </template>
 
@@ -33,6 +34,10 @@ export default {
   props: {
     chapter: {
       type: Object,
+      required: true
+    },
+    isLastChapter: {
+      type: Boolean,
       required: true
     }
   },

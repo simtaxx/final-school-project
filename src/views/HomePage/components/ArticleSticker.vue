@@ -1,14 +1,26 @@
 <template lang="pug">
   div(:class="[$style.articleSticker, $style[className]]")
-    v-avatar(
-      :class="$style.avatar"
+    v-badge(
+      bottom 
+      style="z-index: 4"
+      color="success" 
+      overlap
+      :value="true"
+      icon="mdi-check-bold"
     )
-      v-icon(v-text="article.icon")
+      v-avatar(
+        :class="$style.avatar"
+        @click="updateRoute()"
+      )
+        v-icon(v-text="article.icon")
     span(
       :class="{[$style.stickerText] : className !== 'single'}"
       :style="stickerTextStyle"
     ) {{ article.articleName }}
-    div(v-if="className === 'single'" :class="[$style['next-road'], $style['single-road']]")
+    div(
+      v-if="className === 'single' && !isLastArticle" 
+      :class="[$style['next-road'], $style['single-road']]"
+    )
 </template>
 
 <script>
@@ -22,6 +34,10 @@ export default {
     className: {
       type: String,
       required: false
+    },
+    isLastArticle: {
+      type: Boolean,
+      required: false
     }
   },
   computed: {
@@ -30,6 +46,11 @@ export default {
         return { background: this.$vuetify.theme.themes.dark.background }
       }
       return { background: this.$vuetify.theme.themes.light.background }
+    }
+  },
+  methods: {
+    updateRoute() {
+      this.$router.push({ name: "Course", params: { courseName: this.article.articleId } })
     }
   }
 }
@@ -42,6 +63,7 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
+  cursor: pointer;
 
   z-index: 2;
 
@@ -92,14 +114,15 @@ export default {
 
 .single-road {
   width: 10px;
-  height: 100px;
+  height: 150px;
   // TODO get the vutify sass variables colors
   background-color: gray;
   position: absolute;
-  z-index: 0;
+  z-index: -2;
+  transform: translateY(40px);
 }
 
-.next-road {
-  top: 50%;
-}
+// .next-road {
+//   top: 50%;
+// }
 </style>
