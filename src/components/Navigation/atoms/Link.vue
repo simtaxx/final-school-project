@@ -1,7 +1,7 @@
 <template lang="pug">
   router-link(:to="content.path" :exact-active-class="$style.active" :class="$style.link")
     v-icon(v-text="content.icon" :class="$style.icon")
-    | {{content.categoryName}}
+    p {{content.categoryName}}
 </template>
 
 <script>
@@ -17,7 +17,12 @@ export default {
 @import "@/scss/core/colors.scss";
 
 .link {
-  width: 100% !important;
+  display: flex;
+  align-items: center;
+
+  p {
+    margin-bottom: 0 !important;
+  }
 }
 
 .icon {
