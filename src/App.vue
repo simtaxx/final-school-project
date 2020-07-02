@@ -27,10 +27,7 @@ export default {
     }
   },
   created() {
-    if (JSON.parse(localStorage.getItem("firstTime")) === null) {
-      return (this.isFirstTime = true)
-    }
-    this.isFirstTime = false
+    this.isFirstTime = JSON.parse(localStorage.getItem("firstTime")) === null
   }
 }
 </script>
