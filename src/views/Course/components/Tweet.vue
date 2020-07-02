@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import Tweetos from "./components/Tweetos.vue"
+import Tweetos from "./Tweetos.vue"
 
 export default {
   name: "Tweet",

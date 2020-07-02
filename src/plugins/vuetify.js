@@ -22,6 +22,9 @@ export default new Vuetify({
         text: "#293241",
         tweet: "#FFFFFF"
       }
+    },
+    options: {
+      customProperties: true
     }
   }
 })

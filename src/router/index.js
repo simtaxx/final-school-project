@@ -31,7 +31,7 @@ const routes = [
   {
     path: "/quizz",
     name: "Quizz",
-    component: () => import("@/views/Quizz.vue")
+    component: () => import("@/views/Quizz/Quizz.vue")
   },
   {
     path: "/sign-in",

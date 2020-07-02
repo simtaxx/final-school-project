@@ -3,3 +3,8 @@
 @import './core/fonts.scss';
 @import './core/colors.scss';
 @import './variables.scss';
+
+
+.v-stepper__step__step {
+  border-radius: 6px;
+}

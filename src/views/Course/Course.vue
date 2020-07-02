@@ -6,11 +6,16 @@
       p {{ course.p1 }}
       Tweet
       p {{ course.p2 }}
-      remember
+      remember(:listToRemember="course.toRemember")
+      v-btn(
+        :class="$style.quizzBtn" color="primary" 
+        depressed
+        @click="$router.push({name:'Quizz'})"
+      ) Faire le quizz
 </template>
 
 <script>
-import Tweet from "./components/Tweet/Tweet.vue"
+import Tweet from "./components/Tweet.vue"
 import Remember from "./components/Remember.vue"
 
 export default {
@@ -33,7 +38,7 @@ export default {
         },
         p2:
           "Exercitation Lorem qui minim ad eiusmod deserunt quis dolore amet culpa pariatur mollit quis cupidatat. Et Lorem magna irure eiusmod adipisicing mollit est commodo. Tempor dolor voluptate mollit fugiat ullamco pariatur. Dolor sit dolor ea mollit reprehenderit pariatur. Laboris aliquip sit sint tempor proident quis exercitation. Occaecat ea proident ad officia commodo cupidatat do amet sint occaecat officia velit minim. Tempor eu cillum proident mollit est minim commodo voluptate sint sint ex aliquip nisi officia. Ut cillum ad incididunt quis est non eiusmod Lorem do nulla qui aute cupidatat occaecat. Cillum exercitation veniam aliqua velit non esse. Labore velit consectetur nisi consectetur et magna ipsum cillum adipisicing pariatur quis laborum qui tempor.",
-        toMaintain: [
+        toRemember: [
           "Aliqua minim ullamco enim irure enim do laboris mollit ullamco.",
           "Aliqua minim ullamco enim irure enim do laboris mollit ullamco.",
           "Aliqua minim ullamco enim irure enim do laboris mollit ullamco.",
@@ -78,6 +83,11 @@ export default {
     & > * {
       margin: 3rem 0;
     }
+  }
+
+  .quizzBtn {
+    display: block;
+    margin: 0 auto 3rem auto;
   }
 }
 </style>
