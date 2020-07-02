@@ -14,20 +14,36 @@
         :key="'content' + index"
         :step="step"
       )
-        v-card.mb-12(
-          color="grey lighten-1"
-          height="200px"
-        )
-      v-btn(color="primary" @click="nextQuestion()") Valider
+        span {{ 'Question ' + (index + 1) + ' : ' + questionGroup.question }}
+        div.assertations
+          assertation(
+            v-for="(assertation, index) in questionGroup.answers" 
+            :key="'assertation' + index" 
+            :assertation="assertation"
+            v-model="activeAssertation"
+            :position="index + 1"
+          )
+    v-btn(color="primary" @click="nextQuestion()") Valider
 </template>
 
 <script>
+import Assertation from "./components/Assertation.vue"
+
 export default {
   name: "Quizz",
+  components: {
+    Assertation
+  },
   data() {
     return {
       steps: 5,
-      currentQuestion: 1
+      currentQuestion: 1,
+      activeAssertation: 2,
+      questionGroup: {
+        question: "Comment se nomme l'action de ne pas voter à une élection",
+        answers: ["L'abstention", "L'abstinence", "L'abstraction"],
+        gif: "https://media.giphy.com/media/l3mZ1FuqX1xMZCRZ6/giphy.gif"
+      }
     }
   },
   methods: {
@@ -40,7 +56,35 @@ export default {
 }
 </script>
 
-<style lang="scss" module>
-.quizz {
+<style lang="scss">
+.v-stepper {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  .v-stepper__header {
+    width: 80%;
+    border: none;
+    box-shadow: none;
+
+    .v-stepper__step {
+      width: 15%;
+
+      .v-stepper__step__step {
+        width: 100%;
+      }
+    }
+  }
+
+  .v-stepper__items {
+    width: 80%;
+  }
+
+  .assertations {
+    display: flex;
+    justify-content: space-around;
+  }
 }
 </style>

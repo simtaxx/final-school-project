@@ -50,7 +50,7 @@ export default {
   },
   methods: {
     updateRoute() {
-      this.$router.push({ name: "Course", params: { courseName: this.article.articleId } })
+      this.$router.push({ name: "Course", params: { id: this.article.articleId } })
     }
   }
 }
