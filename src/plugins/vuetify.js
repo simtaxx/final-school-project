@@ -1,13 +1,16 @@
+import "@fortawesome/fontawesome-free/css/all.css"
 import Vue from "vue"
 import Vuetify from "vuetify/lib"
 
 Vue.use(Vuetify)
 
 export default new Vuetify({
+  icons: {
+    iconfont: "fa"
+  },
   theme: {
     themes: {
       dark: {
-        background: "#293241",
         primary: "#09BDED",
         white: "#FAF9F9",
         background: "#293241",
@@ -15,7 +18,6 @@ export default new Vuetify({
         text: "#FAF9F9"
       },
       light: {
-        background: "#FAF9F9",
         primary: "#09BDED",
         white: "#FAF9F9",
         background: "#FAF9F9",

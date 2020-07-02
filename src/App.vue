@@ -1,22 +1,25 @@
 <template lang="pug">
-  v-app(:style="{background: $vuetify.theme.themes[isDark].background}")
+  v-app
     router-view(v-if="!isFirstTime" :class="$style.app")
     theme-toggler
     Introduction(v-if="isFirstTime" @closeIntroduction="isFirstTime = false")
-    Navigation(v-if="!isFirstTime")
+    Navigation(v-if="!isFirstTime && $vuetify.breakpoint.smAndUp")
+    MobileNavigation(v-if="!isFirstTime && $vuetify.breakpoint.xs")
 </template>
 
 <script>
 import ThemeToggler from "@/components/ThemeToggler.vue"
 import Introduction from "@/components/Introduction.vue"
 import Navigation from "@/components/Navigation/Navigation.vue"
+import MobileNavigation from "@/components/MobileNavigation/MobileNavigation.vue"
 
 export default {
   name: "App",
   components: {
     ThemeToggler,
     Introduction,
-    Navigation
+    Navigation,
+    MobileNavigation
   },
   data() {
     return {
@@ -28,11 +31,6 @@ export default {
       return (this.isFirstTime = true)
     }
     this.isFirstTime = false
-  },
-  computed: {
-    isDark() {
-      return this.$vuetify.theme.dark ? "dark" : "light"
-    }
   }
 }
 </script>
