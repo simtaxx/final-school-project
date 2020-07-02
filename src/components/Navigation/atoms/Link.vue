@@ -1,6 +1,6 @@
 <template lang="pug">
   router-link(:to="content.path" :exact-active-class="$style.active" :class="$style.link")
-    v-icon(v-text="content.icon" :class="$style.icon")
+    img(:class="$style.icon" :src="content.icon")
     p {{content.categoryName}}
 </template>
 
