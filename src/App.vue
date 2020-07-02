@@ -8,7 +8,7 @@
 
 <script>
 import ThemeToggler from "@/components/ThemeToggler.vue"
-import Introduction from "@/components/Introduction.vue"
+import Introduction from "@/components/Introduction/Introduction.vue"
 import Navigation from "@/components/Navigation/Navigation.vue"
 
 export default {
