@@ -3,7 +3,8 @@
     v-row(no-gutters)
       v-col(:cols="$vuetify.breakpoint.xs ? 0 : 3" v-if="$vuetify.breakpoint.smAndUp")
         Navigation(v-if="!isFirstTime")
-      v-col(:cols="$vuetify.breakpoint.xs ? 12 : 9")
+        //- TODO Set this style on a class in proper way
+      v-col(style="padding-top: 3rem" :cols="$vuetify.breakpoint.xs ? 12 : 9")
         router-view(v-if="!isFirstTime" :class="$style.app")
     theme-toggler
     Introduction(v-if="isFirstTime" @closeIntroduction="isFirstTime = false")

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="[$style.articleSticker, $style[className]]")
+  div(:class="[$style.articleSticker, $style[className]]" @click="updateRoute()")
     v-badge(
       bottom 
       style="z-index: 4"
@@ -8,14 +8,14 @@
       :value="true"
       icon="mdi-check-bold"
     )
-      v-avatar(
-        :class="$style.avatar"
-        @click="updateRoute()"
-      )
-        v-icon(v-text="article.icon")
+      Pellet(imageName="bulb")
+      //- v-avatar(
+      //-   :class="$style.avatar"
+      //-   @click="updateRoute()"
+      //- )
+      //-   v-icon(v-text="article.icon")
     span(
-      :class="{[$style.stickerText] : className !== 'single'}"
-      :style="stickerTextStyle"
+      :class="{[$style.stickerText] : true, [$style.singleStickerText] : className !== 'single'}"
     ) {{ article.name }}
     div(
       v-if="className === 'single' && !isLastArticle" 
@@ -24,8 +24,15 @@
 </template>
 
 <script>
+//- TODO look for grammatical issues
+
+import Pellet from "@/components/Pellet.vue"
+
 export default {
   name: "ArticleSticker",
+  components: {
+    Pellet
+  },
   props: {
     article: {
       type: Object,
@@ -102,6 +109,10 @@ export default {
 }
 
 .stickerText {
+  background-color: var(--v-background-base);
+}
+
+.singleStickerText {
   position: absolute;
   white-space: nowrap;
   top: 100%;

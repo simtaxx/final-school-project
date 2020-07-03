@@ -14,10 +14,11 @@
         :key="'content' + index"
         :step="step"
       )
-        span {{ `Question ${index + 1} : ${questionGroup.question}` }}
+        span {{ `Question ${index + 1} : ${quizz.questions[index].title}` }}
+        img(:src="quizz")
         div.assertations
           assertation(
-            v-for="(assertation, index) in questionGroup.answers" 
+            v-for="(assertation, index) in quizz.questions[index].assertations" 
             :key="'assertation' + index" 
             :assertation="assertation"
             v-model="activeAssertation"
@@ -39,11 +40,7 @@ export default {
       steps: 5,
       currentQuestion: 1,
       activeAssertation: 2,
-      questionGroup: {
-        question: "Comment se nomme l'action de ne pas voter à une élection",
-        answers: ["L'abstention", "L'abstinence", "L'abstraction"],
-        gif: "https://media.giphy.com/media/l3mZ1FuqX1xMZCRZ6/giphy.gif"
-      }
+      quizz: {}
     }
   },
   methods: {
@@ -51,7 +48,17 @@ export default {
       if (this.currentQuestion < this.steps) {
         this.currentQuestion++
       }
+    },
+    async getArticleQuizz() {
+      const quizz = await this.$http.get("http://285c00afff67.ngrok.io/api/quizzs", {
+        headers: { Accept: "application/json" }
+      })
+      this.quizz = quizz.data[0]
+      this.steps = quizz.data[0].questions.length
     }
+  },
+  created() {
+    this.getArticleQuizz()
   }
 }
 </script>

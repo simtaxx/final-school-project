@@ -32,5 +32,9 @@ export default {
   &::before {
     display: none;
   }
+
+  img {
+    margin-right: 1rem;
+  }
 }
 </style>

@@ -3,7 +3,7 @@
     chapter-head(:chapterHead="chapterHead")
     div(:class="[$style['previous-road'], $style['single-road']]")
     template(v-if="structuredChapterRoad.cube")
-      div(:class="[$style.cube, $style.outer, $style.road]")
+      div(:class="[$style.cube, $style.outer, $style.road, {[$style.activeRoad] : isRead(structuredChapterRoad.cube[0])}]")
         div(:class="[$style.cube, $style.inner, $style.road]")
         article-sticker(
           v-for="(article, index) in structuredChapterRoad.cube" 
@@ -56,6 +56,12 @@ export default {
     },
     vueety() {
       return this.$vuetify
+    },
+    readedArticles() {
+      return JSON.parse(localStorage.getItem("readedArticles"))
+    },
+    isRead() {
+      return article => this.readedArticles[article.articleId]
     }
   },
   methods: {
@@ -77,12 +83,29 @@ export default {
   position: relative;
 }
 
+//- TODO deal with the responsive of this...
+
 .outer {
   width: 400px;
   height: 400px;
   position: relative;
   box-sizing: border-box;
   margin: 3rem 0;
+
+  &:before {
+    //- Top left corner
+    border-left: 10px solid;
+    border-top: 10px solid;
+    border-radius: 100px 0px 0px 0px;
+  }
+
+  &:after {
+    //- Top Right corner
+    right: 0;
+    border-right: 10px solid;
+    border-top: 10px solid;
+    border-radius: 0px 100px 0px 0px;
+  }
 }
 
 .inner {
@@ -97,47 +120,27 @@ export default {
   width: 50%;
 }
 
-.outer:before {
-  //- Top left corner
-  border-left: 10px solid;
-  border-top: 10px solid;
-  border-radius: 100px 0px 0px 0px;
-}
+.inner {
+  &:before {
+    //- Bottom Left corner
+    bottom: 0;
+    border-left: 10px solid;
+    border-bottom: 10px solid;
+    border-radius: 0px 0px 0px 100px;
+  }
 
-.outer:after {
-  //- Top Right corner
-  right: 0;
-  border-right: 10px solid;
-  border-top: 10px solid;
-  border-radius: 0px 100px 0px 0px;
-}
-
-.inner:before {
-  //- Bottom Left corner
-  bottom: 0;
-  border-left: 10px solid;
-  border-bottom: 10px solid;
-  border-radius: 0px 0px 0px 100px;
-}
-
-.inner:after {
-  //- Bottom Right corner
-  bottom: 0;
-  right: 0;
-  border-right: 10px solid;
-  border-bottom: 10px solid;
-  border-radius: 0px 0px 100px 0px;
+  &:after {
+    //- Bottom Right corner
+    bottom: 0;
+    right: 0;
+    border-right: 10px solid;
+    border-bottom: 10px solid;
+    border-radius: 0px 0px 100px 0px;
+  }
 }
 
 // TODO changes these colors with vuetify variables
 .road {
-  &::after,
-  &::before {
-    border-color: grey;
-  }
-}
-
-.active-raod {
   &::after,
   &::before {
     border-color: grey;
@@ -160,5 +163,12 @@ export default {
 
 .previous-road {
   top: 70px;
+}
+
+.activeRoad {
+  &::after,
+  &::before {
+    border-color: blue;
+  }
 }
 </style>
