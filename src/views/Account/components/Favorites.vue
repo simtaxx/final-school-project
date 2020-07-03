@@ -30,7 +30,7 @@ export default {
   p {
     font-family: "OpenSans", sans-serif;
     font-size: 12px;
-    width: 500px;
+    max-width: 500px;
 
     span {
       font-weight: bold;

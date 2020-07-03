@@ -40,4 +40,9 @@ export default {
 .app {
   margin-bottom: 50px;
 }
+@media (max-width: 600px) {
+  .app {
+    padding: 0 15px 0;
+  }
+}
 </style>

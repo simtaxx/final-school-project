@@ -42,7 +42,7 @@ export default {
     margin: 0;
     font-family: "OpenSans", sans-serif;
     color: var(--v-text-base);
-    width: 500px;
+    max-width: 500px;
 
     span {
       font-weight: bold;
