@@ -12,10 +12,11 @@ export default {
   },
   computed: {
     iconBg() {
+      console.log()
       if (this.$vuetify.theme.dark) {
-        return { background: this.$vuetify.theme.themes.dark.background }
+        return { background: this.$vuetify.theme.themes.light.text }
       }
-      return { background: this.$vuetify.theme.themes.light.background }
+      return { background: this.$vuetify.theme.themes.light.white }
     }
   }
 }
