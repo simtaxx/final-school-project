@@ -4,9 +4,9 @@
       p ou #[router-link(to="/sign-in") connecte-toi]
     v-form(:class="$style.form" ref="form" v-model="valid" @submit.prevent="createUser")
       v-row
-        v-col(cols="6" sm="12")
+        v-col(cols="6")
           v-text-field(v-model="name" :rules="simpleRules" label="Prénom" outlined required)
-        v-col(cols="6" sm="12")
+        v-col(cols="6")
           v-text-field(v-model="lastName" :rules="simpleRules" label="Nom" outlined required)
       v-text-field(v-model="username" :rules="simpleRules" label="Pseudo" outlined required)
       v-text-field(v-model="email" :rules="emailRules" label="E-mail" outlined required)
@@ -67,7 +67,7 @@ export default {
   h2 {
     position: relative;
     width: max-content;
-    margin: 100px auto 110px;
+    margin: 100px auto 80px;
 
     p {
       position: absolute;

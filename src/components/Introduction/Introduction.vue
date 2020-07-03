@@ -40,7 +40,7 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .introduction {
-  padding: 60px 380px 0;
+  padding: 60px 28% 30px;
 
   h2 {
     text-align: center;
@@ -89,6 +89,16 @@ export default {
   .buttons {
     display: flex;
     justify-content: center;
+  }
+}
+@media (max-width: 900px) {
+  .introduction {
+    padding: 60px 150px 30px;
+  }
+}
+@media (max-width: 600px) {
+  .introduction {
+    padding: 60px 15px 30px;
   }
 }
 </style>
