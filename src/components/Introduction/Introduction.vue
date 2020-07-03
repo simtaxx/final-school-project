@@ -40,7 +40,7 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .introduction {
-  padding: 60px 380px 0;
+  padding: 60px 380px 30px;
 
   h2 {
     text-align: center;
