@@ -8,7 +8,7 @@
       {
         "name": "La république", 
         "icon": "mdi-domain",
-        "id": "123",
+        "articleId": "1",
         "branchesModel": "cube"
       },
       {

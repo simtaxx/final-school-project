@@ -26,7 +26,7 @@ export default {
   },
   computed: {
     isQuizzDone() {
-      return false
+      return true
     }
   }
 }
