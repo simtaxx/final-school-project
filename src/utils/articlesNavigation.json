@@ -2,37 +2,37 @@
   {
     "categoryName" : "L'institution",
     "index": 1,
-    "icon" : "mdi-domain",
+    "icon" : "/img/icons/institution.svg",
     "path" : "/",
     "articles" : [
       {
-        "articleName": "La république", 
+        "name": "La république", 
         "icon": "mdi-domain",
         "articleId": "1",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le président", 
+        "name": "Le président", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le premier ministre", 
+        "name": "Le premier ministre", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le gouvernement", 
+        "name": "Le gouvernement", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le parlement", 
+        "name": "Le parlement", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       }
     ]
@@ -40,25 +40,25 @@
   {
     "categoryName" : "Les finances publiques",
     "index": 2,
-    "icon" : "mdi-domain",
+    "icon" : "/img/icons/finances-publiques.svg",
     "path" : "/citoyennete",
     "articles" : [
       {
-        "articleName": "Introduction", 
+        "name": "Introduction", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       },
       {
-        "articleName": "Impôts et fiscalité", 
+        "name": "Impôts et fiscalité", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       },
       {
-        "articleName": "Financement sociale", 
+        "name": "Financement sociale", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       }
     ]
@@ -66,25 +66,25 @@
   {
     "categoryName" : "La justice",
     "index": 3,
-    "icon" : "mdi-domain",
+    "icon" : "/img/icons/justice.svg",
     "path" : "/justice",
     "articles" : [
       {
-        "articleName": "Principes", 
+        "name": "Principes", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       },
       {
-        "articleName": "Justice pénale", 
+        "name": "Justice pénale", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       },
       {
-        "articleName": "Justice civile", 
+        "name": "Justice civile", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       }
     ]
@@ -92,31 +92,31 @@
   {
     "categoryName" : "La citoyenneté",
     "index": 4,
-    "icon" : "mdi-domain",
+    "icon" : "/img/icons/citoyennete.svg",
     "path" : "/finances-publiques",
     "articles" : [
       {
-        "articleName": "Liberté et droits", 
+        "name": "Liberté et droits", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le devoir civique", 
+        "name": "Le devoir civique", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Le vote", 
+        "name": "Le vote", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       },
       {
-        "articleName": "Adhérer à un parti", 
+        "name": "Adhérer à un parti", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "cube"
       }
     ]
@@ -124,19 +124,19 @@
   {
     "categoryName" : "Développer un esprit critique",
     "index": 5,
-    "icon" : "mdi-domain",
+    "icon" : "/img/icons/esprit-critique.svg",
     "path" : "/esprit-critique",
     "articles" : [
       {
-        "articleName": "Définitions", 
+        "name": "Définitions", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       },
       {
-        "articleName": "Le discours fallacieu", 
+        "name": "Le discours fallacieu", 
         "icon": "mdi-domain",
-        "articleId": "123",
+        "id": "123",
         "branchesModel": "single"
       }
     ]

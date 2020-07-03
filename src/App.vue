@@ -1,22 +1,28 @@
 <template lang="pug">
-  v-app(:style="{background: $vuetify.theme.themes[isDark].background}")
-    router-view(v-if="!isFirstTime" :class="$style.app")
+  v-app
+    v-row(no-gutters)
+      v-col(:cols="$vuetify.breakpoint.xs ? 0 : 3" v-if="$vuetify.breakpoint.smAndUp")
+        Navigation(v-if="!isFirstTime")
+      v-col(:cols="$vuetify.breakpoint.xs ? 12 : 9")
+        router-view(v-if="!isFirstTime" :class="$style.app")
     theme-toggler
     Introduction(v-if="isFirstTime" @closeIntroduction="isFirstTime = false")
-    Navigation(v-if="!isFirstTime")
+    MobileNavigation(v-if="!isFirstTime && $vuetify.breakpoint.xs")
 </template>
 
 <script>
 import ThemeToggler from "@/components/ThemeToggler.vue"
-import Introduction from "@/components/Introduction.vue"
+import Introduction from "@/components/Introduction/Introduction.vue"
 import Navigation from "@/components/Navigation/Navigation.vue"
+import MobileNavigation from "@/components/MobileNavigation/MobileNavigation.vue"
 
 export default {
   name: "App",
   components: {
     ThemeToggler,
     Introduction,
-    Navigation
+    Navigation,
+    MobileNavigation
   },
   data() {
     return {
@@ -24,15 +30,7 @@ export default {
     }
   },
   created() {
-    if (JSON.parse(localStorage.getItem("firstTime")) === null) {
-      return (this.isFirstTime = true)
-    }
-    this.isFirstTime = false
-  },
-  computed: {
-    isDark() {
-      return this.$vuetify.theme.dark ? "dark" : "light"
-    }
+    this.isFirstTime = JSON.parse(localStorage.getItem("firstTime")) === null
   }
 }
 </script>
@@ -40,6 +38,6 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .app {
-  // padding-left: 290px;
+  padding-left: 290px;
 }
 </style>

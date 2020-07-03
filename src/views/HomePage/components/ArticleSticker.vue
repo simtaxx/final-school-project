@@ -16,7 +16,7 @@
     span(
       :class="{[$style.stickerText] : className !== 'single'}"
       :style="stickerTextStyle"
-    ) {{ article.articleName }}
+    ) {{ article.name }}
     div(
       v-if="className === 'single' && !isLastArticle" 
       :class="[$style['next-road'], $style['single-road']]"

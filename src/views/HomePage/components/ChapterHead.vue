@@ -3,7 +3,7 @@
     :class="$style.chapterHead"
     large
   ) 
-    v-icon(v-text="chapterHead.icon")
+    img(:src="chapterHead.icon")
     | {{'Chapitre ' + chapterHead.index + ' : ' + chapterHead.title}}
   
     
