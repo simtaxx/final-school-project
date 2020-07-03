@@ -36,13 +36,14 @@ export default {
     }
   },
   methods: {
-    getArticle() {
-      return this.$http
-        .get(`http://285c00afff67.ngrok.io/api/articles?page=${this.currentArticelId}`, {
+    async getArticle() {
+      const article = await this.$http.get(
+        `http://285c00afff67.ngrok.io/api/articles?page=${this.currentArticelId}`,
+        {
           headers: { Accept: "application/json" }
-        })
-        .then(res => (this.course = res.data[0]))
-        .catch(err => console.log(err))
+        }
+      )
+      this.course = article.data[0]
     }
   },
   created() {

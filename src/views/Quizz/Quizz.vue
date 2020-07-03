@@ -14,7 +14,7 @@
         :key="'content' + index"
         :step="step"
       )
-        span {{ 'Question ' + (index + 1) + ' : ' + questionGroup.question }}
+        span {{ `Question ${index + 1} : ${questionGroup.question}` }}
         div.assertations
           assertation(
             v-for="(assertation, index) in questionGroup.answers" 
