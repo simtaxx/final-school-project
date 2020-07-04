@@ -5,10 +5,10 @@
       style="z-index: 4"
       color="success" 
       overlap
-      :value="true"
       icon="mdi-check-bold"
+      :value="isReaded(article)"
     )
-      Pellet(imageName="bulb")
+      Pellet(imageName="bulb" :activeBorder="activeBorder")
       //- v-avatar(
       //-   :class="$style.avatar"
       //-   @click="updateRoute()"
@@ -28,8 +28,11 @@
 
 import Pellet from "@/components/Pellet.vue"
 
+import { articlesMixin } from "@/mixins/articles"
+
 export default {
   name: "ArticleSticker",
+  mixins: [articlesMixin],
   components: {
     Pellet
   },
@@ -45,6 +48,10 @@ export default {
     isLastArticle: {
       type: Boolean,
       required: false
+    },
+    activeBorder: {
+      type: Boolean,
+      required: false
     }
   },
   computed: {
@@ -57,7 +64,7 @@ export default {
   },
   methods: {
     updateRoute() {
-      this.$router.push({ name: "Course", params: { id: this.article.articleId } })
+      this.$router.push({ name: "Course", params: { id: this.article.id } })
     }
   }
 }
@@ -88,24 +95,24 @@ export default {
 
 .cube-sticker-1 {
   left: 50%;
-  transform: translate(-50%, calc(-50% + 5px));
+  transform: translate(-50%, calc(-50% + 6px));
 }
 
 .cube-sticker-2 {
-  left: 100%;
   top: 50%;
-  transform: translate(calc(-50% - 5px), -50%);
+  transform: translate(calc(-50% + 6px), -50%);
 }
 
 .cube-sticker-3 {
+  left: 100%;
   top: 50%;
-  transform: translate(calc(-50% + 5px), -50%);
+  transform: translate(calc(-50% - 6px), -50%);
 }
 
 .cube-sticker-4 {
   left: 50%;
   top: 100%;
-  transform: translate(-50%, calc(-50% - 5px));
+  transform: translate(-50%, calc(-50% - 6px));
 }
 
 .stickerText {

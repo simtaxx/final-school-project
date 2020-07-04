@@ -3,13 +3,14 @@
     chapter-head(:chapterHead="chapterHead")
     div(:class="[$style['previous-road'], $style['single-road']]")
     template(v-if="structuredChapterRoad.cube")
-      div(:class="[$style.cube, $style.outer, $style.road, {[$style.activeRoad] : isRead(structuredChapterRoad.cube[0])}]")
-        div(:class="[$style.cube, $style.inner, $style.road]")
+      div(:class="[$style.cube, $style.outer, $style.road, {[$style.activeRoad] : isReaded(structuredChapterRoad.cube[0])}]")
+        div(:class="[$style.cube, $style.inner, $style.road, {[$style.leftCubeBranchActive] : isReaded(structuredChapterRoad.cube[1]), [$style.rightCubeBranchActive] : isReaded(structuredChapterRoad.cube[2])}]")
         article-sticker(
           v-for="(article, index) in structuredChapterRoad.cube" 
           :article="article"
           :className="'cube-sticker-' + (index + 1)" 
           :key="chapter.categoryName + 'cubeArticle' + index"
+          :activeBorder="hasActiveBorder('cube', index)"
         )
         div(v-if="chapter.articles.length > 3" :class="[$style['next-road'], $style['single-road']]")
     article-sticker(
@@ -25,8 +26,11 @@
 import ChapterHead from "./ChapterHead.vue"
 import ArticleSticker from "./ArticleSticker.vue"
 
+import { articlesMixin } from "@/mixins/articles"
+
 export default {
   name: "ChapterRoad",
+  mixins: [articlesMixin],
   components: {
     ChapterHead,
     ArticleSticker
@@ -56,12 +60,6 @@ export default {
     },
     vueety() {
       return this.$vuetify
-    },
-    readedArticles() {
-      return JSON.parse(localStorage.getItem("readedArticles"))
-    },
-    isRead() {
-      return article => this.readedArticles[article.articleId]
     }
   },
   methods: {
@@ -70,6 +68,14 @@ export default {
         ;(acc[article[key]] = acc[article[key]] || []).push(article)
         return acc
       }, {})
+    },
+    hasActiveBorder(branchModel, index) {
+      if (branchModel === "cube") {
+        if (index === 0) return true
+        else if ([1, 2].includes(index)) {
+          return this.isReaded(this.structuredChapterRoad.cube[0])
+        } else return [1, 2].some(index => this.structuredChapterRoad.cube[index])
+      }
     }
   }
 }
@@ -94,16 +100,16 @@ export default {
 
   &:before {
     //- Top left corner
-    border-left: 10px solid;
-    border-top: 10px solid;
+    border-left: 12px solid;
+    border-top: 12px solid;
     border-radius: 100px 0px 0px 0px;
   }
 
   &:after {
     //- Top Right corner
     right: 0;
-    border-right: 10px solid;
-    border-top: 10px solid;
+    border-right: 12px solid;
+    border-top: 12px solid;
     border-radius: 0px 100px 0px 0px;
   }
 }
@@ -124,8 +130,8 @@ export default {
   &:before {
     //- Bottom Left corner
     bottom: 0;
-    border-left: 10px solid;
-    border-bottom: 10px solid;
+    border-left: 12px solid;
+    border-bottom: 12px solid;
     border-radius: 0px 0px 0px 100px;
   }
 
@@ -133,8 +139,8 @@ export default {
     //- Bottom Right corner
     bottom: 0;
     right: 0;
-    border-right: 10px solid;
-    border-bottom: 10px solid;
+    border-right: 12px solid;
+    border-bottom: 12px solid;
     border-radius: 0px 0px 100px 0px;
   }
 }
@@ -148,7 +154,7 @@ export default {
 }
 
 .single-road {
-  width: 10px;
+  width: 12px;
   height: 100px;
   // TODO get the vutify sass variables colors
   background-color: gray;
@@ -168,6 +174,18 @@ export default {
 .activeRoad {
   &::after,
   &::before {
+    border-color: blue;
+  }
+}
+
+.leftCubeBranchActive {
+  &::before {
+    border-color: blue;
+  }
+}
+
+.rightCubeBranchActive {
+  &::after {
     border-color: blue;
   }
 }

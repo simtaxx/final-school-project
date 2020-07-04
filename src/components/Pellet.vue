@@ -1,5 +1,5 @@
 <template lang="pug">
-  div.pellet
+  div.pellet(:class="{ 'active-border' : activeBorder }")
     div.pellet__inner
       img(:src="imagePath")
 </template>
@@ -11,6 +11,10 @@ export default {
     imageName: {
       type: String,
       required: true
+    },
+    activeBorder: {
+      type: Boolean,
+      default: false
     }
   },
   computed: {
@@ -48,5 +52,10 @@ export default {
       width: 75%;
     }
   }
+}
+
+.active-border {
+  //- TODO change this color with vuetify overwritten colors
+  border-color: blue;
 }
 </style>
