@@ -1,11 +1,21 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue from "vue"
+import Vuex from "vuex"
 
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
-  state: {},
-  mutations: {},
-  actions: {},
+  state: {
+    accountData: {}
+  },
+  mutations: {
+    getAccountData(state, data) {
+      state.accountData = data
+    }
+  },
+  actions: {
+    getAccountData({ commit }, data) {
+      commit("getAccountData", data)
+    }
+  },
   modules: {}
-});
+})

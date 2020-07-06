@@ -53,6 +53,25 @@ export default {
           username
         })
         .then(response => {
+          console.log(response)
+          if (response.status === 201) {
+            this.$router.push("/")
+            this.getUser()
+          }
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    },
+    async getUser() {
+      const { email, password } = this
+      const getUserData = await this.$http
+        .post("/login_check", {
+          email,
+          password
+        })
+        .then(response => {
+          console.log(response)
           if (response.status === 201) {
             this.$router.push("/")
           }

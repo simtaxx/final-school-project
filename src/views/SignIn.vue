@@ -2,10 +2,10 @@
   div(:class="$style.signIn")
     h2 Connecte toi à #[span Kiwitas]
       p ou #[router-link(to="/sign-up") inscris-toi]
-    v-form(:class="$style.form" ref="form" v-model="valid")
+    v-form(:class="$style.form" ref="form" v-model="valid" @submit.prevent="getUser")
       v-text-field(v-model="email" :rules="emailRules" label="E-mail exemple@gmail.com" outlined required)
       v-text-field(v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="passwordRules" :type="show1 ? 'text' : 'password'" @click:append="show1 = !show1" label="Mot de passe" outlined required)
-      v-btn(:disabled="!valid" color="primary" @click="validate") Je me connecte
+      v-btn(:disabled="!valid" color="primary"  @click="getUser") Je me connecte
 </template>
 
 <script>
@@ -30,12 +30,33 @@ export default {
     validate() {
       this.$refs.form.validate()
     },
-    reset() {
-      this.$refs.form.reset()
-    },
-    resetValidation() {
-      this.$refs.form.resetValidation()
+    async getUser() {
+      const getUserData = await this.$http.get("/users/15").then(response => {
+        this.$store.dispatch("getAccountData", response.data)
+        console.log(this.$store.state.accountData)
+        this.$router.push("/")
+      })
     }
+    /* async getUser() {
+      const { email, password } = this
+      this.validate()
+      const getUserData = await this.$http
+        .post("/login_check", {
+          email,
+          password
+        })
+        .then(response => {
+          console.log(response)
+          if (response.status === 200) {
+            //this.$router.push("/")
+            this.$store.dispatch("getAccountData", response)
+            console.log(this.$store.state.accountData)
+          }
+        })
+        .catch(e => {
+          console.log(e)
+        })
+    } */
   }
 }
 </script>

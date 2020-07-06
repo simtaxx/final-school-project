@@ -2,8 +2,8 @@
   div(:class="$style.user")
     img(src="/img/icons/profil-picture.png")
     div
-      h3 Cassandra Doux
-      p Cassdoux
+      h3 {{$store.state.accountData.name}} {{$store.state.accountData.lastName}}
+      p {{$store.state.accountData.username}}
 </template>
 
 <script>
