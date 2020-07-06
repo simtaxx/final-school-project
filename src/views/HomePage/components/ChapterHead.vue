@@ -1,6 +1,7 @@
 <template lang="pug">
   v-chip(
     :class="{activeBorder : hasActiveBorder, chapterHead: true}"
+    :id="chapterHead.hash"
     large
   ) 
     img(:src="chapterHead.icon")

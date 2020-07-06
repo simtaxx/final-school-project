@@ -36,5 +36,6 @@ export default {
 
 <style lang="scss" module>
 .homepage {
+  scroll-behavior: smooth;
 }
 </style>

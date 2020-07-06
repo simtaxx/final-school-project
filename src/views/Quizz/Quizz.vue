@@ -1,6 +1,7 @@
 <template lang="pug">
   v-stepper(
     v-model="currentQuestion"
+    v-if="quizz.questions"
   )
     v-stepper-header
       template(v-for="(step, index) in steps")
@@ -23,8 +24,12 @@
             :assertation="assertation"
             v-model="activeAssertation"
             :position="index + 1"
+            :isResponseValidated="isResponseValidated"
+            :goodAnswerIndex="goodAnswerIndex"
           )
-    v-btn(color="primary" @click="nextQuestion()") Valider
+    div(style="height: 100px")
+      v-btn(v-if="activeAssertation && !isResponseValidated" color="primary" @click="analyseAnswer()") Valider
+      v-btn(v-else-if="isResponseValidated" color="primary" @click="nextQuestion()") Question suivante
 </template>
 
 <script>
@@ -39,21 +44,44 @@ export default {
     return {
       steps: 5,
       currentQuestion: 1,
-      activeAssertation: 2,
-      quizz: {}
+      activeAssertation: 0,
+      quizz: {},
+      isResponseValidated: false
+    }
+  },
+  computed: {
+    goodAnswerIndex() {
+      return (
+        this.quizz.questions[this.currentQuestion - 1].assertations.findIndex(
+          assertation => assertation === this.quizz.questions[this.currentQuestion - 1].answer
+        ) + 1
+      )
     }
   },
   methods: {
     nextQuestion() {
       if (this.currentQuestion < this.steps) {
         this.currentQuestion++
+        this.isResponseValidated = false
+        this.activeAssertation = 0
       }
     },
     async getArticleQuizz() {
-      const quizz = await this.$http.get("/quizzs/3")
-      //- TODO Get only one quizz here
-      this.quizz = quizz.data
-      this.steps = quizz.data.questions.length
+      try {
+        const quizz = await this.$http.get("/quizz/37")
+        //- TODO Get only one quizz here
+        this.quizz = quizz.data
+        this.steps = quizz.data.questions.length
+      } catch (error) {
+        console.error(error)
+      }
+    },
+    analyseAnswer() {
+      const isGoodAnswer =
+        this.quizz.questions[this.currentQuestion - 1].assertations[this.activeAssertation - 1] ===
+        this.quizz.questions[this.currentQuestion - 1].answer
+      console.warn(isGoodAnswer)
+      this.isResponseValidated = true
     }
   },
   created() {
@@ -105,6 +133,7 @@ export default {
   }
 
   .assertations {
+    width: 100%;
     display: flex;
     justify-content: space-around;
   }

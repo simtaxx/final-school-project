@@ -3,7 +3,7 @@
     "categoryName" : "L'institution",
     "index": 1,
     "icon" : "/img/icons/institution.svg",
-    "path" : "/",
+    "path" : "institution",
     "articles" : [
       {
         "name": "La république", 
@@ -41,7 +41,7 @@
     "categoryName" : "Les finances publiques",
     "index": 2,
     "icon" : "/img/icons/finances-publiques.svg",
-    "path" : "/citoyennete",
+    "path" : "citoyennete",
     "articles" : [
       {
         "name": "Introduction", 
@@ -67,7 +67,7 @@
     "categoryName" : "La justice",
     "index": 3,
     "icon" : "/img/icons/justice.svg",
-    "path" : "/justice",
+    "path" : "justice",
     "articles" : [
       {
         "name": "Principes", 
@@ -93,7 +93,7 @@
     "categoryName" : "La citoyenneté",
     "index": 4,
     "icon" : "/img/icons/citoyennete.svg",
-    "path" : "/finances-publiques",
+    "path" : "finances-publiques",
     "articles" : [
       {
         "name": "Liberté et droits", 
@@ -125,7 +125,7 @@
     "categoryName" : "Développer un esprit critique",
     "index": 5,
     "icon" : "/img/icons/esprit-critique.svg",
-    "path" : "/esprit-critique",
+    "path" : "esprit-critique",
     "articles" : [
       {
         "name": "Définitions", 
