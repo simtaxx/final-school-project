@@ -38,7 +38,7 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .app {
-  margin-bottom: 50px;
+  margin-bottom: 70px;
 }
 @media (max-width: 600px) {
   .app {

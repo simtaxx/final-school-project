@@ -66,4 +66,9 @@ export default {
     width: 400px;
   }
 }
+@media (max-width: 600px) {
+  .form {
+    width: 100% !important;
+  }
+}
 </style>

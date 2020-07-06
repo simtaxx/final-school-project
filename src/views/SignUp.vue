@@ -3,10 +3,10 @@
     h2 Connecte toi à #[span Kiwitas]
       p ou #[router-link(to="/sign-in") connecte-toi]
     v-form(:class="$style.form" ref="form" v-model="valid" @submit.prevent="createUser")
-      v-row
-        v-col(cols="6")
+      v-row(:class="$style.dividedColumns")
+        v-col(:class="$style.dividedColumn" :cols="$vuetify.breakpoint.xs ? 12 : 6")
           v-text-field(v-model="name" :rules="simpleRules" label="Prénom" outlined required)
-        v-col(cols="6")
+        v-col(:class="$style.dividedColumn" :cols="$vuetify.breakpoint.xs ? 12 : 6")
           v-text-field(v-model="lastName" :rules="simpleRules" label="Nom" outlined required)
       v-text-field(v-model="username" :rules="simpleRules" label="Pseudo" outlined required)
       v-text-field(v-model="email" :rules="emailRules" label="E-mail" outlined required)
@@ -85,6 +85,26 @@ export default {
     text-align: center;
     margin: 0 auto;
     width: 400px;
+  }
+}
+.dividedColumns {
+  width: 100%;
+  margin: 0;
+  .dividedColumn:first-child {
+    padding-right: 15px;
+  }
+}
+.dividedColumn {
+  padding: 0;
+}
+@media (max-width: 600px) {
+  .form {
+    width: 100% !important;
+  }
+  .dividedColumns {
+    .dividedColumn:first-child {
+      padding-right: 0;
+    }
   }
 }
 </style>
