@@ -1,7 +1,7 @@
 <template lang="pug">
   section(:class="$style.chapterRoad")
-    chapter-head(:chapterHead="chapterHead")
-    div(:class="[$style['previous-road'], $style['single-road']]")
+    chapter-head(:chapterHead="chapterHead" :hasActiveBorder="isRoadFirstArticleActive")
+    div(:class="[$style['previous-road'], $style['single-road'], {[$style.activeSingleRoad] : isRoadFirstArticleActive}]")
     template(v-if="structuredChapterRoad.cube")
       div(:class="[$style.cube, $style.outer, $style.road, {[$style.activeRoad] : isReaded(structuredChapterRoad.cube[0])}]")
         div(:class="[$style.cube, $style.inner, $style.road, {[$style.leftCubeBranchActive] : isReaded(structuredChapterRoad.cube[1]), [$style.rightCubeBranchActive] : isReaded(structuredChapterRoad.cube[2])}]")
@@ -12,13 +12,14 @@
           :key="chapter.categoryName + 'cubeArticle' + index"
           :activeBorder="hasActiveBorder('cube', index)"
         )
-        div(v-if="chapter.articles.length > 3" :class="[$style['next-road'], $style['single-road']]")
+        div(v-if="chapter.articles.length > 3" :class="[$style['next-road'], $style['single-road'], {[$style.activeSingleRoad] : isReaded(structuredChapterRoad.cube[3])} ]")
     article-sticker(
       v-for="(article, index) in structuredChapterRoad.single" 
       :article="article"
       className="single"
       :key="chapter.categoryName + 'singleArticle' + index"
       :isLastArticle="isLastChapter && index === structuredChapterRoad.single.length -1"
+      :activeBorder="hasActiveBorder('single', index)"
     )
 </template>
 
@@ -43,6 +44,10 @@ export default {
     isLastChapter: {
       type: Boolean,
       required: true
+    },
+    previousChapterArticleIds: {
+      type: Array,
+      required: false
     }
   },
   computed: {
@@ -58,8 +63,10 @@ export default {
       const articles = this.chapter.articles
       return this.groupBy(articles, "branchesModel")
     },
-    vueety() {
-      return this.$vuetify
+    isRoadFirstArticleActive() {
+      return this.chapter.index === 1
+        ? true
+        : this.previousChapterArticleIds.every(id => this.readedArticles.includes(id))
     }
   },
   methods: {
@@ -71,10 +78,20 @@ export default {
     },
     hasActiveBorder(branchModel, index) {
       if (branchModel === "cube") {
-        if (index === 0) return true
-        else if ([1, 2].includes(index)) {
+        if ([1, 2].includes(index)) {
           return this.isReaded(this.structuredChapterRoad.cube[0])
-        } else return [1, 2].some(index => this.structuredChapterRoad.cube[index])
+        } else if (index === 3) {
+          return [1, 2].some(index => this.isReaded(this.structuredChapterRoad.cube[index]))
+        }
+      } else {
+        if (index === 0) {
+          if (this.structuredChapterRoad.cube) {
+            return this.isReaded(this.structuredChapterRoad.cube[3])
+          }
+        } else return this.isReaded(this.structuredChapterRoad.single[index - 1])
+      }
+      if (index === 0) {
+        return this.isRoadFirstArticleActive
       }
     }
   }
@@ -169,6 +186,10 @@ export default {
 
 .previous-road {
   top: 70px;
+}
+
+.activeSingleRoad {
+  background-color: blue;
 }
 
 .activeRoad {

@@ -1,6 +1,6 @@
 <template lang="pug">
   v-chip(
-    :class="$style.chapterHead"
+    :class="{activeBorder : hasActiveBorder, chapterHead: true}"
     large
   ) 
     img(:src="chapterHead.icon")
@@ -16,12 +16,17 @@ export default {
     chapterHead: {
       type: Object,
       required: true
+    },
+    hasActiveBorder: {
+      type: Boolean,
+      required: true
     }
   }
 }
 </script>
 
-<style lang="scss" module>
+<style lang="scss" scoped>
+//- Change colors with cuetify colors
 .chapterHead {
   margin: 2rem 1rem;
   padding: 0 1.2rem;
@@ -36,5 +41,9 @@ export default {
   img {
     margin-right: 1rem;
   }
+}
+
+.activeBorder {
+  border-color: blue;
 }
 </style>

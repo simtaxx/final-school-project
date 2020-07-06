@@ -1,25 +1,21 @@
 <template lang="pug">
   div(:class="[$style.articleSticker, $style[className]]" @click="updateRoute()")
     v-badge(
-      bottom 
+      bottom
       style="z-index: 4"
       color="success" 
       overlap
       icon="mdi-check-bold"
       :value="isReaded(article)"
+      :class="$style.badge"
     )
       Pellet(imageName="bulb" :activeBorder="activeBorder")
-      //- v-avatar(
-      //-   :class="$style.avatar"
-      //-   @click="updateRoute()"
-      //- )
-      //-   v-icon(v-text="article.icon")
     span(
       :class="{[$style.stickerText] : true, [$style.singleStickerText] : className !== 'single'}"
     ) {{ article.name }}
     div(
       v-if="className === 'single' && !isLastArticle" 
-      :class="[$style['next-road'], $style['single-road']]"
+      :class="[$style['next-road'], $style['single-road'], {[$style.activeRoad] : isReaded(article)}]"
     )
 </template>
 
@@ -138,6 +134,10 @@ export default {
   position: absolute;
   z-index: -2;
   transform: translateY(40px);
+}
+
+.activeRoad {
+  background-color: blue;
 }
 
 // .next-road {

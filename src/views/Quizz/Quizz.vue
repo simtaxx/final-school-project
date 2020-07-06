@@ -15,7 +15,7 @@
         :step="step"
       )
         span {{ `Question ${index + 1} : ${quizz.questions[index].title}` }}
-        img(:src="quizz")
+        img(:src="quizz.questions[index].media_link")
         div.assertations
           assertation(
             v-for="(assertation, index) in quizz.questions[index].assertations" 
@@ -50,11 +50,12 @@ export default {
       }
     },
     async getArticleQuizz() {
-      const quizz = await this.$http.get("http://285c00afff67.ngrok.io/api/quizzs", {
+      const quizz = await this.$http.get("https://b8567e21d893.ngrok.io/api/quizzs/7", {
         headers: { Accept: "application/json" }
       })
-      this.quizz = quizz.data[0]
-      this.steps = quizz.data[0].questions.length
+      //- TODO Get only one quizz here
+      this.quizz = quizz.data
+      this.steps = quizz.data.questions.length
     }
   },
   created() {

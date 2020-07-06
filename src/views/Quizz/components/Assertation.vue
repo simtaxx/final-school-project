@@ -34,6 +34,10 @@ export default {
 
 <style lang="scss" module>
 .assertation {
+  width: 30%;
+  text-align: center;
+  display: flex;
+  align-items: center;
   background-color: gray;
   cursor: pointer;
   padding: 2rem;
@@ -44,6 +48,7 @@ export default {
   }
 }
 
+//- TODO Set vuetify colors
 .active {
   background-color: red;
 
