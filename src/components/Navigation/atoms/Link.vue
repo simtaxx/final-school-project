@@ -22,6 +22,7 @@ export default {
 
   p {
     margin-bottom: 0 !important;
+    color: var(--v-text-base);
   }
 }
 

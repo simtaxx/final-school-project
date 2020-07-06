@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer(fixed width="290" floating permanent)
+  v-navigation-drawer(fixed width="25%" floating permanent)
     v-list( dense nav class="py-0" :class="$style.navContainer")
       v-list-item
         v-list-item-content(:class="$style.profile")
@@ -97,7 +97,7 @@ h3 {
     font-weight: 600;
 
     a {
-      color: $primary;
+      color: $primary !important;
       text-decoration: underline;
     }
   }
