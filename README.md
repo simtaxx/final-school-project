@@ -22,4 +22,4 @@ Nous allons utiliser Vuetify pour accélérer le développement de l'application
 
 ### Lien
 
-https://final-school-project.netlify.app/
+https://kiwitas.netlify.app/
