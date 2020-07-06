@@ -31,6 +31,7 @@ export default {
       this.$refs.form.validate()
     },
     async getUser() {
+      // eslint-disable-next-line
       const getUserData = await this.$http.get("/users/15").then(response => {
         this.$store.dispatch("getAccountData", response.data)
         console.log(this.$store.state.accountData)

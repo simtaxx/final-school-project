@@ -65,6 +65,7 @@ export default {
     },
     async getUser() {
       const { email, password } = this
+      // eslint-disable-next-line
       const getUserData = await this.$http
         .post("/login_check", {
           email,
