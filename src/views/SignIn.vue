@@ -2,7 +2,7 @@
   div(:class="$style.signIn")
     h2 Connecte toi à #[span Kiwitas]
       p ou #[router-link(to="/sign-up") inscris-toi]
-    v-form(:class="$style.form" ref="form" v-model="valid" lazy-validation)
+    v-form(:class="$style.form" ref="form" v-model="valid")
       v-text-field(v-model="email" :rules="emailRules" label="E-mail exemple@gmail.com" outlined required)
       v-text-field(v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="passwordRules" :type="show1 ? 'text' : 'password'" @click:append="show1 = !show1" label="Mot de passe" outlined required)
       v-btn(:disabled="!valid" color="primary" @click="validate") Je me connecte
