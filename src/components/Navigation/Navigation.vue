@@ -1,6 +1,8 @@
 <template lang="pug">
   v-navigation-drawer(fixed width="25%" floating permanent)
     v-list( dense nav class="py-0" :class="$style.navContainer")
+      v-list-item(:class="$style.logo")
+        img(src="/img/icons/logo.svg")
       v-list-item
         v-list-item-content(:class="$style.profile")
           h3 PROFIL
@@ -48,8 +50,12 @@ h3 {
   margin-bottom: 16px !important;
 }
 
+.logo {
+  margin-top: 70px;
+}
+
 .profile {
-  margin: 70px 0 58px;
+  margin: 30px 0 60px;
   padding: 0 !important;
 
   .signIn {
