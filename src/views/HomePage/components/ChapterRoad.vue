@@ -56,7 +56,8 @@ export default {
       return {
         title: chapter.categoryName,
         icon: chapter.icon,
-        index: chapter.index
+        index: chapter.index,
+        hash: chapter.path
       }
     },
     structuredChapterRoad() {

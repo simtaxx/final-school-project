@@ -1,10 +1,11 @@
 <template lang="pug">
   div(:class="$style.account")
-    User
-    Tabs(@changeCategory="changeCategory")
-    Favorites(v-if="favorites")
-    Favorites(v-if="favorites")
-    Certification(v-if="certification")
+    div(:class="$style.accountContainer")
+      User
+      Tabs(@changeCategory="changeCategory")
+      Favorites(v-if="favorites")
+      Favorites(v-if="favorites")
+      Certification(v-if="certification")
 
 </template>
 
@@ -43,5 +44,8 @@ export default {
 
 <style lang="scss" module>
 .account {
+  .accountContainer {
+    margin-left: 70px;
+  }
 }
 </style>

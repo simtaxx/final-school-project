@@ -21,7 +21,7 @@ export default {
   props: {
     listToRemember: {
       type: Array,
-      required: true
+      default: () => []
     }
   },
   computed: {
