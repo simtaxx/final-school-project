@@ -5,7 +5,10 @@ import router from "./router"
 import store from "./store"
 import vuetify from "./plugins/vuetify"
 import axios from "axios"
+import axiosSetup from "@/utils/axios-setup"
 import "@/scss/styles.scss"
+
+axiosSetup.initSetup()
 
 Vue.prototype.$http = axios
 

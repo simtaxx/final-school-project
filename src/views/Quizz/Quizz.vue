@@ -50,9 +50,7 @@ export default {
       }
     },
     async getArticleQuizz() {
-      const quizz = await this.$http.get("https://b8567e21d893.ngrok.io/api/quizzs/7", {
-        headers: { Accept: "application/json" }
-      })
+      const quizz = await this.$http.get("/quizzs/3")
       //- TODO Get only one quizz here
       this.quizz = quizz.data
       this.steps = quizz.data.questions.length
@@ -71,6 +69,9 @@ export default {
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  box-shadow: none;
+  height: calc(100vh - 48px);
+  margin: 0;
 
   .v-stepper__header {
     width: 80%;
@@ -88,6 +89,19 @@ export default {
 
   .v-stepper__items {
     width: 80%;
+    height: 60%;
+
+    .v-stepper__content {
+      height: 100%;
+
+      .v-stepper__wrapper {
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+      }
+    }
   }
 
   .assertations {
