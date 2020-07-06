@@ -43,5 +43,11 @@ export default {
 
 <style lang="scss" module>
 .account {
+  padding-left: 70px;
+}
+@media (max-width: 600px) {
+  .account {
+    padding: 0 15px 0;
+  }
 }
 </style>

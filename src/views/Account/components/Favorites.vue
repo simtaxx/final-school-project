@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="$style.favorites")
-    img(src="/img/icons/exempleFav.svg")
+    Pellet(imageName="exempleFav.svg" :activeBorder="activeBorder")
     div(:class="$style.container")
       div(:class="$style.title")
         h3 La république
@@ -10,8 +10,12 @@
 </template>
 
 <script>
+import Pellet from "@/components/Pellet.vue"
 export default {
-  name: "Favorites"
+  name: "Favorites",
+  components: {
+    Pellet
+  }
 }
 </script>
 
