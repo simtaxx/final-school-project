@@ -14,7 +14,7 @@
 </template>
 
 <script>
-import Template from "@/components/Introduction/atoms/Template.vue"
+import Template from "@/components/Introduction/component/Template.vue"
 import textContent from "@/components/Introduction/utils/textContent.json"
 export default {
   name: "Introduction",

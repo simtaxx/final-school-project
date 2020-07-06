@@ -18,7 +18,7 @@
 
 <script>
 import categories from "@/utils/articlesNavigation.json"
-import Link from "@/components/Navigation/atoms/Link.vue"
+import Link from "@/components/Navigation/component/Link.vue"
 export default {
   name: "Navigation",
   components: {

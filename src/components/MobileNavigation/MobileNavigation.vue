@@ -9,8 +9,8 @@
 
 <script>
 import categories from "@/utils/articlesNavigation.json"
-import Icon from "@/components/MobileNavigation/atoms/Icon.vue"
-import Button from "@/components/MobileNavigation/atoms/Button.vue"
+import Icon from "@/components/MobileNavigation/components/Icon.vue"
+import Button from "@/components/MobileNavigation/components/Button.vue"
 export default {
   name: "MobileNavigation",
   components: {
