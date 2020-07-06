@@ -1,6 +1,7 @@
 module.exports = {
   lintOnSave: true,
   transpileDependencies: ["vuetify"],
+  runtimeCompiler: true,
   pwa: {
     name: "SIVIK",
     themeColor: "#430000",

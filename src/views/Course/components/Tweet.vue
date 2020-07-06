@@ -5,7 +5,7 @@
   )
     tweetos
     div(:class="$style.message")
-      p kdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsg kdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsg
+      p {{ tweet.title }}
     div(:class="$style.options")
       div(:class="$style.text") 
         span 6:24 PM - 23 juin 2020
@@ -23,7 +23,7 @@
         span t
     tweetos
     div(:class="$style.response")
-      p kdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsgkdsfhjds fdsj fjdsb fjdsb fjkdsfjdsk fjhds bfdsfdsg
+      p {{ tweet.content }}
 
       
 </template>
@@ -35,6 +35,14 @@ export default {
   name: "Tweet",
   components: {
     Tweetos
+  },
+  props: {
+    tweet: {
+      type: Object,
+      default() {
+        return {}
+      }
+    }
   },
   computed: {
     tweetBackground() {

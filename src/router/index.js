@@ -56,7 +56,8 @@ const router = new VueRouter({
   scrollBehavior(to) {
     if (to.hash) {
       return {
-        selector: to.hash
+        selector: to.hash,
+        offset: { x: 0, y: 30 }
       }
     }
   },
