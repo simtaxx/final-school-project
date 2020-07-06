@@ -45,14 +45,18 @@ export default {
       this.validate()
       // eslint-disable-next-line no-unused-vars
       const sendUserData = await this.$http
-        .post("http://285c00afff67.ngrok.io/api/users", {
+        .post("/users", {
           name,
           lastName,
           email,
           password,
           username
         })
-        .then(response => console.log("response", response))
+        .then(response => {
+          if (response.status === 201) {
+            this.$router.push("/")
+          }
+        })
         .catch(e => {
           console.log(e)
         })
