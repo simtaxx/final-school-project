@@ -2,7 +2,8 @@
   v-navigation-drawer(fixed width="25%" floating permanent)
     v-list( dense nav class="py-0" :class="$style.navContainer")
       v-list-item(:class="$style.logo")
-        img(src="/img/icons/logo.svg")
+        router-link(to="/")
+          img(src="/img/icons/logo.svg")
       v-list-item
         v-list-item-content(:class="$style.profile")
           h3 PROFIL
