@@ -1,31 +1,37 @@
 <template lang="pug">
-  div(:class="[$style.articleSticker, $style[className]]")
+  div(:class="[$style.articleSticker, $style[className]]" @click="updateRoute()")
     v-badge(
-      bottom 
+      bottom
       style="z-index: 4"
       color="success" 
       overlap
-      :value="true"
       icon="mdi-check-bold"
+      :value="isReaded(article)"
+      :class="$style.badge"
     )
-      v-avatar(
-        :class="$style.avatar"
-        @click="updateRoute()"
-      )
-        v-icon(v-text="article.icon")
+      Pellet(imageName="bulb" :activeBorder="activeBorder")
     span(
-      :class="{[$style.stickerText] : className !== 'single'}"
-      :style="stickerTextStyle"
+      :class="{[$style.stickerText] : true, [$style.singleStickerText] : className !== 'single'}"
     ) {{ article.name }}
     div(
       v-if="className === 'single' && !isLastArticle" 
-      :class="[$style['next-road'], $style['single-road']]"
+      :class="[$style['next-road'], $style['single-road'], {[$style.activeRoad] : isReaded(article)}]"
     )
 </template>
 
 <script>
+//- TODO look for grammatical issues
+
+import Pellet from "@/components/Pellet.vue"
+
+import { articlesMixin } from "@/mixins/articles"
+
 export default {
   name: "ArticleSticker",
+  mixins: [articlesMixin],
+  components: {
+    Pellet
+  },
   props: {
     article: {
       type: Object,
@@ -36,6 +42,10 @@ export default {
       required: false
     },
     isLastArticle: {
+      type: Boolean,
+      required: false
+    },
+    activeBorder: {
       type: Boolean,
       required: false
     }
@@ -50,7 +60,7 @@ export default {
   },
   methods: {
     updateRoute() {
-      this.$router.push({ name: "Course", params: { id: this.article.articleId } })
+      this.$router.push({ name: "Course", params: { id: this.article.id } })
     }
   }
 }
@@ -81,27 +91,31 @@ export default {
 
 .cube-sticker-1 {
   left: 50%;
-  transform: translate(-50%, calc(-50% + 5px));
+  transform: translate(-50%, calc(-50% + 6px));
 }
 
 .cube-sticker-2 {
-  left: 100%;
   top: 50%;
-  transform: translate(calc(-50% - 5px), -50%);
+  transform: translate(calc(-50% + 6px), -50%);
 }
 
 .cube-sticker-3 {
+  left: 100%;
   top: 50%;
-  transform: translate(calc(-50% + 5px), -50%);
+  transform: translate(calc(-50% - 6px), -50%);
 }
 
 .cube-sticker-4 {
   left: 50%;
   top: 100%;
-  transform: translate(-50%, calc(-50% - 5px));
+  transform: translate(-50%, calc(-50% - 6px));
 }
 
 .stickerText {
+  background-color: var(--v-background-base);
+}
+
+.singleStickerText {
   position: absolute;
   white-space: nowrap;
   top: 100%;
@@ -120,6 +134,10 @@ export default {
   position: absolute;
   z-index: -2;
   transform: translateY(40px);
+}
+
+.activeRoad {
+  background-color: blue;
 }
 
 // .next-road {

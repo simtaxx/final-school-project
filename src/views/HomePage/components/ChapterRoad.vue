@@ -1,23 +1,25 @@
 <template lang="pug">
   section(:class="$style.chapterRoad")
-    chapter-head(:chapterHead="chapterHead")
-    div(:class="[$style['previous-road'], $style['single-road']]")
+    chapter-head(:chapterHead="chapterHead" :hasActiveBorder="isRoadFirstArticleActive")
+    div(:class="[$style['previous-road'], $style['single-road'], {[$style.activeSingleRoad] : isRoadFirstArticleActive}]")
     template(v-if="structuredChapterRoad.cube")
-      div(:class="[$style.cube, $style.outer, $style.road]")
-        div(:class="[$style.cube, $style.inner, $style.road]")
+      div(:class="[$style.cube, $style.outer, $style.road, {[$style.activeRoad] : isReaded(structuredChapterRoad.cube[0])}]")
+        div(:class="[$style.cube, $style.inner, $style.road, {[$style.leftCubeBranchActive] : isReaded(structuredChapterRoad.cube[1]), [$style.rightCubeBranchActive] : isReaded(structuredChapterRoad.cube[2])}]")
         article-sticker(
           v-for="(article, index) in structuredChapterRoad.cube" 
           :article="article"
           :className="'cube-sticker-' + (index + 1)" 
           :key="chapter.categoryName + 'cubeArticle' + index"
+          :activeBorder="hasActiveBorder('cube', index)"
         )
-        div(v-if="chapter.articles.length > 3" :class="[$style['next-road'], $style['single-road']]")
+        div(v-if="chapter.articles.length > 3" :class="[$style['next-road'], $style['single-road'], {[$style.activeSingleRoad] : isReaded(structuredChapterRoad.cube[3])} ]")
     article-sticker(
       v-for="(article, index) in structuredChapterRoad.single" 
       :article="article"
       className="single"
       :key="chapter.categoryName + 'singleArticle' + index"
       :isLastArticle="isLastChapter && index === structuredChapterRoad.single.length -1"
+      :activeBorder="hasActiveBorder('single', index)"
     )
 </template>
 
@@ -25,8 +27,11 @@
 import ChapterHead from "./ChapterHead.vue"
 import ArticleSticker from "./ArticleSticker.vue"
 
+import { articlesMixin } from "@/mixins/articles"
+
 export default {
   name: "ChapterRoad",
+  mixins: [articlesMixin],
   components: {
     ChapterHead,
     ArticleSticker
@@ -39,6 +44,10 @@ export default {
     isLastChapter: {
       type: Boolean,
       required: true
+    },
+    previousChapterArticleIds: {
+      type: Array,
+      required: false
     }
   },
   computed: {
@@ -54,8 +63,10 @@ export default {
       const articles = this.chapter.articles
       return this.groupBy(articles, "branchesModel")
     },
-    vueety() {
-      return this.$vuetify
+    isRoadFirstArticleActive() {
+      return this.chapter.index === 1
+        ? true
+        : this.previousChapterArticleIds.every(id => this.readedArticles.includes(id))
     }
   },
   methods: {
@@ -64,6 +75,24 @@ export default {
         ;(acc[article[key]] = acc[article[key]] || []).push(article)
         return acc
       }, {})
+    },
+    hasActiveBorder(branchModel, index) {
+      if (branchModel === "cube") {
+        if ([1, 2].includes(index)) {
+          return this.isReaded(this.structuredChapterRoad.cube[0])
+        } else if (index === 3) {
+          return [1, 2].some(index => this.isReaded(this.structuredChapterRoad.cube[index]))
+        }
+      } else {
+        if (index === 0) {
+          if (this.structuredChapterRoad.cube) {
+            return this.isReaded(this.structuredChapterRoad.cube[3])
+          }
+        } else return this.isReaded(this.structuredChapterRoad.single[index - 1])
+      }
+      if (index === 0) {
+        return this.isRoadFirstArticleActive
+      }
     }
   }
 }
@@ -77,12 +106,29 @@ export default {
   position: relative;
 }
 
+//- TODO deal with the responsive of this...
+
 .outer {
   width: 400px;
   height: 400px;
   position: relative;
   box-sizing: border-box;
   margin: 3rem 0;
+
+  &:before {
+    //- Top left corner
+    border-left: 12px solid;
+    border-top: 12px solid;
+    border-radius: 100px 0px 0px 0px;
+  }
+
+  &:after {
+    //- Top Right corner
+    right: 0;
+    border-right: 12px solid;
+    border-top: 12px solid;
+    border-radius: 0px 100px 0px 0px;
+  }
 }
 
 .inner {
@@ -97,36 +143,23 @@ export default {
   width: 50%;
 }
 
-.outer:before {
-  //- Top left corner
-  border-left: 10px solid;
-  border-top: 10px solid;
-  border-radius: 100px 0px 0px 0px;
-}
+.inner {
+  &:before {
+    //- Bottom Left corner
+    bottom: 0;
+    border-left: 12px solid;
+    border-bottom: 12px solid;
+    border-radius: 0px 0px 0px 100px;
+  }
 
-.outer:after {
-  //- Top Right corner
-  right: 0;
-  border-right: 10px solid;
-  border-top: 10px solid;
-  border-radius: 0px 100px 0px 0px;
-}
-
-.inner:before {
-  //- Bottom Left corner
-  bottom: 0;
-  border-left: 10px solid;
-  border-bottom: 10px solid;
-  border-radius: 0px 0px 0px 100px;
-}
-
-.inner:after {
-  //- Bottom Right corner
-  bottom: 0;
-  right: 0;
-  border-right: 10px solid;
-  border-bottom: 10px solid;
-  border-radius: 0px 0px 100px 0px;
+  &:after {
+    //- Bottom Right corner
+    bottom: 0;
+    right: 0;
+    border-right: 12px solid;
+    border-bottom: 12px solid;
+    border-radius: 0px 0px 100px 0px;
+  }
 }
 
 // TODO changes these colors with vuetify variables
@@ -137,15 +170,8 @@ export default {
   }
 }
 
-.active-raod {
-  &::after,
-  &::before {
-    border-color: grey;
-  }
-}
-
 .single-road {
-  width: 10px;
+  width: 12px;
   height: 100px;
   // TODO get the vutify sass variables colors
   background-color: gray;
@@ -160,5 +186,28 @@ export default {
 
 .previous-road {
   top: 70px;
+}
+
+.activeSingleRoad {
+  background-color: blue;
+}
+
+.activeRoad {
+  &::after,
+  &::before {
+    border-color: blue;
+  }
+}
+
+.leftCubeBranchActive {
+  &::before {
+    border-color: blue;
+  }
+}
+
+.rightCubeBranchActive {
+  &::after {
+    border-color: blue;
+  }
 }
 </style>

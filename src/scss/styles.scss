@@ -8,3 +8,8 @@
 .v-stepper__step__step {
   border-radius: 6px;
 }
+
+.v-badge__badge {
+  left: calc(100% - 16px) !important;
+  top: calc(100% - 16px) !important;
+}

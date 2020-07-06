@@ -11,6 +11,7 @@ export default new Vuetify({
   theme: {
     themes: {
       dark: {
+        background: "#293241",
         primary: "#09BDED",
         white: "#FAF9F9",
         nav: "#343C4A",
@@ -18,6 +19,7 @@ export default new Vuetify({
         tweet: "#15202B"
       },
       light: {
+        background: "#FAF9F9",
         primary: "#09BDED",
         white: "#FAF9F9",
         nav: "#F4F4F8",
