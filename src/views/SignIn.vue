@@ -34,7 +34,6 @@ export default {
       // eslint-disable-next-line
       const getUserData = await this.$http.get("/users/15").then(response => {
         this.$store.dispatch("getAccountData", response.data)
-        console.log(this.$store.state.accountData)
         this.$router.push("/")
       })
     }

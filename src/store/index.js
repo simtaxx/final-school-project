@@ -1,5 +1,6 @@
 import Vue from "vue"
 import Vuex from "vuex"
+import Axios from "axios"
 
 Vue.use(Vuex)
 
@@ -13,8 +14,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    getAccountData({ commit }, data) {
-      commit("getAccountData", data)
+    getAccountData({ commit }) {
+      console.log(Axios.get)
+      Axios.get("/users/15").then(response => {
+        commit("getAccountData", response.data)
+      })
+    }
+  },
+  getters: {
+    hasData: state => {
+      return state.accountData.id === undefined ? false : true
     }
   },
   modules: {}

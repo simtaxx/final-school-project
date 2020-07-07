@@ -42,7 +42,7 @@ export default {
   },
   computed: {
     hasData() {
-      return this.$store.state.accountData.id === undefined ? false : true
+      return this.$store.getters.hasData
     }
   }
 }
