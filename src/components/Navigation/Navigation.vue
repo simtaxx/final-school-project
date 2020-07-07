@@ -7,7 +7,13 @@
       v-list-item
         v-list-item-content(:class="$style.profile")
           h3 PROFIL
-          div
+          div(v-if="hasData" :class="$style.profileLoged")
+            img(src="/img/icons/profil-picture.png")
+            div(:class="$style.profileName")
+              p {{$store.state.accountData.name}} {{$store.state.accountData.lastName}}
+              p {{$store.state.accountData.username}}
+          router-link(to="/profil" v-if="hasData" :class="$style.showProfile") Voir profil >
+          div(v-if="!hasData")
             v-btn(medium color="primary" to="/sign-in" :class="$style.signIn") CONNEXION
       v-list-item
         v-list-item-content(:class="$style.discover")
@@ -16,7 +22,9 @@
       v-list-item
         v-list-item-content(:class="$style.challenge")
           h3 TES CHALLENGES
-          p #[router-link(to="/sign-in" :class="$style.signUp" ) Connecte toi] ou #[router-link(to="/sign-up" :class="$style.signUp") créer un compte] pour pouvoir jouer !
+          div(v-if="hasData")
+            p Les challenges arrivent prochainement!
+          p(v-if="!hasData") #[router-link(to="/sign-in" :class="$style.signUp" ) Connecte toi] ou #[router-link(to="/sign-up" :class="$style.signUp") créer un compte] pour pouvoir jouer !
 </template>
 
 <script>
@@ -31,17 +39,20 @@ export default {
     return {
       navContent: categories
     }
+  },
+  computed: {
+    hasData() {
+      return this.$store.getters.hasData
+    }
   }
 }
 </script>
 
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
-.nav {
-  .navContainer {
-    margin-left: 40px;
-    padding: 0 !important;
-  }
+.navContainer {
+  margin-left: 40px !important;
+  padding: 0 !important;
 }
 
 h3 {
@@ -69,6 +80,39 @@ h3 {
     color: #faf9f9 !important;
     margin-bottom: 8px;
   }
+}
+
+.profileLoged {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px !important;
+  font-family: "OpenSans", sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+
+  img {
+    width: 40px;
+    height: 40px;
+    margin-right: 16px;
+  }
+
+  p {
+    margin: 0 !important;
+
+    &:first-child {
+      margin-bottom: 4px !important;
+    }
+
+    &:last-child {
+      color: $primary;
+    }
+  }
+}
+
+.showProfile {
+  font-family: "Gotham", sans-serif;
+  font-size: 12px;
+  color: var(--v-text-base) !important;
 }
 
 .discover {
