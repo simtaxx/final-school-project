@@ -32,6 +32,10 @@ export default {
   },
   created() {
     this.isFirstTime = JSON.parse(localStorage.getItem("firstTime")) === null
+    let localUser = JSON.parse(localStorage.getItem("userLog"))
+    if (localUser) {
+      this.$store.dispatch("getLocalUserData", { localUser })
+    }
   }
 }
 </script>

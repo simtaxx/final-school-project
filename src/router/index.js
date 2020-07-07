@@ -31,17 +31,20 @@ const routes = [
   {
     path: "/sign-in",
     name: "SignIn",
-    component: () => import("@/views/SignIn.vue")
+    component: () => import("@/views/SignIn.vue"),
+    meta: { requiresDc: true }
   },
   {
     path: "/sign-up",
     name: "SignUp",
-    component: () => import("@/views/SignUp.vue")
+    component: () => import("@/views/SignUp.vue"),
+    meta: { requiresDc: true }
   },
   {
     path: "/profil",
     name: "Account",
-    component: () => import("@/views/Account/Account.vue")
+    component: () => import("@/views/Account/Account.vue"),
+    meta: { requiresAuth: true }
   },
   {
     path: "/challenges",
@@ -62,6 +65,19 @@ const router = new VueRouter({
     }
   },
   routes
+})
+
+router.beforeEach((to, from, next) => {
+  const authUser = JSON.parse(localStorage.getItem("userLog"))
+  if (to.meta.requiresAuth) {
+    if (authUser === null && to.path !== "/sign-up") {
+      next("/sign-up")
+    } else next()
+  } else if (to.meta.requiresDc) {
+    if (authUser !== null && to.path !== "/profil") {
+      next("/profil")
+    } else next()
+  } else next()
 })
 
 export default router
