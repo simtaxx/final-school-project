@@ -7,31 +7,31 @@
     "articles" : [
       {
         "name": "La république", 
-        "icon": "mdi-domain",
+        "icon": "french_flag",
         "id": "1",
         "branchesModel": "cube"
       },
       {
         "name": "Le président", 
-        "icon": "mdi-domain",
+        "icon": "president",
         "id": "2",
         "branchesModel": "cube"
       },
       {
         "name": "Le premier ministre", 
-        "icon": "mdi-domain",
+        "icon": "prime_minister",
         "id": "3",
         "branchesModel": "cube"
       },
       {
         "name": "Le gouvernement", 
-        "icon": "mdi-domain",
+        "icon": "classical_building",
         "id": "4",
         "branchesModel": "cube"
       },
       {
         "name": "Le parlement", 
-        "icon": "mdi-domain",
+        "icon": "classical_building",
         "id": "5",
         "branchesModel": "single"
       }
@@ -45,7 +45,7 @@
     "articles" : [
       {
         "name": "Introduction", 
-        "icon": "mdi-domain",
+        "icon": "chart",
         "id": "6",
         "branchesModel": "single"
       },

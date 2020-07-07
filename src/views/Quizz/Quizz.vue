@@ -65,6 +65,10 @@ export default {
   computed: {
     goodAnswerPosition() {
       return Number(this.quizz.questions[this.currentQuestion - 1].answer) + 1
+    },
+    readedArticles() {
+      const storedReadedArticles = localStorage["readedArticles"]
+      return storedReadedArticles ? JSON.parse(storedReadedArticles) : []
     }
   },
   methods: {
@@ -75,6 +79,10 @@ export default {
         this.activeAssertation = 0
       } else {
         this.isQuizzFinished = true
+        if (this.score === this.steps) {
+          const readedArticles = [...this.readedArticles, "15"]
+          localStorage.setItem("readedArticles", JSON.stringify(readedArticles))
+        }
       }
     },
     async getArticleQuizz() {
