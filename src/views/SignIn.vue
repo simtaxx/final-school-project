@@ -3,6 +3,7 @@
     h2 Connecte toi à #[span Kiwitas]
       p ou #[router-link(to="/sign-up") inscris-toi]
     v-form(:class="$style.form" ref="form" v-model="valid" @submit.prevent="getUser")
+      p(v-if="failLogIn") Tes identifiants ne correspondent pas.
       v-text-field(v-model="email" :rules="emailRules" label="E-mail exemple@gmail.com" outlined required)
       v-text-field(v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="passwordRules" :type="show1 ? 'text' : 'password'" @click:append="show1 = !show1" label="Mot de passe" outlined required)
       v-btn(:disabled="!valid" color="primary"  @click="getUser") Je me connecte
@@ -23,40 +24,30 @@ export default {
     passwordRules: [
       v => !!v || "Un mot de passe est requis",
       v => v.length >= 8 || "Votre mot de passe doit contenir au moins 8 caractères"
-    ]
+    ],
+    failLogIn: false
   }),
-
   methods: {
     validate() {
       this.$refs.form.validate()
     },
-    async getUser() {
-      // eslint-disable-next-line
-      const getUserData = await this.$http.get("/users/15").then(response => {
-        this.$store.dispatch("getAccountData", response.data)
-        this.$router.push("/")
-      })
-    }
-    /* async getUser() {
-      const { email, password } = this
+    getUser() {
       this.validate()
-      const getUserData = await this.$http
-        .post("/login_check", {
-          email,
-          password
-        })
-        .then(response => {
-          console.log(response)
-          if (response.status === 200) {
-            //this.$router.push("/")
-            this.$store.dispatch("getAccountData", response)
-            console.log(this.$store.state.accountData)
-          }
-        })
-        .catch(e => {
-          console.log(e)
-        })
-    } */
+      const { email, password } = this
+      this.$store.dispatch("getAccountData", { email, password })
+      setTimeout(() => {
+        if (this.isLoged) {
+          this.$router.push("/")
+        } else {
+          this.failLogIn = true
+        }
+      }, 1000)
+    }
+  },
+  computed: {
+    isLoged() {
+      return this.$store.getters.isLoged
+    }
   }
 }
 </script>
