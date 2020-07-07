@@ -25,37 +25,46 @@
             v-model="activeAssertation"
             :position="index + 1"
             :isResponseValidated="isResponseValidated"
-            :goodAnswerIndex="goodAnswerIndex"
+            :goodAnswerIndex="goodAnswerPosition"
           )
     div(style="height: 100px")
       v-btn(v-if="activeAssertation && !isResponseValidated" color="primary" @click="analyseAnswer()") Valider
-      v-btn(v-else-if="isResponseValidated" color="primary" @click="nextQuestion()") Question suivante
+      v-btn(
+        v-else-if="isResponseValidated" 
+        color="primary" 
+        @click="nextQuestion()"
+      ) {{ currentQuestion < steps ? 'Question suivante' : 'Terminer' }}
+    finished-quizz-popup(
+      :show="isQuizzFinished"
+      :isQuizzWon="score === steps"
+      @restartQuizz="restartQuizz()"
+    )
 </template>
 
 <script>
 import Assertation from "./components/Assertation.vue"
+import FinishedQuizzPopup from "./components/FinishedQuizzPopup.vue"
 
 export default {
   name: "Quizz",
   components: {
-    Assertation
+    Assertation,
+    FinishedQuizzPopup
   },
   data() {
     return {
-      steps: 5,
+      steps: 0,
       currentQuestion: 1,
       activeAssertation: 0,
       quizz: {},
-      isResponseValidated: false
+      isResponseValidated: false,
+      score: 0,
+      isQuizzFinished: false
     }
   },
   computed: {
-    goodAnswerIndex() {
-      return (
-        this.quizz.questions[this.currentQuestion - 1].assertations.findIndex(
-          assertation => assertation === this.quizz.questions[this.currentQuestion - 1].answer
-        ) + 1
-      )
+    goodAnswerPosition() {
+      return Number(this.quizz.questions[this.currentQuestion - 1].answer) + 1
     }
   },
   methods: {
@@ -64,24 +73,31 @@ export default {
         this.currentQuestion++
         this.isResponseValidated = false
         this.activeAssertation = 0
+      } else {
+        this.isQuizzFinished = true
       }
     },
     async getArticleQuizz() {
       try {
-        const quizz = await this.$http.get("/quizz/37")
-        //- TODO Get only one quizz here
+        const quizz = await this.$http.get("/quizz/61")
         this.quizz = quizz.data
         this.steps = quizz.data.questions.length
       } catch (error) {
-        console.error(error)
+        console.log(error)
       }
     },
     analyseAnswer() {
-      const isGoodAnswer =
-        this.quizz.questions[this.currentQuestion - 1].assertations[this.activeAssertation - 1] ===
-        this.quizz.questions[this.currentQuestion - 1].answer
-      console.warn(isGoodAnswer)
+      if (this.activeAssertation === this.goodAnswerPosition) {
+        this.score++
+      }
       this.isResponseValidated = true
+    },
+    restartQuizz() {
+      this.isQuizzFinished = false
+      this.currentQuestion = 1
+      this.activeAssertation = 0
+      this.score = 0
+      this.isResponseValidated = false
     }
   },
   created() {

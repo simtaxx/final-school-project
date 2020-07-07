@@ -63,6 +63,7 @@ export default {
   background-color: gray;
   cursor: pointer;
   border-radius: 6px;
+  user-select: none;
 
   .assertation__content {
     width: 100%;
@@ -77,7 +78,6 @@ export default {
 .disabled {
   filter: grayscale(40%);
   cursor: initial;
-  user-select: none;
 }
 
 //- TODO Set vuetify colors
