@@ -1,5 +1,5 @@
 <template lang="pug">
-  router-link(:to="content.path" :exact-active-class="$style.active" :class="$style.iconContainer" 
+  router-link(:to="'/#' + content.path" :exact-active-class="$style.active" :class="$style.iconContainer" 
       :style="iconBg")
     img(:class="$style.icon" :src="content.icon")
 </template>
