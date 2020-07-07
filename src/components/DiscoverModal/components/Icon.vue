@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="$style.icon")
-    img(src="/img/icons/institution.svg")
+    v-icon(:class="$style.badge") {{imagePath}}
 </template>
 
 <script>
@@ -20,10 +20,12 @@ export default {
   height: 50px;
   border-radius: 40px !important;
 
-  img {
+  .badge {
     position: absolute;
     top: 50%;
     left: 50%;
+    width: 24px;
+    height: 24px;
     transform: translate(-50%, -50%);
   }
 }

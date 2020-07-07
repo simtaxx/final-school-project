@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="[$style.articleSticker, $style[className]]" @click="updateRoute()")
+  div(:class="[$style.articleSticker, $style[className]]" @click="openModal")
     v-badge(
       bottom
       style="z-index: 4"
@@ -50,6 +50,9 @@ export default {
       required: false
     }
   },
+  mounted() {
+    console.log(this.article)
+  },
   computed: {
     stickerTextStyle() {
       if (this.$vuetify.theme.dark) {
@@ -59,8 +62,8 @@ export default {
     }
   },
   methods: {
-    updateRoute() {
-      this.$router.push({ name: "Course", params: { id: this.article.id } })
+    openModal() {
+      this.$emit("openModal", this.article)
     }
   }
 }

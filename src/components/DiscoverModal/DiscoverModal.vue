@@ -1,11 +1,11 @@
 <template lang="pug">
   v-dialog(:content-class="$style.discoverModal" v-model="dialog" width="360")
     v-card(:class="$style.card")
-      Icon(:class="$style.icon")
+      Icon(:class="$style.icon" :imagePath="content.icon")
       h3 Chapitre 1 - L'institution
-      p(:class="$style.subtitle") Le Gouvernement
-      p(:class="$style.content") #[span Résumé :] Dans le régime parlementaire le Gouvernement est composé de ministres placés sous l’autorité du Premier ministre
-      v-btn(:class="$style.btn" color="primary" to="/") Lire
+      p(:class="$style.subtitle") {{content.name}}
+      p(:class="$style.content") #[span Résumé :] {{content.content}}
+      v-btn(:class="$style.btn" color="primary" :to="`/course/${content.id}`") Lire
       div(:class="$style.success" v-if="validate")
         img(src="/img/icons/success.svg")
         p Validé !

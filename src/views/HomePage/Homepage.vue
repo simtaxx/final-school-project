@@ -8,19 +8,16 @@
       :isLastChapter="index === articleNavigation.length - 1"
       :previousChapterArticleIds="previousChapterArticleIds(index)"
     )
-    Modal
 </template>
 
 <script>
 import articleNavigation from "@/utils/articlesNavigation.json"
 import ChapterRoad from "./components/ChapterRoad.vue"
-import Modal from "@/components/DiscoverModal/DiscoverModal.vue"
 
 export default {
   name: "Homepage",
   components: {
-    ChapterRoad,
-    Modal
+    ChapterRoad
   },
   computed: {
     articleNavigation() {
