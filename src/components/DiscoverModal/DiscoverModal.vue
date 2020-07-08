@@ -4,14 +4,14 @@
       Icon(:class="$style.icon" :imagePath="content.icon")
       h3 Chapitre 1 - L'institution
       p(:class="$style.subtitle") {{content.name}}
-      p(:class="$style.content") #[span Résumé :] {{content.content}}
+      p(:class="$style.content") #[span Résumé :] {{content.abstract}}
       v-btn(:class="$style.btn" color="primary" :to="`/course/${content.id}`") Lire
       div(:class="$style.success" v-if="validate")
         img(src="/img/icons/success.svg")
         p Validé !
       div(:class="$style.favorite")
-        img(src="/img/icons/fav.svg" v-if="favorite" @click="favorite ? favorite = false : favorite = true")
-        img(src="/img/icons/notFav.svg" v-if="!favorite" @click="favorite ? favorite = false : favorite = true")
+        img(src="/img/icons/fav.svg" v-if="favorite" @click="getFavorite(content.id)")
+        img(src="/img/icons/notFav.svg" v-if="!favorite" @click="getFavorite(content.id)")
 </template>
 
 <script>
@@ -24,12 +24,58 @@ export default {
   data() {
     return {
       validate: false,
-      favorite: false
+      favorite: false,
+      localUser: []
     }
   },
   props: {
     content: { type: Object, required: true },
     dialog: { type: Boolean, default: false }
+  },
+  created() {
+    this.localUser = this.getLocalUser()
+  },
+  updated() {
+    if (this.getLocalUser() !== null) {
+      let localUser = this.getLocalUser()
+      let favList = localUser.favorite_articles
+      const whiteList = favList.map(fav => fav.id)
+      if (whiteList.includes(this.content.id)) {
+        this.favorite = true
+      } else this.favorite = false
+    }
+  },
+  methods: {
+    getLocalUser() {
+      return JSON.parse(localStorage.getItem("userLog"))
+    },
+    setLocalUser(newLocaluser) {
+      localStorage.setItem("userLog", JSON.stringify(newLocaluser))
+    },
+    async setBackUser({ favorite_articles }) {
+      const idUser = this.$store.state.accountData.id
+      // eslint-disable-next-line
+      const sendUser = await this.$http
+        .put(`/user/${idUser}`, { favoriteArticles: favorite_articles })
+        // eslint-disable-next-line
+        .then(reponse => console.log(response))
+    },
+    getFavorite(id) {
+      this.favorite ? (this.favorite = false) : (this.favorite = true)
+      let localUser = this.getLocalUser()
+      let favList = localUser.favorite_articles
+      const whiteList = favList.map(fav => fav.id)
+      if (this.favorite && !whiteList.includes(id)) {
+        favList.push(this.content)
+        this.setLocalUser(localUser)
+        this.setBackUser(localUser)
+      } else if (!this.favorite && whiteList.includes(id)) {
+        favList = favList.filter(fav => fav.id !== id)
+        localUser.favorite_articles = favList
+        this.setLocalUser(localUser)
+        this.setBackUser(localUser)
+      }
+    }
   }
 }
 </script>

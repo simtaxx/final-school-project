@@ -11,7 +11,6 @@
           :className="'cube-sticker-' + (index + 1)" 
           :key="chapter.categoryName + 'cubeArticle' + index"
           :activeBorder="hasActiveBorder('cube', index)"
-          @openModal="openModal"
         )
         div(v-if="chapter.articles.length > 3" :class="[$style['next-road'], $style['single-road'], {[$style.activeSingleRoad] : isReaded(structuredChapterRoad.cube[3])} ]")
     article-sticker(
@@ -21,15 +20,12 @@
       :key="chapter.categoryName + 'singleArticle' + index"
       :isLastArticle="isLastChapter && index === structuredChapterRoad.single.length -1"
       :activeBorder="hasActiveBorder('single', index)"
-      @openModal="openModal"
     )
-    Modal(:dialog="isOpen" :content="modalContent")
 </template>
 
 <script>
 import ChapterHead from "./ChapterHead.vue"
 import ArticleSticker from "./ArticleSticker.vue"
-import Modal from "@/components/DiscoverModal/DiscoverModal.vue"
 
 import { articlesMixin } from "@/mixins/articles"
 
@@ -38,8 +34,7 @@ export default {
   mixins: [articlesMixin],
   components: {
     ChapterHead,
-    ArticleSticker,
-    Modal
+    ArticleSticker
   },
   data() {
     return {
@@ -60,9 +55,6 @@ export default {
       type: Array,
       required: false
     }
-  },
-  mounted() {
-    console.log(this.structuredChapterRoad)
   },
   computed: {
     chapterHead() {
@@ -108,12 +100,6 @@ export default {
       if (index === 0) {
         return this.isRoadFirstArticleActive
       }
-    },
-    async openModal(modalContent) {
-      const article = await this.$http.get(`articles/2`)
-      this.modalContent.content = article.data.content
-      this.modalContent = modalContent
-      this.isOpen = true
     }
   }
 }

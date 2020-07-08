@@ -3,15 +3,22 @@
     img(src="/img/icons/exempleFav.svg")
     div(:class="$style.container")
       div(:class="$style.title")
-        h3 La république
+        h3 {{content.name}}
         img(src="/img/icons/fav.svg")
-      p #[span Résumé] : Dans le régime parlementaire le Gouvernement est composé de ministres placés sous l’autorité du Premier ministre
-      v-btn(:class="$style.btn" color="primary" to="/course/1") LIRE
+      p #[span Résumé] : {{content.abstract}}
+      v-btn(:class="$style.btn" color="primary" :to="`/course/${content.id}`") LIRE
 </template>
 
 <script>
+import Pellet from "@/components/Pellet.vue"
 export default {
-  name: "Favorites"
+  name: "Favorites",
+  components: {
+    Pellet
+  },
+  props: {
+    content: { type: Object, required: true }
+  }
 }
 </script>
 

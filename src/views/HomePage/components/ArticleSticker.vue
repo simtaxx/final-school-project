@@ -17,11 +17,12 @@
       v-if="className === 'single' && !isLastArticle" 
       :class="[$style['next-road'], $style['single-road'], {[$style.activeRoad] : isReaded(article)}]"
     )
+    Modal(:dialog="isOpen" :content="modalContent" @isItOpen="this.isOpen = false")
 </template>
 
 <script>
 //- TODO look for grammatical issues
-
+import Modal from "@/components/DiscoverModal/DiscoverModal.vue"
 import Pellet from "@/components/Pellet.vue"
 
 import { articlesMixin } from "@/mixins/articles"
@@ -30,7 +31,14 @@ export default {
   name: "ArticleSticker",
   mixins: [articlesMixin],
   components: {
-    Pellet
+    Pellet,
+    Modal
+  },
+  data() {
+    return {
+      isOpen: false,
+      modalContent: {}
+    }
   },
   props: {
     article: {
@@ -50,9 +58,6 @@ export default {
       required: false
     }
   },
-  mounted() {
-    console.log(this.article)
-  },
   computed: {
     stickerTextStyle() {
       if (this.$vuetify.theme.dark) {
@@ -62,8 +67,9 @@ export default {
     }
   },
   methods: {
-    openModal() {
-      this.$emit("openModal", this.article)
+    async openModal() {
+      this.modalContent = this.article
+      this.isOpen ? (this.isOpen = false) : (this.isOpen = true)
     }
   }
 }
