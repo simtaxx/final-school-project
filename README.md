@@ -1,4 +1,8 @@
-# final-school-project
+# Kiwitas
+
+Développeurs Front end :
+- Diarit Salihaj
+- Haris Souici
 
 Etant donné la cible de notre projet, nous savons qu'il est indispensable d'avoir une plateforme fluide et dynamique qui permet à l'utilisateur de constamment intéragir avec celle-ci. Nous avons donc fait le choix de développer SPA (single page application) pour garder un maximum de dynamisme et faire en sorte que l'expérience utilisateur de notre cible, que nous savons exigeante, soit la meilleure possible. Nous évitons donc le rechargement de la page en générant celle ci côté client et en modifiant uniquement les différents élements indépendamment lors de la navigation.
 
