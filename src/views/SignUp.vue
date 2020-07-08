@@ -3,6 +3,7 @@
     h2 Connecte toi à #[span Kiwitas]
       p ou #[router-link(to="/sign-in") connecte-toi]
     v-form(:class="$style.form" ref="form" v-model="valid" @submit.prevent="createUser")
+      p(v-if="failLogIn") Tes identifiants ne correspondent pas.©©
       v-row(:class="$style.dividedColumns")
         v-col(:class="$style.dividedColumn" :cols="$vuetify.breakpoint.xs ? 12 : 6")
           v-text-field(v-model="name" :rules="simpleRules" label="Prénom" outlined required)
@@ -33,7 +34,8 @@ export default {
     passwordRules: [
       v => !!v || "Un mot de passe est requis",
       v => v.length >= 8 || "Votre mot de passe doit contenir au moins 8 caractères"
-    ]
+    ],
+    failLogIn: false
   }),
 
   methods: {
@@ -41,8 +43,8 @@ export default {
       this.$refs.form.validate()
     },
     async createUser() {
-      const { name, lastName, email, password, username } = this
       this.validate()
+      const { name, lastName, email, password, username } = this
       // eslint-disable-next-line no-unused-vars
       const sendUserData = await this.$http
         .post("/users", {
@@ -53,7 +55,6 @@ export default {
           username
         })
         .then(response => {
-          console.log(response)
           if (response.status === 201) {
             this.getUser()
           }
@@ -62,23 +63,21 @@ export default {
           console.log(e)
         })
     },
-    async getUser() {
+    getUser() {
       const { email, password } = this
-      // eslint-disable-next-line
-      const getUserData = await this.$http
-        .post("/login_check", {
-          email,
-          password
-        })
-        .then(response => {
-          console.log(response)
-          if (response.status === 201) {
-            this.$router.push("/")
-          }
-        })
-        .catch(e => {
-          console.log(e)
-        })
+      this.$store.dispatch("getAccountData", { email, password })
+      setTimeout(() => {
+        if (this.isLoged) {
+          this.$router.push("/")
+        } else {
+          this.failLogIn = true
+        }
+      }, 3000)
+    }
+  },
+  computed: {
+    isLoged() {
+      return this.$store.getters.isLoged
     }
   }
 }

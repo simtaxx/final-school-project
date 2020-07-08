@@ -41,7 +41,7 @@ export default {
         } else {
           this.failLogIn = true
         }
-      }, 1000)
+      }, 3000)
     }
   },
   computed: {
