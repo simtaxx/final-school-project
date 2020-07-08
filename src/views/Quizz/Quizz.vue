@@ -15,7 +15,9 @@
         :key="'content' + index"
         :step="step"
       )
-        span {{ `Question ${index + 1} : ${quizz.questions[index].title}` }}
+        div.question
+          span {{ `Question ${index + 1} : ` }}
+          span.question__body {{ `${quizz.questions[index].title}` }}
         img(:src="quizz.questions[index].media_link")
         div.assertations
           assertation(
@@ -80,6 +82,7 @@ export default {
       } else {
         this.isQuizzFinished = true
         if (this.score === this.steps) {
+          //- TODO change the 15 for the article id
           const readedArticles = [...this.readedArticles, "15"]
           localStorage.setItem("readedArticles", JSON.stringify(readedArticles))
         }
@@ -115,8 +118,10 @@ export default {
 </script>
 
 <style lang="scss">
+@import "@/scss/styles.scss";
+
 .v-stepper {
-  height: 100vh;
+  font-family: "Gotham", sans-serif;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
@@ -124,6 +129,10 @@ export default {
   box-shadow: none;
   height: calc(100vh - 48px);
   margin: 0;
+
+  @include small-screen {
+    height: calc(100vh - 104px);
+  }
 
   .v-stepper__header {
     width: 80%;
@@ -141,10 +150,18 @@ export default {
 
   .v-stepper__items {
     width: 80%;
-    height: 60%;
+    height: 80%;
 
     .v-stepper__content {
       height: 100%;
+
+      .question {
+        text-align: center;
+
+        .question__body {
+          font-size: 24px;
+        }
+      }
 
       .v-stepper__wrapper {
         height: 100%;
@@ -152,6 +169,15 @@ export default {
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+
+        @include medium-screen {
+          img {
+            max-height: 30%;
+          }
+          .assertations {
+            max-height: 45%;
+          }
+        }
       }
     }
   }
@@ -159,7 +185,9 @@ export default {
   .assertations {
     width: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
+
+    flex-wrap: wrap;
   }
 }
 </style>

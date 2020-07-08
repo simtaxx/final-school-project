@@ -16,14 +16,21 @@
         span(:class="$style.stat") 1.3 k 
         | J'aime 
       v-divider
+      //- TODO repetition here
       div(:class="$style.icons")
-        span t
-        span t
-        span t
-        span t
+        img(src='@/assets/icons/tweet_comment.svg')
+        img(src='@/assets/icons/tweet_retweet.svg')
+        img(src='@/assets/icons/tweet_heart.svg')
+        img(src='@/assets/icons/tweet_save.svg')
     tweetos
     div(:class="$style.response")
-      p {{ tweet.content }}
+      div
+        p {{ tweet.content }}
+        div(:class="$style.commentIcons")
+          img(src='@/assets/icons/tweet_comment.svg')
+          img(src='@/assets/icons/tweet_retweet.svg')
+          img(src='@/assets/icons/tweet_heart.svg')
+          img(src='@/assets/icons/tweet_save.svg')
 
       
 </template>
@@ -64,6 +71,12 @@ export default {
   max-width: 80%;
   border-radius: 4px;
 
+  &:after {
+    content: "Cette représentation de tweet ne traduit pas la réalité";
+    display: flex;
+    justify-content: center;
+  }
+
   .options {
     font-size: 10px;
 
@@ -74,10 +87,24 @@ export default {
     .stat {
       font-weight: bold;
     }
+  }
 
-    .icons {
-      display: flex;
-      justify-content: space-around;
+  .icons {
+    display: flex;
+    justify-content: space-around;
+    margin: 0.5rem 0;
+
+    img {
+      width: 20px;
+    }
+  }
+
+  .commentIcons {
+    display: flex;
+    justify-content: space-around;
+
+    img {
+      width: 15px;
     }
   }
 
@@ -88,6 +115,7 @@ export default {
   .response {
     display: flex;
     margin: 0.5rem 0;
+    font-size: 14px;
 
     &::before {
       content: "";

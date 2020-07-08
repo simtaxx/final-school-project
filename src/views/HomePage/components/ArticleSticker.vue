@@ -9,7 +9,7 @@
       :value="isReaded(article)"
       :class="$style.badge"
     )
-      Pellet(imageName="bulb" :activeBorder="activeBorder")
+      Pellet(:imageName="article.icon" :activeBorder="activeBorder")
     span(
       :class="{[$style.stickerText] : true, [$style.singleStickerText] : className !== 'single'}"
     ) {{ article.name }}
@@ -71,6 +71,7 @@ export default {
 
 <style lang="scss" module>
 @import "~vuetify/src/styles/styles.sass";
+@import "@/scss/core/colors.scss";
 
 .articleSticker {
   display: flex;
@@ -122,7 +123,6 @@ export default {
   position: absolute;
   white-space: nowrap;
   top: 100%;
-  /* background-color: map-get($material-dark, "background"); */
 }
 
 .single {
@@ -132,15 +132,14 @@ export default {
 .single-road {
   width: 10px;
   height: 150px;
-  // TODO get the vutify sass variables colors
-  background-color: gray;
+  background-color: var(--v-gray-base);
   position: absolute;
   z-index: -2;
   transform: translateY(40px);
 }
 
 .activeRoad {
-  background-color: blue;
+  background-color: $primary;
 }
 
 // .next-road {

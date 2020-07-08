@@ -1,6 +1,5 @@
 <template lang="pug">
   div(:class="$style.homepage")
-    //- Maybe pass the ids (or names) of the previous chapter to check the first item border
     chapter-road(
       v-for="(chapter, index) in articleNavigation" 
       :chapter="chapter" 
@@ -36,6 +35,5 @@ export default {
 
 <style lang="scss" module>
 .homepage {
-  scroll-behavior: smooth;
 }
 </style>

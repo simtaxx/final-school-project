@@ -3,7 +3,7 @@
     v-avatar(:class="$style.avatar" size="35px")
       img(
         alt="Avatar"
-        src="https://avatars0.githubusercontent.com/u/9064066?v=4&s=460"
+        src="@/assets/images/macron.png"
       )
     div(:class="$style.text")
       span(:class="$style.name") Emmanuel Macron
@@ -13,6 +13,7 @@
 <style lang="scss" module>
 .tweetos {
   display: flex;
+  margin: 0.5rem 0;
 
   .avatar {
     margin-right: 0.5rem;

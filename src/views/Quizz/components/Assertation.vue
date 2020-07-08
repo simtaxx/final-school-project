@@ -38,7 +38,7 @@ export default {
   },
   methods: {
     updateActiveAnswer() {
-      if (!this.disabled) {
+      if (!this.isResponseValidated) {
         this.$emit("input", this.position)
       }
     }
@@ -55,15 +55,26 @@ export default {
 </script>
 
 <style lang="scss" module>
+@import "@/scss/core/colors.scss";
+
+@import "@/scss/styles.scss";
+
 .assertation {
   width: 30%;
+  min-width: 200px;
   text-align: center;
   display: flex;
   align-items: center;
-  background-color: gray;
+  background-color: var(--v-nav-base);
   cursor: pointer;
   border-radius: 6px;
   user-select: none;
+  border: solid 3px var(--v-gray-base);
+  margin: 0.1rem 0.5rem;
+
+  @include medium-screen {
+    max-height: 30%;
+  }
 
   .assertation__content {
     width: 100%;
@@ -71,21 +82,25 @@ export default {
   }
 
   &:hover {
-    background-color: lightgrey;
+    background-color: var(--v-gray-base);
   }
 }
 
 .disabled {
-  filter: grayscale(40%);
+  color: gray;
   cursor: initial;
+  &:hover {
+    background-color: var(--v-nav-base);
+  }
 }
 
-//- TODO Set vuetify colors
 .active {
-  background-color: red;
+  background-color: $primary;
+  color: white;
+  border-color: $primaryDark;
 
   &:hover {
-    background-color: red;
+    background-color: $primary;
   }
 }
 </style>

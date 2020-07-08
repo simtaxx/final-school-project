@@ -3,6 +3,7 @@
 @import './core/fonts.scss';
 @import './core/colors.scss';
 @import './variables.scss';
+@import './mixins.scss';
 
 
 .v-stepper__step__step {
@@ -12,4 +13,13 @@
 .v-badge__badge {
   left: calc(100% - 16px) !important;
   top: calc(100% - 16px) !important;
+}
+
+.v_stepper {
+  background-color: none;
+}
+
+.v-chip {
+  white-space: normal;
+  text-align: center;
 }
