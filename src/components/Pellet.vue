@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     imagePath() {
-      return require(`@/assets/icons/${this.imageName}.png`)
+      return require(`@/assets/images/${this.imageName}.png`)
     }
   }
 }
@@ -33,14 +33,14 @@ export default {
   width: 80px;
   height: 80px;
   //- TODO change the color with sub color set on vuetify overwrite
-  border: solid 5px gray;
+  border: solid 5px var(--v-gray-base);
   border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;
 
   .pellet__inner {
-    background-color: gray;
+    background-color: var(--v-gray-base);
     width: 80%;
     height: 80%;
     border-radius: 50%;
@@ -49,13 +49,13 @@ export default {
     align-items: center;
 
     img {
-      width: 75%;
+      width: 70%;
     }
   }
 }
 
 .active-border {
   //- TODO change this color with vuetify overwritten colors
-  border-color: blue;
+  border-color: $primary;
 }
 </style>

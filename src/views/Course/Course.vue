@@ -8,8 +8,16 @@
       v-btn(
         :class="$style.quizzBtn" color="primary" 
         depressed
-        @click="$router.push({name:'Quizz'})"
+        @click="handleQuizzBtn"
       ) Faire le quizz
+      v-dialog(
+        :value="shouldShowModal"
+        max-width="290"
+      )
+        v-card
+          v-card-text
+            | Faites d'abord le quizz des cours précedent !
+          v-btn(@click="shouldShowModal = false") OK
 </template>
 
 <script>
@@ -17,6 +25,10 @@ import Tweet from "./components/Tweet.vue"
 import Remember from "./components/Remember.vue"
 
 import VRuntimeTemplate from "v-runtime-template"
+
+// import articlesNavigation from "@/utils/articlesNavigation.json"
+
+// import _ from "lodash"
 
 export default {
   name: "Course",
@@ -29,18 +41,31 @@ export default {
     return {
       course: {
         toRemember: []
-      }
+      },
+      shouldShowModal: false
     }
   },
   computed: {
-    currentArticelId() {
+    currentArticleId() {
       return this.$route.params.id
+    },
+    //-
+    arePreviousArticlesReaded() {
+      // return _.range(1, this.currentArticleId)
+      return true
     }
   },
   methods: {
     async getArticle() {
       const article = await this.$http.get(`articles/42`)
       this.course = article.data
+    },
+    handleQuizzBtn() {
+      if (this.arePreviousArticlesReaded) {
+        this.$router.push({ name: "Quizz" })
+      } else {
+        this.shouldShowModal = true
+      }
     }
   },
   created() {

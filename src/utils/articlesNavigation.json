@@ -7,31 +7,31 @@
     "articles" : [
       {
         "name": "La république", 
-        "icon": "mdi-domain",
+        "icon": "french_flag",
         "id": "1",
         "branchesModel": "cube"
       },
       {
         "name": "Le président", 
-        "icon": "mdi-domain",
+        "icon": "president",
         "id": "2",
         "branchesModel": "cube"
       },
       {
         "name": "Le premier ministre", 
-        "icon": "mdi-domain",
+        "icon": "prime_minister",
         "id": "3",
         "branchesModel": "cube"
       },
       {
         "name": "Le gouvernement", 
-        "icon": "mdi-domain",
+        "icon": "classical_building",
         "id": "4",
         "branchesModel": "cube"
       },
       {
         "name": "Le parlement", 
-        "icon": "mdi-domain",
+        "icon": "classical_building",
         "id": "5",
         "branchesModel": "single"
       }
@@ -45,19 +45,19 @@
     "articles" : [
       {
         "name": "Introduction", 
-        "icon": "mdi-domain",
+        "icon": "chart",
         "id": "6",
         "branchesModel": "single"
       },
       {
         "name": "Impôts et fiscalité", 
-        "icon": "mdi-domain",
+        "icon": "receipt",
         "id": "7",
         "branchesModel": "single"
       },
       {
         "name": "Financement sociale", 
-        "icon": "mdi-domain",
+        "icon": "pill",
         "id": "8",
         "branchesModel": "single"
       }
@@ -71,19 +71,19 @@
     "articles" : [
       {
         "name": "Principes", 
-        "icon": "mdi-domain",
+        "icon": "judge",
         "id": "9",
         "branchesModel": "single"
       },
       {
         "name": "Justice pénale", 
-        "icon": "mdi-domain",
+        "icon": "pen",
         "id": "10",
         "branchesModel": "single"
       },
       {
         "name": "Justice civile", 
-        "icon": "mdi-domain",
+        "icon": "balance",
         "id": "11",
         "branchesModel": "single"
       }
@@ -97,25 +97,25 @@
     "articles" : [
       {
         "name": "Liberté et droits", 
-        "icon": "mdi-domain",
+        "icon": "hand",
         "id": "12",
         "branchesModel": "cube"
       },
       {
         "name": "Le devoir civique", 
-        "icon": "mdi-domain",
+        "icon": "man_hand",
         "id": "13",
         "branchesModel": "cube"
       },
       {
         "name": "Le vote", 
-        "icon": "mdi-domain",
+        "icon": "vote",
         "id": "14",
         "branchesModel": "cube"
       },
       {
         "name": "Adhérer à un parti", 
-        "icon": "mdi-domain",
+        "icon": "simple_flag",
         "id": "15",
         "branchesModel": "cube"
       }
@@ -129,13 +129,13 @@
     "articles" : [
       {
         "name": "Définitions", 
-        "icon": "mdi-domain",
+        "icon": "brain",
         "id": "16",
         "branchesModel": "single"
       },
       {
-        "name": "Le discours fallacieu", 
-        "icon": "mdi-domain",
+        "name": "Le discours fallacieux", 
+        "icon": "magnifying_glass",
         "id": "17",
         "branchesModel": "single"
       }

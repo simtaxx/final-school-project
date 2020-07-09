@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="$style.favorites")
-    img(src="/img/icons/exempleFav.svg")
+    Pellet(imageName="french_flag" :class="$style.sticker")
     div(:class="$style.container")
       div(:class="$style.title")
         h3 La république
@@ -10,8 +10,13 @@
 </template>
 
 <script>
+import Pellet from "@/components/Pellet.vue"
+
 export default {
-  name: "Favorites"
+  name: "Favorites",
+  components: {
+    Pellet
+  }
 }
 </script>
 
@@ -23,8 +28,8 @@ export default {
   font-family: "Gotham", sans-serif;
   margin-bottom: 24px;
 
-  img {
-    margin-right: 12px;
+  .sticker {
+    margin-right: 1rem;
   }
 
   p {

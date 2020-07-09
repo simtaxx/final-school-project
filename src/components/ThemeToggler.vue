@@ -1,11 +1,13 @@
 <template lang="pug">
   div.theme-toggler
+    span.first-span Light
     v-switch(
       v-model="$vuetify.theme.dark" 
-      label="Theme"
       inset
       :ripple="false"
+      @change="storeTheme"
     )
+    span Dark
 </template>
 
 <script>
@@ -14,6 +16,11 @@ export default {
   data() {
     return {
       theme: true
+    }
+  },
+  methods: {
+    storeTheme() {
+      localStorage.setItem("isDark", JSON.stringify(this.$vuetify.theme.dark))
     }
   }
 }
@@ -24,8 +31,14 @@ export default {
 
 .theme-toggler {
   position: absolute;
-  right: 10px;
+  display: flex;
+  align-items: center;
+  right: 2rem;
   top: 10px;
+}
+
+.first-span {
+  margin-right: 0.5rem;
 }
 
 .v-input--switch__thumb {
