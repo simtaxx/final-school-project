@@ -5,7 +5,7 @@
       h3 {{'Chapitre ' + content.id + ' - ' + content.name}}
       p(:class="$style.subtitle") {{content.name}}
       p(:class="$style.content") #[span Résumé :] {{content.abstract}}
-      v-btn(:class="$style.btn" color="primary" :to="`/course/${content.id}`") Lire
+      v-btn(:class="$style.btn" color="primary" :to="`/course/${content.apiId}`") Lire
       div(:class="$style.success" v-if="validate")
         img(src="/img/icons/success.svg")
         p Validé !
