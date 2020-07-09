@@ -99,7 +99,6 @@ export default {
       a {
         text-decoration: underline;
         font-weight: 800;
-        color: var(--v-text-base);
       }
     }
   }
