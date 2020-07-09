@@ -1,14 +1,14 @@
 <template lang="pug">
   v-app
     v-row(no-gutters)
-      v-col(:cols="$vuetify.breakpoint.xs ? 0 : 3" v-if="$vuetify.breakpoint.smAndUp")
+      v-col(:cols="$vuetify.breakpoint.xs ? 0 : 3" v-if="$vuetify.breakpoint.mdAndUp")
         Navigation(v-if="!isFirstTime")
         //- TODO Set this style on a class in proper way
-      v-col(style="padding-top: 3rem" :cols="$vuetify.breakpoint.xs ? 12 : 9")
+      v-col(style="padding-top: 3rem" :cols="$vuetify.breakpoint.smAndDown ? 12 : 9")
         router-view(v-if="!isFirstTime" :class="$style.app")
     theme-toggler
     Introduction(v-if="isFirstTime" @closeIntroduction="isFirstTime = false")
-    MobileNavigation(v-if="!isFirstTime && $vuetify.breakpoint.xs")
+    MobileNavigation(v-if="!isFirstTime && $vuetify.breakpoint.smAndDown")
 </template>
 
 <script>
@@ -29,6 +29,9 @@ export default {
     return {
       isFirstTime: true
     }
+  },
+  mounted() {
+    console.log(this.$vuetify.breakpoint)
   },
   created() {
     this.isFirstTime = JSON.parse(localStorage.getItem("firstTime")) === null
