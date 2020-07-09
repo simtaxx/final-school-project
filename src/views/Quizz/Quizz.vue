@@ -41,11 +41,13 @@
       :isQuizzWon="score === steps"
       @restartQuizz="restartQuizz()"
     )
+    leave-quizz-dialog(:showDialog="showDialog" @Leave:route="handleDialogDecision")
 </template>
 
 <script>
 import Assertation from "./components/Assertation.vue"
 import FinishedQuizzPopup from "./components/FinishedQuizzPopup.vue"
+import LeaveQuizzDialog from "./components/LeaveQuizzDialog.vue"
 
 import articlesNavigation from "@/utils/articlesNavigation.json"
 
@@ -53,7 +55,8 @@ export default {
   name: "Quizz",
   components: {
     Assertation,
-    FinishedQuizzPopup
+    FinishedQuizzPopup,
+    LeaveQuizzDialog
   },
   data() {
     return {
@@ -63,7 +66,10 @@ export default {
       quizz: {},
       isResponseValidated: false,
       score: 0,
-      isQuizzFinished: false
+      isQuizzFinished: false,
+      canLeaveRoute: null,
+      showDialog: false,
+      to: null
     }
   },
   computed: {
@@ -122,10 +128,29 @@ export default {
       this.activeAssertation = 0
       this.score = 0
       this.isResponseValidated = false
+    },
+    handleDialogDecision(decision) {
+      console.warn(decision)
+      this.canLeaveRoute = decision
+      if (decision) {
+        this.$router.push(this.to)
+      } else {
+        this.to = null
+        this.showDialog = false
+      }
     }
   },
   created() {
     this.getArticleQuizz()
+  },
+  beforeRouteLeave(to, from, next) {
+    if (this.canLeaveRoute) {
+      next()
+    } else {
+      this.to = to
+      this.showDialog = true
+      next(false)
+    }
   }
 }
 </script>
