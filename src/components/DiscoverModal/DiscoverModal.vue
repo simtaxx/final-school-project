@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-dialog(:content-class="$style.discoverModal" :value="dialog" width="360")
+  v-dialog(:content-class="$style.discoverModal" v-model="isModalOpen" width="360")
     v-card(:class="$style.card")
       Icon(:class="$style.icon" :imageName="content.icon")
       h3 {{'Chapitre ' + content.id + ' - ' + content.name}}
@@ -73,6 +73,14 @@ export default {
   computed: {
     localUser() {
       return JSON.parse(localStorage.getItem("userLog"))
+    },
+    isModalOpen: {
+      get() {
+        return this.dialog
+      },
+      set() {
+        this.$emit("closeModal")
+      }
     }
   }
 }

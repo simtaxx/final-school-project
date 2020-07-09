@@ -17,7 +17,7 @@
       v-if="className === 'single' && !isLastArticle" 
       :class="[$style['next-road'], $style['single-road'], {[$style.activeRoad] : isReaded(article)}]"
     )
-    Modal(:dialog="isOpen" :content="modalContent" @isItOpen="this.isOpen = false")
+    Modal(:dialog="isOpen" :content="modalContent" @closeModal="isOpen = false")
 </template>
 
 <script>
@@ -67,9 +67,9 @@ export default {
     }
   },
   methods: {
-    async openModal() {
+    openModal() {
       this.modalContent = this.article
-      this.isOpen ? (this.isOpen = false) : (this.isOpen = true)
+      this.isOpen = true
     }
   }
 }
