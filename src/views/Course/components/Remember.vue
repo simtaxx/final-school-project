@@ -16,17 +16,24 @@
 </template>
 
 <script>
+import { articlesMixin } from "@/mixins/articles"
+
 export default {
   name: "Remember",
+  mixins: [articlesMixin],
   props: {
     listToRemember: {
       type: Array,
       default: () => []
+    },
+    courseId: {
+      type: String,
+      required: false
     }
   },
   computed: {
     isQuizzDone() {
-      return true
+      return this.readedArticles.includes(this.courseId)
     }
   }
 }

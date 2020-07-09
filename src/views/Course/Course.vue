@@ -4,7 +4,7 @@
     img(:class="$style['main-image']" :src="course.media_link")
     section(:class="$style.contentContainer")
       v-runtime-template(:template='course.content' :class="$style.content")
-      remember(:listToRemember="course.to_remember")
+      remember(:listToRemember="course.to_remember" :courseId="currentArticleIdFromApiId")
       v-btn(
         :class="$style.quizzBtn" color="primary" 
         depressed
