@@ -99,6 +99,7 @@ export default {
         this.isResponseValidated = false
         this.activeAssertation = 0
       } else {
+        this.canLeaveRoute = true
         this.isQuizzFinished = true
         if (this.score === this.steps) {
           //- TODO change the 15 for the article id

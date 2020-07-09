@@ -1,28 +1,31 @@
 <template lang="pug">
   div(:class="$style.course")
-    h1 {{ course.title }}
-    img(:class="$style['main-image']" :src="course.media_link")
-    section(:class="$style.contentContainer")
-      v-runtime-template(:template='course.content' :class="$style.content")
-      remember(:listToRemember="course.to_remember" :courseId="currentArticleIdFromApiId")
-      v-btn(
-        :class="$style.quizzBtn" color="primary" 
-        depressed
-        @click="handleQuizzBtn"
-      ) Faire le quizz
-      v-dialog(
-        :value="shouldShowModal"
-        max-width="290"
-      )
-        v-card(:class="$style.card")
-          span
-            | Faites d'abord le quizz des cours précedents !
-          v-btn(@click="shouldShowModal = false" color="primary") D'accord !
+    loader(v-if="isLoading")
+    template(v-else)
+      h1 {{ course.title }}
+      img(:class="$style['main-image']" :src="course.media_link")
+      section(:class="$style.contentContainer")
+        v-runtime-template(:template='course.content' :class="$style.content")
+        remember(:listToRemember="course.to_remember" :courseId="currentArticleIdFromApiId")
+        v-btn(
+          :class="$style.quizzBtn" color="primary" 
+          depressed
+          @click="handleQuizzBtn"
+        ) Faire le quizz
+        v-dialog(
+          :value="shouldShowModal"
+          max-width="290"
+        )
+          v-card(:class="$style.card")
+            span
+              | Faites d'abord le quizz des cours précedents !
+            v-btn(@click="shouldShowModal = false" color="primary") D'accord !
 </template>
 
 <script>
 import Tweet from "./components/Tweet.vue"
 import Remember from "./components/Remember.vue"
+import Loader from "@/components/Loader.vue"
 
 import VRuntimeTemplate from "v-runtime-template"
 
@@ -37,7 +40,8 @@ export default {
   components: {
     Tweet,
     Remember,
-    VRuntimeTemplate
+    VRuntimeTemplate,
+    Loader
   },
   mixins: [articlesMixin],
   data() {
@@ -45,7 +49,8 @@ export default {
       course: {
         toRemember: []
       },
-      shouldShowModal: false
+      shouldShowModal: false,
+      isLoading: false
     }
   },
   computed: {
@@ -76,8 +81,10 @@ export default {
   },
   methods: {
     async getArticle() {
+      this.isLoading = true
       const article = await this.$http.get(`articles/${this.currentArticleApiId}`)
       this.course = article.data
+      this.isLoading = false
     },
     handleQuizzBtn() {
       if (this.arePreviousArticlesReaded) {
@@ -122,7 +129,7 @@ export default {
   .content {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    margin-top: 2rem;
 
     & > * {
       margin: 1rem 0;
@@ -131,7 +138,7 @@ export default {
 
   .quizzBtn {
     display: block;
-    margin: 0 auto 3rem auto;
+    margin: 2rem auto;
   }
 }
 
