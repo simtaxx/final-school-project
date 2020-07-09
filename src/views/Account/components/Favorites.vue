@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="$style.favorites")
-    Pellet(:imageName="content.icon" activeBorder)
+    Pellet(:imageName="content.icon" activeBorder :class="$style.sticker")
     div(:class="$style.container")
       div(:class="$style.title")
         h3 {{content.name}}
@@ -11,6 +11,7 @@
 
 <script>
 import Pellet from "@/components/Pellet.vue"
+
 export default {
   name: "Favorites",
   components: {
@@ -30,8 +31,8 @@ export default {
   font-family: "Gotham", sans-serif;
   margin-bottom: 24px;
 
-  img {
-    margin-right: 12px;
+  .sticker {
+    margin-right: 1rem;
   }
 
   p {

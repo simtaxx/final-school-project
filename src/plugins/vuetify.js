@@ -18,7 +18,8 @@ export default new Vuetify({
         text: "#FAF9F9",
         tweet: "#15202B",
         modal: "#545B67",
-        success: "#64C926"
+        success: "#64C926",
+        gray: "#545B67"
       },
       light: {
         background: "#FAF9F9",
@@ -28,7 +29,8 @@ export default new Vuetify({
         text: "#293241",
         tweet: "#FFFFFF",
         modal: "#F4F4F8",
-        success: "#64C926"
+        success: "#64C926",
+        gray: "#E6E6EA"
       }
     },
     options: {

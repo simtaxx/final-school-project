@@ -106,6 +106,9 @@ export default {
 </script>
 
 <style lang="scss" module>
+@import "@/scss/core/colors.scss";
+@import "@/scss/styles.scss";
+
 .chapterRoad {
   display: flex;
   flex-direction: column;
@@ -113,14 +116,17 @@ export default {
   position: relative;
 }
 
-//- TODO deal with the responsive of this...
-
 .outer {
   width: 400px;
   height: 400px;
   position: relative;
   box-sizing: border-box;
   margin: 3rem 0;
+
+  @include small-screen {
+    max-width: 60vw;
+    max-height: 60vw;
+  }
 
   &:before {
     //- Top left corner
@@ -173,7 +179,7 @@ export default {
 .road {
   &::after,
   &::before {
-    border-color: grey;
+    border-color: var(--v-gray-base);
   }
 }
 
@@ -181,7 +187,7 @@ export default {
   width: 12px;
   height: 100px;
   // TODO get the vutify sass variables colors
-  background-color: gray;
+  background-color: var(--v-gray-base);
   position: absolute;
 }
 
@@ -196,25 +202,25 @@ export default {
 }
 
 .activeSingleRoad {
-  background-color: blue;
+  background-color: $primary;
 }
 
 .activeRoad {
   &::after,
   &::before {
-    border-color: blue;
+    border-color: $primary;
   }
 }
 
 .leftCubeBranchActive {
   &::before {
-    border-color: blue;
+    border-color: $primary;
   }
 }
 
 .rightCubeBranchActive {
   &::after {
-    border-color: blue;
+    border-color: $primary;
   }
 }
 </style>
