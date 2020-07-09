@@ -4,7 +4,7 @@
     img(:class="$style['main-image']" :src="course.media_link")
     section(:class="$style.contentContainer")
       v-runtime-template(:template='course.content' :class="$style.content")
-      remember(:listToRemember="course.to_remember")
+      remember(:listToRemember="course.to_remember" :courseId="currentArticleIdFromApiId")
       v-btn(
         :class="$style.quizzBtn" color="primary" 
         depressed
@@ -14,10 +14,10 @@
         :value="shouldShowModal"
         max-width="290"
       )
-        v-card
-          v-card-text
-            | Faites d'abord le quizz des cours précedent !
-          v-btn(@click="shouldShowModal = false") OK
+        v-card(:class="$style.card")
+          span
+            | Faites d'abord le quizz des cours précedents !
+          v-btn(@click="shouldShowModal = false" color="primary") D'accord !
 </template>
 
 <script>
@@ -26,9 +26,11 @@ import Remember from "./components/Remember.vue"
 
 import VRuntimeTemplate from "v-runtime-template"
 
-// import articlesNavigation from "@/utils/articlesNavigation.json"
+import { articlesMixin } from "@/mixins/articles"
 
-// import _ from "lodash"
+import articlesNavigation from "@/utils/articlesNavigation.json"
+
+import _ from "lodash"
 
 export default {
   name: "Course",
@@ -37,6 +39,7 @@ export default {
     Remember,
     VRuntimeTemplate
   },
+  mixins: [articlesMixin],
   data() {
     return {
       course: {
@@ -46,23 +49,39 @@ export default {
     }
   },
   computed: {
-    currentArticleId() {
+    currentArticleApiId() {
       return this.$route.params.id
     },
-    //-
+    articlesNavigation() {
+      return articlesNavigation
+    },
+    currentArticleIdFromApiId() {
+      return this.articlesNavigation
+        .reduce((acc, category) => {
+          acc = acc.concat(category.articles)
+          return acc
+        }, [])
+        .find(article => article.apiId === this.currentArticleApiId).id
+    },
+    range() {
+      return _.range(1, this.currentArticleIdFromApiId)
+        .splice(-1, 1)
+        .map(number => `${number}`)
+    },
     arePreviousArticlesReaded() {
-      // return _.range(1, this.currentArticleId)
-      return true
+      return this.currentArticleIdFromApiId === "1"
+        ? true
+        : this.range.every(id => this.readedArticles.includes(id))
     }
   },
   methods: {
     async getArticle() {
-      const article = await this.$http.get(`articles/1`)
+      const article = await this.$http.get(`articles/${this.currentArticleApiId}`)
       this.course = article.data
     },
     handleQuizzBtn() {
       if (this.arePreviousArticlesReaded) {
-        this.$router.push({ name: "Quizz" })
+        this.$router.push({ name: "Quizz", params: { id: this.course.quizz.id } })
       } else {
         this.shouldShowModal = true
       }
@@ -113,6 +132,17 @@ export default {
   .quizzBtn {
     display: block;
     margin: 0 auto 3rem auto;
+  }
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  > * {
+    margin: 1rem;
+    text-align: center;
   }
 }
 </style>

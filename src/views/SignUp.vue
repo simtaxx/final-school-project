@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="$style.signUp")
-    h2 Connecte toi à #[span Kiwitas]
+    h2 Inscris toi à #[span Kiwitas]
       p ou #[router-link(to="/sign-in") connecte-toi]
     v-form(:class="$style.form" ref="form" v-model="valid" @submit.prevent="createUser")
       p(v-if="failLogIn") Tes identifiants ne correspondent pas.©©
@@ -94,7 +94,6 @@ export default {
     p {
       position: absolute;
       left: 0;
-      color: $greyDarken;
       font-size: 18px;
 
       a {

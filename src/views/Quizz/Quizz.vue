@@ -41,17 +41,22 @@
       :isQuizzWon="score === steps"
       @restartQuizz="restartQuizz()"
     )
+    leave-quizz-dialog(:showDialog="showDialog" @Leave:route="handleDialogDecision")
 </template>
 
 <script>
 import Assertation from "./components/Assertation.vue"
 import FinishedQuizzPopup from "./components/FinishedQuizzPopup.vue"
+import LeaveQuizzDialog from "./components/LeaveQuizzDialog.vue"
+
+import articlesNavigation from "@/utils/articlesNavigation.json"
 
 export default {
   name: "Quizz",
   components: {
     Assertation,
-    FinishedQuizzPopup
+    FinishedQuizzPopup,
+    LeaveQuizzDialog
   },
   data() {
     return {
@@ -61,7 +66,10 @@ export default {
       quizz: {},
       isResponseValidated: false,
       score: 0,
-      isQuizzFinished: false
+      isQuizzFinished: false,
+      canLeaveRoute: null,
+      showDialog: false,
+      to: null
     }
   },
   computed: {
@@ -71,6 +79,17 @@ export default {
     readedArticles() {
       const storedReadedArticles = localStorage["readedArticles"]
       return storedReadedArticles ? JSON.parse(storedReadedArticles) : []
+    },
+    articlesNavigation() {
+      return articlesNavigation
+    },
+    currentQuizzArticleId() {
+      return this.articlesNavigation
+        .reduce((acc, category) => {
+          acc = acc.concat(category.articles)
+          return acc
+        }, [])
+        .find(article => article.quizzId === `${this.$route.params.id}`).id
     }
   },
   methods: {
@@ -83,14 +102,14 @@ export default {
         this.isQuizzFinished = true
         if (this.score === this.steps) {
           //- TODO change the 15 for the article id
-          const readedArticles = [...this.readedArticles, "15"]
+          const readedArticles = [...this.readedArticles, this.currentQuizzArticleId]
           localStorage.setItem("readedArticles", JSON.stringify(readedArticles))
         }
       }
     },
     async getArticleQuizz() {
       try {
-        const quizz = await this.$http.get("/quizz/1")
+        const quizz = await this.$http.get(`/quizz/${this.$route.params.id}`)
         this.quizz = quizz.data
         this.steps = quizz.data.questions.length
       } catch (error) {
@@ -109,10 +128,29 @@ export default {
       this.activeAssertation = 0
       this.score = 0
       this.isResponseValidated = false
+    },
+    handleDialogDecision(decision) {
+      console.warn(decision)
+      this.canLeaveRoute = decision
+      if (decision) {
+        this.$router.push(this.to)
+      } else {
+        this.to = null
+        this.showDialog = false
+      }
     }
   },
   created() {
     this.getArticleQuizz()
+  },
+  beforeRouteLeave(to, from, next) {
+    if (this.canLeaveRoute) {
+      next()
+    } else {
+      this.to = to
+      this.showDialog = true
+      next(false)
+    }
   }
 }
 </script>
