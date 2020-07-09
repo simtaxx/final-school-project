@@ -132,7 +132,7 @@ h3 {
     font-family: "Gotham", sans-serif;
 
     &:hover {
-      background-color: $grey;
+      background-color: var(--v-gray-base);
     }
 
     p {

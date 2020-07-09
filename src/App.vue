@@ -30,9 +30,6 @@ export default {
       isFirstTime: true
     }
   },
-  mounted() {
-    console.log(this.$vuetify.breakpoint)
-  },
   created() {
     this.isFirstTime = JSON.parse(localStorage.getItem("firstTime")) === null
     let localUser = JSON.parse(localStorage.getItem("userLog"))
