@@ -3,8 +3,7 @@
     div(:class="$style.accountContainer")
       User
       Tabs(@changeCategory="changeCategory")
-      Favorites(v-if="favorites")
-      Favorites(v-if="favorites")
+      Favorites(v-if="isFavorites" v-for="favorite in favorites" :key="favorite.id" :content="favorite")
       Certification(v-if="certification")
 
 </template>
@@ -24,8 +23,15 @@ export default {
   },
   data() {
     return {
-      favorites: true,
+      isFavorites: true,
+      favorites: null,
       certification: false
+    }
+  },
+  mounted() {
+    let userLog = JSON.parse(localStorage.getItem("userLog"))
+    if (userLog.favorite_articles.length) {
+      this.favorites = userLog.favorite_articles
     }
   },
   methods: {
