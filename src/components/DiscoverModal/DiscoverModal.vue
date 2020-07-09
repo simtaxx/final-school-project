@@ -11,7 +11,7 @@
         p Validé !
       div(:class="$style.favorite")
         img(src="/img/icons/fav.svg" v-if="favorite" @click="getFavorite(content.id)")
-        img(src="/img/icons/notFav.svg" v-else" @click="getFavorite(content.id)")
+        img(src="/img/icons/notFav.svg" v-else @click="getFavorite(content.id)")
 </template>
 
 <script>
