@@ -24,7 +24,7 @@ const routes = [
     component: () => import("@/views/Course/Course.vue")
   },
   {
-    path: "/quizz",
+    path: "/quizz/:id",
     name: "Quizz",
     component: () => import("@/views/Quizz/Quizz.vue")
   },
