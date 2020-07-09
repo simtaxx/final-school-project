@@ -11,7 +11,7 @@
         p Validé !
       div(:class="$style.favorite")
         img(src="/img/icons/fav.svg" v-if="favorite" @click="getFavorite(content.id)")
-        img(src="/img/icons/notFav.svg" v-if="!favorite" @click="getFavorite(content.id)")
+        img(src="/img/icons/notFav.svg" v-else" @click="getFavorite(content.id)")
 </template>
 
 <script>
@@ -46,9 +46,6 @@ export default {
     }
   },
   methods: {
-    getLocalUser() {
-      return JSON.parse(localStorage.getItem("userLog"))
-    },
     setLocalUser(newLocaluser) {
       localStorage.setItem("userLog", JSON.stringify(newLocaluser))
     },
@@ -75,6 +72,11 @@ export default {
         this.setLocalUser(localUser)
         this.setBackUser(localUser)
       }
+    }
+  },
+  computed: {
+    getLocalUser() {
+      return JSON.parse(localStorage.getItem("userLog"))
     }
   }
 }
