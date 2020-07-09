@@ -10,7 +10,7 @@
           div(v-if="hasData" :class="$style.profileLoged")
             img(src="/img/icons/profil-picture.png")
             div(:class="$style.profileName")
-              p {{$store.state.accountData.name}} {{$store.state.accountData.lastName}}
+              p {{$store.state.accountData.name}} {{$store.state.accountData.last_name}}
               p {{$store.state.accountData.username}}
           router-link(to="/profil" v-if="hasData" :class="$style.showProfile") Voir profil ►
           div(v-if="!hasData")
