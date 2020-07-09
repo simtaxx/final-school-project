@@ -1,5 +1,5 @@
 <template lang="pug">
-  div
+  div(:class="$style.template")
     h2(v-html="content.title")
     img(:src="content.gif" alt="illustation")
     h3(v-html="content.firstSubtitle")
@@ -20,12 +20,14 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 
-h2 {
-  text-align: center;
-  font-family: "Gotham", sans-serif;
-  font-weight: bold;
-  font-size: 34px;
-  margin-bottom: 40px;
+.template {
+  h2 {
+    text-align: center;
+    font-family: "Gotham", sans-serif;
+    font-weight: bold;
+    font-size: 34px;
+    margin-bottom: 40px;
+  }
 
   span {
     color: $primary;
@@ -35,7 +37,7 @@ h2 {
     font-family: "Gotham", sans-serif;
     font-size: 20px;
     margin-bottom: 8px;
-    color: $black;
+    color: var(--v-text-base);
   }
 
   p {
