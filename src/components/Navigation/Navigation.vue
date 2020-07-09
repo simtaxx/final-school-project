@@ -12,7 +12,7 @@
             div(:class="$style.profileName")
               p {{$store.state.accountData.name}} {{$store.state.accountData.lastName}}
               p {{$store.state.accountData.username}}
-          router-link(to="/profil" v-if="hasData" :class="$style.showProfile") Voir profil >
+          router-link(to="/profil" v-if="hasData" :class="$style.showProfile") Voir profil ►
           div(v-if="!hasData")
             v-btn(medium color="primary" to="/sign-in" :class="$style.signIn") CONNEXION
       v-list-item
