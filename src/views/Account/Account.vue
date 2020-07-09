@@ -49,9 +49,13 @@ export default {
 </script>
 
 <style lang="scss" module>
+@import "@/scss/styles.scss";
 .account {
   .accountContainer {
     margin-left: 70px;
+    @include small-screen {
+      margin-left: 0;
+    }
   }
 }
 </style>
