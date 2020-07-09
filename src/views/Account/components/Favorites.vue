@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="$style.favorites")
-    img(src="/img/icons/exempleFav.svg")
+    Pellet(:imageName="content.icon" activeBorder)
     div(:class="$style.container")
       div(:class="$style.title")
         h3 {{content.name}}
