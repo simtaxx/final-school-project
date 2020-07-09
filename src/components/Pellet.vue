@@ -27,6 +27,7 @@ export default {
 
 <style lang="scss">
 @import "@/scss/core/colors.scss";
+@import "@/scss/styles.scss";
 
 .pellet {
   background-color: var(--v-background-base);
@@ -38,15 +39,23 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
+  @include small-screen {
+    width: 80px;
+    height: 60px;
+  }
 
   .pellet__inner {
     background-color: var(--v-gray-base);
-    width: 80%;
-    height: 80%;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
+    @include medium-screen {
+      width: 40px;
+      height: 40px;
+    }
 
     img {
       width: 70%;

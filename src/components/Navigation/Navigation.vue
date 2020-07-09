@@ -7,13 +7,13 @@
       v-list-item
         v-list-item-content(:class="$style.profile")
           h3 PROFIL
-          div(v-if="hasData" :class="$style.profileLoged")
+          div(v-if="isLoged" :class="$style.profileLoged")
             img(src="/img/icons/profil-picture.png")
             div(:class="$style.profileName")
               p {{$store.state.accountData.name}} {{$store.state.accountData.lastName}}
               p {{$store.state.accountData.username}}
-          router-link(to="/profil" v-if="hasData" :class="$style.showProfile") Voir profil >
-          div(v-if="!hasData")
+          router-link(to="/profil" v-if="isLoged" :class="$style.showProfile") Voir profil >
+          div(v-if="!isLoged")
             v-btn(medium color="primary" to="/sign-in" :class="$style.signIn") CONNEXION
       v-list-item
         v-list-item-content(:class="$style.discover")
@@ -22,9 +22,9 @@
       v-list-item
         v-list-item-content(:class="$style.challenge")
           h3 TES CHALLENGES
-          div(v-if="hasData")
+          div(v-if="isLoged")
             p Les challenges arrivent prochainement!
-          p(v-if="!hasData") #[router-link(to="/sign-in" :class="$style.signUp" ) Connecte toi] ou #[router-link(to="/sign-up" :class="$style.signUp") créer un compte] pour pouvoir jouer !
+          p(v-if="!isLoged") #[router-link(to="/sign-in" :class="$style.signUp" ) Connecte toi] ou #[router-link(to="/sign-up" :class="$style.signUp") créer un compte] pour pouvoir jouer !
 </template>
 
 <script>
@@ -41,8 +41,8 @@ export default {
     }
   },
   computed: {
-    hasData() {
-      return this.$store.getters.hasData
+    isLoged() {
+      return this.$store.getters.isLoged
     }
   }
 }
@@ -132,7 +132,7 @@ h3 {
     font-family: "Gotham", sans-serif;
 
     &:hover {
-      background-color: $grey;
+      background-color: var(--v-gray-base);
     }
 
     p {
