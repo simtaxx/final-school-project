@@ -1,5 +1,5 @@
 <template lang="pug">
-  v-navigation-drawer(fixed width="25%" floating permanent)
+  v-navigation-drawer(:class="$style.nav" fixed width="25%" floating permanent)
     v-list( dense nav class="py-0" :class="$style.navContainer")
       v-list-item(:class="$style.logo")
         router-link(to="/")
@@ -50,6 +50,9 @@ export default {
 
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
+.nav {
+  background-color: var(--v-nav-base) !important;
+}
 .navContainer {
   margin-left: 40px !important;
   padding: 0 !important;
@@ -85,7 +88,7 @@ h3 {
 .profileLoged {
   display: flex;
   align-items: center;
-  margin-bottom: 8px !important;
+  margin-bottom: 20px !important;
   font-family: "OpenSans", sans-serif;
   font-weight: bold;
   font-size: 12px;
