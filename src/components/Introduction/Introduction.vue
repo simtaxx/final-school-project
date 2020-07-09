@@ -42,42 +42,6 @@ export default {
 .introduction {
   padding: 60px 28% 30px;
 
-  h2 {
-    text-align: center;
-    font-family: "Gotham", sans-serif;
-    font-weight: bold;
-    font-size: 34px;
-    margin-bottom: 40px;
-
-    span {
-      color: $primary;
-    }
-  }
-
-  h3 {
-    font-family: "Gotham", sans-serif;
-    font-size: 20px;
-    margin-bottom: 8px;
-    color: $black;
-  }
-
-  p {
-    font-family: "OpenSans", sans-serif;
-    font-size: 14px;
-    margin-bottom: 24px;
-
-    span {
-      color: $primary;
-    }
-  }
-
-  img {
-    display: block;
-    margin: 0 auto;
-    width: 360px;
-    margin-bottom: 40px;
-  }
-
   .button {
     text-align: center;
   }
