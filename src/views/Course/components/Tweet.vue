@@ -65,11 +65,11 @@ export default {
 @import "~vuetify/src/styles/styles.sass";
 .tweet {
   width: 450px;
-  // background-color: map-get($material-dark, "tweet");
   font-size: 12px;
   padding: 0.5rem;
   max-width: 80%;
   border-radius: 4px;
+  align-self: center;
 
   &:after {
     content: "Cette représentation de tweet ne traduit pas la réalité";

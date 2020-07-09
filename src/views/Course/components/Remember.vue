@@ -46,6 +46,7 @@ export default {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  margin: 2rem 0;
 
   .bulb {
     margin: 0.2rem 0.5rem;
