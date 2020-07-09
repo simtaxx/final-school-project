@@ -90,7 +90,7 @@ export default {
     },
     async getArticleQuizz() {
       try {
-        const quizz = await this.$http.get("/quizz/61")
+        const quizz = await this.$http.get("/quizz/1")
         this.quizz = quizz.data
         this.steps = quizz.data.questions.length
       } catch (error) {

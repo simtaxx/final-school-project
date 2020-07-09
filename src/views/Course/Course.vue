@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     async getArticle() {
-      const article = await this.$http.get(`articles/42`)
+      const article = await this.$http.get(`articles/1`)
       this.course = article.data
     },
     handleQuizzBtn() {

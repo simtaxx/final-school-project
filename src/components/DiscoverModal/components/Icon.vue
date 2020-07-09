@@ -1,13 +1,18 @@
 <template lang="pug">
   div(:class="$style.icon")
-    v-icon(:class="$style.badge") {{imagePath}}
+    img(:src="imagePath")
 </template>
 
 <script>
 export default {
   name: "Icon",
   props: {
-    imagePath: { type: String, required: true }
+    imageName: { type: String, required: true }
+  },
+  computed: {
+    imagePath() {
+      return require(`@/assets/images/${this.imageName}.png`)
+    }
   }
 }
 </script>
@@ -15,18 +20,16 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .icon {
-  background-color: #f4f4f8;
+  background-color: var(--v-gray-base);
   width: 50px;
   height: 50px;
-  border-radius: 40px !important;
+  border-radius: 50% !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  .badge {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 24px;
-    height: 24px;
-    transform: translate(-50%, -50%);
+  img {
+    width: 70%;
   }
 }
 </style>

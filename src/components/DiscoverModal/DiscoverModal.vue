@@ -1,8 +1,8 @@
 <template lang="pug">
-  v-dialog(:content-class="$style.discoverModal" v-model="dialog" width="360")
+  v-dialog(:content-class="$style.discoverModal" :value="dialog" width="360")
     v-card(:class="$style.card")
-      Icon(:class="$style.icon" :imagePath="content.icon")
-      h3 Chapitre 1 - L'institution
+      Icon(:class="$style.icon" :imageName="content.icon")
+      h3 {{'Chapitre ' + content.id + ' - ' + content.name}}
       p(:class="$style.subtitle") {{content.name}}
       p(:class="$style.content") #[span Résumé :] {{content.abstract}}
       v-btn(:class="$style.btn" color="primary" :to="`/course/${content.id}`") Lire
@@ -24,20 +24,16 @@ export default {
   data() {
     return {
       validate: false,
-      favorite: false,
-      localUser: []
+      favorite: false
     }
   },
   props: {
     content: { type: Object, required: true },
     dialog: { type: Boolean, default: false }
   },
-  created() {
-    this.localUser = this.getLocalUser()
-  },
   updated() {
-    if (this.getLocalUser() !== null) {
-      let localUser = this.getLocalUser()
+    if (this.localUser) {
+      let localUser = this.localUser
       let favList = localUser.favorite_articles
       const whiteList = favList.map(fav => fav.id)
       if (whiteList.includes(this.content.id)) {
@@ -59,7 +55,7 @@ export default {
     },
     getFavorite(id) {
       this.favorite ? (this.favorite = false) : (this.favorite = true)
-      let localUser = this.getLocalUser()
+      let localUser = this.localUser
       let favList = localUser.favorite_articles
       const whiteList = favList.map(fav => fav.id)
       if (this.favorite && !whiteList.includes(id)) {
@@ -75,7 +71,7 @@ export default {
     }
   },
   computed: {
-    getLocalUser() {
+    localUser() {
       return JSON.parse(localStorage.getItem("userLog"))
     }
   }
@@ -89,7 +85,7 @@ export default {
 }
 .card {
   padding: 16px !important;
-  background-color: var(--v-modal-base) !important;
+  background-color: var(--v-gray-base) !important;
   text-align: center;
   font-family: "OpenSans", sans-serif;
 
