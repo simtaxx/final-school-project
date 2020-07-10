@@ -3,10 +3,10 @@
     loader(v-if="isLoading")
     template(v-else)
       h1 {{ course.title }}
-      img(v-if="isMediaImage" :class="$style['main-image']" :src="course.media_link")
+      img(v-if="course.media_link && isMediaImage" :class="$style['main-image']" :src="course.media_link")
       section(:class="$style.contentContainer")
         v-runtime-template(:template='course.content' :class="$style.content")
-        iframe(:class="$style.embed" :src="course.media_link" allowfullscreen="true" width="425" height="344" frameborder="0")
+        iframe(v-if="course.media_link && !isMediaImage" :class="$style.embed" :src="course.media_link" allowfullscreen="true" width="425" height="344" frameborder="0")
         remember(:listToRemember="course.to_remember" :courseId="currentArticleIdFromApiId")
         v-btn(
           :class="$style.quizzBtn" color="primary" 
