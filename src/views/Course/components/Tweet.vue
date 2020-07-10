@@ -5,7 +5,7 @@
   )
     tweetos
     div(:class="$style.message")
-      p {{ tweet.title }}
+      p(v-html="tweet.title")
     div(:class="$style.options")
       div(:class="$style.text") 
         span 6:24 PM - 23 juin 2020
@@ -25,7 +25,7 @@
     tweetos
     div(:class="$style.response")
       div
-        p {{ tweet.content }}
+        p(v-html="tweet.content")
         div(:class="$style.commentIcons")
           img(src='@/assets/icons/tweet_comment.svg')
           img(src='@/assets/icons/tweet_retweet.svg')
@@ -63,13 +63,19 @@ export default {
 
 <style lang="scss" module>
 @import "~vuetify/src/styles/styles.sass";
+@import "@/scss/styles.scss";
+
 .tweet {
   width: 450px;
   font-size: 12px;
   padding: 0.5rem;
-  max-width: 80%;
+
   border-radius: 4px;
   align-self: center;
+
+  @include small-screen {
+    max-width: 100%;
+  }
 
   &:after {
     content: "Cette représentation de tweet ne traduit pas la réalité";

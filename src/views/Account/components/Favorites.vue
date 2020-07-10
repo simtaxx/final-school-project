@@ -33,6 +33,7 @@ export default {
 
   .sticker {
     margin-right: 1rem;
+    min-width: 80px;
   }
 
   p {

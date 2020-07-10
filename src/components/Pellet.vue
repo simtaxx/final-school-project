@@ -38,23 +38,23 @@ export default {
   display: flex;
   justify-content: center;
   align-items: center;
-  @include small-screen {
-    width: 80px;
-    height: 60px;
-  }
+  // @include small-screen {
+  //   width: 80px;
+  //   height: 60px;
+  // }
 
   .pellet__inner {
     background-color: var(--v-gray-base);
-    width: 60px;
-    height: 60px;
+    width: 80%;
+    height: 80%;
     border-radius: 50%;
     display: flex;
     justify-content: center;
     align-items: center;
-    @include medium-screen {
-      width: 40px;
-      height: 40px;
-    }
+    // @include medium-screen {
+    //   width: 40px;
+    //   height: 40px;
+    // }
 
     img {
       width: 70%;

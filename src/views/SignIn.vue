@@ -1,17 +1,24 @@
 <template lang="pug">
   div(:class="$style.signIn")
-    h2 Connecte toi à #[span Kiwitas]
-      p ou #[router-link(to="/sign-up") inscris-toi]
-    v-form(:class="$style.form" ref="form" v-model="valid" @submit.prevent="getUser")
-      p(v-if="failLogIn") Tes identifiants ne correspondent pas.
-      v-text-field(v-model="email" :rules="emailRules" label="E-mail exemple@gmail.com" outlined required)
-      v-text-field(v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="passwordRules" :type="show1 ? 'text' : 'password'" @click:append="show1 = !show1" label="Mot de passe" outlined required)
-      v-btn(:disabled="!valid" color="primary"  @click="getUser") Je me connecte
+    loader(v-if="isLoading" :class="$style.loader")
+    template(v-else)
+      h2 Connecte toi à #[span Kiwitas]
+        p ou #[router-link(to="/sign-up") inscris-toi]
+      v-form(:class="$style.form" ref="form" v-model="valid" @submit.prevent="getUser")
+        p(v-if="failLogIn") Tes identifiants ne correspondent pas.
+        v-text-field(v-model="email" :rules="emailRules" label="E-mail exemple@gmail.com" outlined required)
+        v-text-field(v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="passwordRules" :type="show1 ? 'text' : 'password'" @click:append="show1 = !show1" label="Mot de passe" outlined required)
+        v-btn(:disabled="!valid" color="primary"  @click="getUser") Je me connecte
 </template>
 
 <script>
+import Loader from "@/components/Loader.vue"
+
 export default {
   name: "SignIn",
+  components: {
+    Loader
+  },
   data: () => ({
     valid: true,
     email: "",
@@ -25,13 +32,15 @@ export default {
       v => !!v || "Un mot de passe est requis",
       v => v.length >= 8 || "Votre mot de passe doit contenir au moins 8 caractères"
     ],
-    failLogIn: false
+    failLogIn: false,
+    isLoading: false
   }),
   methods: {
     validate() {
       this.$refs.form.validate()
     },
     getUser() {
+      this.isLoading = true
       this.validate()
       const { email, password } = this
       this.$store.dispatch("getAccountData", { email, password })
@@ -55,6 +64,10 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .signIn {
+  .loader {
+    left: 50%;
+  }
+
   h2 {
     position: relative;
     width: max-content;

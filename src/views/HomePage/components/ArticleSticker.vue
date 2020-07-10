@@ -122,6 +122,7 @@ export default {
 }
 
 .stickerText {
+  padding: 0.2rem 0;
   background-color: var(--v-background-base);
 }
 

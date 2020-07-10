@@ -3,9 +3,10 @@
     loader(v-if="isLoading")
     template(v-else)
       h1 {{ course.title }}
-      img(:class="$style['main-image']" :src="course.media_link")
+      img(v-if="isMediaImage" :class="$style['main-image']" :src="course.media_link")
       section(:class="$style.contentContainer")
         v-runtime-template(:template='course.content' :class="$style.content")
+        iframe(:class="$style.embed" :src="course.media_link" allowfullscreen="true" width="425" height="344" frameborder="0")
         remember(:listToRemember="course.to_remember" :courseId="currentArticleIdFromApiId")
         v-btn(
           :class="$style.quizzBtn" color="primary" 
@@ -77,6 +78,10 @@ export default {
       return this.currentArticleIdFromApiId === "1"
         ? true
         : this.range.every(id => this.readedArticles.includes(id))
+    },
+    isMediaImage() {
+      const regex = /\.(gif|jpe?g|tiff?|png|webp|bmp)$/i
+      return regex.test(this.course.media_link)
     }
   },
   methods: {
@@ -101,6 +106,8 @@ export default {
 </script>
 
 <style lang="scss" module>
+@import "@/scss/styles.scss";
+
 .course {
   display: flex;
   flex-direction: column;
@@ -123,13 +130,22 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 60%;
+    width: 80%;
+
+    @include small-screen {
+      width: 90%;
+    }
+
+    .embed {
+      max-width: 100%;
+    }
   }
 
   .content {
     display: flex;
     flex-direction: column;
     margin-top: 2rem;
+    width: 100%;
 
     & > * {
       margin: 1rem 0;
