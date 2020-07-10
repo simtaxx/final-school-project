@@ -45,11 +45,6 @@ const routes = [
     name: "Account",
     component: () => import("@/views/Account/Account.vue"),
     meta: { requiresAuth: true }
-  },
-  {
-    path: "/challenges",
-    name: "Challenge",
-    component: () => import("@/views/Challenge/Challenge.vue")
   }
 ]
 

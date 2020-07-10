@@ -23,3 +23,11 @@
   white-space: normal;
   text-align: center;
 }
+
+.v-dialog__content {
+  position: absolute;
+}
+
+.v-dialog {
+  overflow: hidden;
+}

@@ -1,6 +1,6 @@
 <template lang="pug">
   v-chip(
-    :class="{activeBorder : hasActiveBorder, chapterHead: true}"
+    :class="{'active-border' : hasActiveBorder, 'chapter-head': true}"
     :id="chapterHead.hash"
     large
   ) 
@@ -29,7 +29,7 @@ export default {
 <style lang="scss" scoped>
 @import "@/scss/styles.scss";
 
-.chapterHead {
+.chapter-head {
   margin: 2rem 1rem;
   padding: 0 1.2rem;
   border: solid 2px;
@@ -45,7 +45,7 @@ export default {
   }
 }
 
-.activeBorder {
+.active-border {
   border-color: $primary;
 }
 </style>

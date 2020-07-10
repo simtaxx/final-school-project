@@ -3,13 +3,34 @@
     loader(v-if="isLoading")
     template(v-else)
       h1 {{ course.title }}
-      img(v-if="course.media_link && isMediaImage" :class="$style['main-image']" :src="course.media_link")
-      section(:class="$style.contentContainer")
-        v-runtime-template(:template='course.content' :class="$style.content")
-        iframe(v-if="course.media_link && !isMediaImage" :class="$style.embed" :src="course.media_link" allowfullscreen="true" width="425" height="344" frameborder="0")
-        remember(:listToRemember="course.to_remember" :courseId="currentArticleIdFromApiId")
+      img(
+        v-if="course.media_link && isMediaImage" 
+        :class="$style['main-image']" 
+        :src="course.media_link"
+      )
+      section(
+        :class="$style['content-container']"
+      )
+        v-runtime-template(
+          :template='course.content' 
+          :class="$style.content"
+        )
+        iframe(
+          v-if="course.media_link && !isMediaImage" 
+          :class="$style.embed" 
+          :src="course.media_link" 
+          allowfullscreen="true" 
+          width="425" 
+          height="344" 
+          frameborder="0"
+        )
+        remember(
+          :listToRemember="course.to_remember" 
+          :courseId="currentArticleIdFromApiId"
+        )
         v-btn(
-          :class="$style.quizzBtn" color="primary" 
+          :class="$style['quizz-btn']" 
+          color="primary" 
           depressed
           @click="handleQuizzBtn"
         ) Faire le quizz
@@ -20,7 +41,10 @@
           v-card(:class="$style.card")
             span
               | Faites d'abord le quizz des cours précedents !
-            v-btn(@click="shouldShowModal = false" color="primary") D'accord !
+            v-btn(
+              @click="shouldShowModal = false" 
+              color="primary"
+            ) D'accord !
 </template>
 
 <script>
@@ -87,16 +111,18 @@ export default {
   methods: {
     async getArticle() {
       this.isLoading = true
-      const article = await this.$http.get(`articles/${this.currentArticleApiId}`)
-      this.course = article.data
+      try {
+        const article = await this.$http.get(`articles/${this.currentArticleApiId}`)
+        this.course = article.data
+      } catch (error) {
+        console.error(error)
+      }
       this.isLoading = false
     },
     handleQuizzBtn() {
-      if (this.arePreviousArticlesReaded) {
-        this.$router.push({ name: "Quizz", params: { id: this.course.quizz.id } })
-      } else {
-        this.shouldShowModal = true
-      }
+      this.arePreviousArticlesReaded
+        ? this.$router.push({ name: "Quizz", params: { id: this.course.quizz.id } })
+        : (this.shouldShowModal = true)
     }
   },
   created() {
@@ -125,7 +151,7 @@ export default {
     border-radius: 6px;
   }
 
-  .contentContainer {
+  .content-container {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -152,7 +178,7 @@ export default {
     }
   }
 
-  .quizzBtn {
+  .quizz-btn {
     display: block;
     margin: 2rem auto;
   }

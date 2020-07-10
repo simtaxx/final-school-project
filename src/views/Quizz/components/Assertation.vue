@@ -61,7 +61,7 @@ export default {
 
 .assertation {
   width: 30%;
-  min-width: 200px;
+  min-width: 150px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -70,15 +70,29 @@ export default {
   border-radius: 6px;
   user-select: none;
   border: solid 3px var(--v-gray-base);
-  margin: 0.1rem 0.5rem;
+  margin: 0.5rem 0.5rem;
+  min-height: 40px;
 
   @include medium-screen {
     max-height: 30%;
+    width: 40%;
+  }
+
+  @include small-screen {
+    width: 100%;
   }
 
   .assertation__content {
     width: 100%;
-    padding: 2rem;
+    padding: 1.5rem;
+
+    @include medium-screen {
+      padding: 1rem;
+    }
+
+    @include small-screen {
+      padding: 0.3rem;
+    }
   }
 
   &:hover {
