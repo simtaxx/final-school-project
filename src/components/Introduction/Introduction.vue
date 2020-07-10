@@ -40,7 +40,10 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .introduction {
-  padding: 0 28% 30px;
+  padding: 0 28% 0;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 
   .button {
     text-align: center;
