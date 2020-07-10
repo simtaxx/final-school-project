@@ -16,6 +16,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 import Icon from "./components/Icon.vue"
 export default {
   name: "DiscoverModal",
@@ -48,23 +49,21 @@ export default {
     },
     async setBackUser({ favorite_articles }) {
       const idUser = this.$store.state.accountData.id
-      // eslint-disable-next-line
       const sendUser = await this.$http
         .put(`/user/${idUser}`, { favoriteArticles: favorite_articles })
-        // eslint-disable-next-line
         .then(reponse => console.log(response))
     },
     getFavorite(id) {
       this.favorite ? (this.favorite = false) : (this.favorite = true)
       let localUser = this.localUser
       let favList = localUser.favorite_articles
-      const whiteList = favList.map(fav => fav.id)
-      if (this.favorite && !whiteList.includes(id)) {
+      const whiteList = favList.map(fav => fav.id) // Store all ID in the white list to use this list
+      if (this.favorite && !whiteList.includes(id)) { // here for check if one of the element has been already stored
         favList.push(this.content)
         this.setLocalUser(localUser)
         this.setBackUser(localUser)
       } else if (!this.favorite && whiteList.includes(id)) {
-        favList = favList.filter(fav => fav.id !== id)
+        favList = favList.filter(articleFav => articleFa.id !== id)
         localUser.favorite_articles = favList
         this.setLocalUser(localUser)
         this.setBackUser(localUser)

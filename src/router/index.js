@@ -32,13 +32,13 @@ const routes = [
     path: "/sign-in",
     name: "SignIn",
     component: () => import("@/views/SignIn.vue"),
-    meta: { requiresDc: true }
+    meta: { isDisconected: true }
   },
   {
     path: "/sign-up",
     name: "SignUp",
     component: () => import("@/views/SignUp.vue"),
-    meta: { requiresDc: true }
+    meta: { isDisconected: true }
   },
   {
     path: "/profil",
@@ -73,7 +73,7 @@ router.beforeEach((to, from, next) => {
     if (authUser === null && to.path !== "/sign-up") {
       next("/sign-up")
     } else next()
-  } else if (to.meta.requiresDc) {
+  } else if (to.meta.isDisconected) {
     if (authUser !== null && to.path !== "/profil") {
       next("/profil")
     } else next()

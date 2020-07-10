@@ -34,11 +34,14 @@ export default {
 }
 
 .active {
-  color: $primary !important;
   background-color: rgba($primary, 0.1);
 
   img {
     fill: currentColor;
+  }
+
+  p {
+    color: $primary !important;
   }
 }
 </style>

@@ -1,6 +1,6 @@
 <template lang="pug">
   div
-    v-bottom-navigation(fixed shift :class="$style.nav")
+    v-bottom-navigation(fixed shift :class="$style.navContainer")
       Button(v-for="button in buttons" :key="button.name" :button="button" @activeIt="activeIt")
     div(:class="isOpen")
       Icon(v-for="content in navContent" :key="content.categoryName" :content="content")
@@ -67,9 +67,10 @@ export default {
 
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
-.nav {
+.navContainer {
   justify-content: space-around !important;
   z-index: 999 !important;
+  background-color: var(--v-nav-base) !important;
 }
 .isOpen {
   display: flex;

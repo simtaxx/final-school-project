@@ -33,7 +33,6 @@ export default {
   background-color: var(--v-background-base);
   width: 80px;
   height: 80px;
-  //- TODO change the color with sub color set on vuetify overwrite
   border: solid 5px var(--v-gray-base);
   border-radius: 50%;
   display: flex;
@@ -64,7 +63,6 @@ export default {
 }
 
 .active-border {
-  //- TODO change this color with vuetify overwritten colors
   border-color: $primary;
 }
 </style>
