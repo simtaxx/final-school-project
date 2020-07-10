@@ -1,5 +1,6 @@
 <template lang="pug">
   div(:class="$style.tweetos")
+    //- TODO Change Avatar and names dynamically for more "reality"
     v-avatar(:class="$style.avatar" size="35px")
       img(
         alt="Avatar"

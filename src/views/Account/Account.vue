@@ -1,10 +1,10 @@
 <template lang="pug">
   div(:class="$style.account")
-    div(:class="$style.accountContainer")
+    div(:class="$style['account__container']")
       User
       Tabs(@changeCategory="changeCategory")
       Favorites(v-if="isFavorite" v-for="favorite in favorites" :key="favorite.id" :content="favorite")
-      Certification(v-if="certification")
+      Certification(v-if="isCertification")
       span(v-else-if="favorites.length === 0") Vous retrouverez ici vos favoris
 </template>
 
@@ -24,8 +24,8 @@ export default {
   data() {
     return {
       isFavorite: true,
-      favorites: null,
-      certification: false
+      favorites: [],
+      isCertification: false
     }
   },
   mounted() {
@@ -33,13 +33,8 @@ export default {
   },
   methods: {
     changeCategory(category) {
-      if (category === "fav") {
-        this.isFavorite = true
-        this.certification = false
-      } else {
-        this.isFavorite = false
-        this.certification = true
-      }
+      category === "fav" ? (this.isFavorite = true) : (this.isFavorite = false)
+      this.isCertification = !this.isFavorite
     }
   },
   computed: {
@@ -53,7 +48,7 @@ export default {
 <style lang="scss" module>
 @import "@/scss/styles.scss";
 .account {
-  .accountContainer {
+  .account__container {
     margin-left: 70px;
     @include small-screen {
       margin-left: 0;
