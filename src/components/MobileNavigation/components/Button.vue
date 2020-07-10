@@ -1,5 +1,8 @@
 <template lang="pug">
-  v-btn(:class="{[$style.isBlue]: button.name}" :to="button.path" :value="button.name" @click="activeIt(button.name)")
+  v-btn(v-if="button.name !== 'discover'" :class="{[$style.isBlue]: button.name}" :to="button.path" :value="button.name" @click="activeIt(button.name)")
+    span {{button.name}}
+    v-icon {{button.icon}}
+  v-btn(v-else :class="{[$style.isBlue]: button.name}" :value="button.name" @click="activeIt(button.name)")
     span {{button.name}}
     v-icon {{button.icon}}
 </template>
