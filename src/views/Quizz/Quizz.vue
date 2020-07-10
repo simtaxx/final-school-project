@@ -103,7 +103,6 @@ export default {
         this.canLeaveRoute = true
         this.isQuizzFinished = true
         if (this.score === this.steps) {
-          //- TODO change the 15 for the article id
           const readedArticles = [...this.readedArticles, this.currentQuizzArticleId]
           localStorage.setItem("readedArticles", JSON.stringify(readedArticles))
         }
@@ -196,8 +195,13 @@ export default {
     width: 80%;
     height: 80%;
 
+    @include small-screen {
+      width: 90%;
+    }
+
     .v-stepper__content {
       height: 100%;
+      padding: 0;
 
       .question {
         text-align: center;
@@ -214,8 +218,8 @@ export default {
         justify-content: space-around;
         align-items: center;
 
-        img {
-          max-height: 70%;
+        > * {
+          max-height: 33%;
         }
 
         @include medium-screen {

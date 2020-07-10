@@ -17,23 +17,14 @@ export default {
   },
   methods: {
     changeCategory(category) {
-      if (category === "fav") {
-        this.favorites = true
-        this.certification = false
-        this.$emit("changeCategory", category)
-      } else {
-        this.favorites = false
-        this.certification = true
-        this.$emit("changeCategory", category)
-      }
+      category === "fav" ? (this.favorites = true) : (this.favorites = false)
+      this.certification = !this.favorites
+      this.$emit("changeCategory", category)
     }
   },
   computed: {
     isActive() {
-      if (this.certification) {
-        return this.$style.cursorCertification
-      }
-      return this.$style.cursor
+      return this.certification ? this.$style["cursor-certification"] : this.$style.cursor
     }
   }
 }
@@ -76,7 +67,7 @@ export default {
     transition: 0.3s;
   }
 }
-.cursorCertification {
+.cursor-certification {
   position: relative;
   z-index: 1;
   height: 6px;

@@ -3,6 +3,8 @@
     :value="show"
     :max-width="popupSize"
     persistent
+    attach=".v-stepper"
+    content-class="tessst"
   )
     v-card(v-if="isQuizzWon" :class="[$style['card'],$style['card--win']]")
       img(src="@/assets/images/quizz_win.png")  
@@ -61,6 +63,7 @@ export default {
   flex-direction: column;
   align-items: center;
   background-color: var(--v-gray-base);
+  text-align: center;
 
   > * {
     margin: 2rem;

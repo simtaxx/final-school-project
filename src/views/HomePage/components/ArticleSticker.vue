@@ -11,11 +11,11 @@
     )
       Pellet(:imageName="article.icon" :activeBorder="activeBorder")
     span(
-      :class="{[$style.stickerText] : true, [$style.singleStickerText] : className !== 'single'}"
+      :class="{[$style['sticker-text']] : true, [$style['single-sticker-text']] : className !== 'single'}"
     ) {{ article.name }}
     div(
       v-if="className === 'single' && !isLastArticle" 
-      :class="[$style['next-road'], $style['single-road'], {[$style.activeRoad] : isReaded(article)}]"
+      :class="[$style['next-road'], $style['single-road'], {[$style['active-road']] : isReaded(article)}]"
     )
     Modal(:dialog="isOpen" :content="modalContent" @closeModal="isOpen = false")
 </template>
@@ -92,6 +92,7 @@ export default {
   }
 }
 
+//- Make a single class for cube-sticker for shared style
 .cube-sticker-1,
 .cube-sticker-2,
 .cube-sticker-3,
@@ -121,12 +122,12 @@ export default {
   transform: translate(-50%, calc(-50% - 6px));
 }
 
-.stickerText {
+.sticker-text {
   padding: 0.2rem 0;
   background-color: var(--v-background-base);
 }
 
-.singleStickerText {
+.single-sticker-text {
   position: absolute;
   white-space: nowrap;
   top: 100%;
@@ -145,7 +146,7 @@ export default {
   transform: translateY(40px);
 }
 
-.activeRoad {
+.active-road {
   background-color: $primary;
 }
 

@@ -1,5 +1,5 @@
 <template lang="pug">
-  div(:class="$style.homepage")
+  div
     chapter-road(
       v-for="(chapter, index) in articleNavigation" 
       :chapter="chapter" 
@@ -32,8 +32,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" module>
-.homepage {
-}
-</style>

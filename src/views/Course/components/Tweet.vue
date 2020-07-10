@@ -1,7 +1,6 @@
 <template lang="pug">
   div(
     :class="$style.tweet"
-    :style="{backgroundColor : tweetBackground}"
   )
     tweetos
     div(:class="$style.message")
@@ -16,7 +15,7 @@
         span(:class="$style.stat") 1.3 k 
         | J'aime 
       v-divider
-      //- TODO repetition here
+      //- TODO remove repetition here
       div(:class="$style.icons")
         img(src='@/assets/icons/tweet_comment.svg')
         img(src='@/assets/icons/tweet_retweet.svg')
@@ -26,7 +25,7 @@
     div(:class="$style.response")
       div
         p(v-html="tweet.content")
-        div(:class="$style.commentIcons")
+        div(:class="$style['comment-icons']")
           img(src='@/assets/icons/tweet_comment.svg')
           img(src='@/assets/icons/tweet_retweet.svg')
           img(src='@/assets/icons/tweet_heart.svg')
@@ -50,13 +49,6 @@ export default {
         return {}
       }
     }
-  },
-  computed: {
-    tweetBackground() {
-      return this.$vuetify.theme.isDark
-        ? this.$vuetify.theme.themes.dark.tweet
-        : this.$vuetify.theme.themes.light.tweet
-    }
   }
 }
 </script>
@@ -69,6 +61,7 @@ export default {
   width: 450px;
   font-size: 12px;
   padding: 0.5rem;
+  background-color: var(--v-tweet-base);
 
   border-radius: 4px;
   align-self: center;
@@ -105,7 +98,7 @@ export default {
     }
   }
 
-  .commentIcons {
+  .comment-icons {
     display: flex;
     justify-content: space-around;
 
