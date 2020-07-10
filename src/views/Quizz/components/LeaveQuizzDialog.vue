@@ -3,6 +3,7 @@
     :value="showDialog"
     :max-width="500"
     persistent
+    attach=".v-stepper"
   )
     v-card.card
       span.card__title Es-tu sûr de vouloir quitter ?
