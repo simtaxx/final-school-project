@@ -46,13 +46,13 @@ export default {
   methods: {
     setLocalUser(newLocaluser) {
       localStorage.setItem("userLog", JSON.stringify(newLocaluser))
-    },
+    }/* ,
     async setBackUser({ favorite_articles }) {
       const idUser = this.$store.state.accountData.id
       const sendUser = await this.$http
         .put(`/user/${idUser}`, { favoriteArticles: favorite_articles })
         .then(reponse => console.log(response))
-    },
+    } */,
     getFavorite(id) {
       this.favorite ? (this.favorite = false) : (this.favorite = true)
       let localUser = this.localUser
@@ -61,12 +61,12 @@ export default {
       if (this.favorite && !whiteList.includes(id)) { // here for check if one of the element has been already stored
         favList.push(this.content)
         this.setLocalUser(localUser)
-        this.setBackUser(localUser)
+        /* this.setBackUser(localUser) */
       } else if (!this.favorite && whiteList.includes(id)) {
         favList = favList.filter(articleFav => articleFa.id !== id)
         localUser.favorite_articles = favList
         this.setLocalUser(localUser)
-        this.setBackUser(localUser)
+        /* this.setBackUser(localUser) */
       }
     }
   },

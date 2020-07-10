@@ -49,6 +49,7 @@ export default {
           this.$router.push("/")
         } else {
           this.failLogIn = true
+          this.isLoading = false
         }
       }, 3000)
     }
