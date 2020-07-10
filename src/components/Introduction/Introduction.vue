@@ -40,10 +40,7 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .introduction {
-  padding: 0 28% 0;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  padding: 0 28% 30px;
 
   .button {
     text-align: center;
@@ -60,12 +57,16 @@ export default {
 }
 @media (max-width: 900px) {
   .introduction {
-    padding: 60px 150px 30px;
+    padding: 60px 150px 20px;
   }
 }
 @media (max-width: 600px) {
   .introduction {
-    padding: 60px 15px 30px;
+    padding: 30px 15px 20px;
+
+    img {
+      width: 100%;
+    }
   }
 }
 </style>
