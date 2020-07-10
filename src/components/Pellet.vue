@@ -1,7 +1,7 @@
 <template lang="pug">
   div.pellet(:class="{ 'active-border' : activeBorder }")
     div.pellet__inner
-      img(:src="imagePath")
+      img(:src="imagePath" alt="icon chapter")
 </template>
 
 <script>

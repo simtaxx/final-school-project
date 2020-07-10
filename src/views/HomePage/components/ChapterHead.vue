@@ -4,7 +4,7 @@
     :id="chapterHead.hash"
     large
   ) 
-    img(:src="chapterHead.icon")
+    img(:src="chapterHead.icon" alt="icon chapter category")
     | {{'Chapitre ' + chapterHead.index + ' : ' + chapterHead.title}}
   
     
