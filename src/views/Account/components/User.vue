@@ -1,6 +1,6 @@
 <template lang="pug">
   div(:class="$style.user")
-    img(src="/img/icons/profil-picture.png")
+    img(src="/img/icons/profil-picture.png" alt="user profil picture")
     div
       h3 {{$store.state.accountData.name}} {{$store.state.accountData.lastName}}
       p {{$store.state.accountData.username}}

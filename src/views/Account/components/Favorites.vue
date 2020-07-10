@@ -4,7 +4,7 @@
     div(:class="$style.container")
       div(:class="$style.title")
         h3 {{content.name}}
-        img(src="/img/icons/fav.svg")
+        img(src="/img/icons/fav.svg" alt="favorite star")
       p #[span Résumé] : {{content.abstract}}
       v-btn(:class="$style.btn" color="primary" :to="`/course/${content.id}`") LIRE
 </template>

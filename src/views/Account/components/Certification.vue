@@ -1,7 +1,7 @@
 <template lang="pug">
   div(:class="$style.user")
     div(:class="$style.container")
-      img(src="/img/icons/medal.svg")
+      img(src="/img/icons/medal.svg" alt="medal of honor")
       div
         p(:class="$style.title") Qu’est-ce que s’est ?
         p(:class="$style.text") Cette certification est une récompense pour ton dévouement quant à l’apprentissage des devoirs que tu dois accomplir en tant que citoyen français.#[span Lorsque tu auras lu et validé tous les sujets de la plateforme, tu auras la possibilité de télécharger ta certification.]
