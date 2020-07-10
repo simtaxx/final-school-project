@@ -3,7 +3,7 @@ module.exports = {
   transpileDependencies: ["vuetify"],
   runtimeCompiler: true,
   pwa: {
-    name: "SIVIK",
+    name: "KIWITAS",
     themeColor: "#430000",
     msTileColor: "#000000",
     appleMobileWebAppCapable: "yes",

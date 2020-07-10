@@ -5,6 +5,7 @@
       Tabs(@changeCategory="changeCategory")
       Favorites(v-if="isFavorite" v-for="favorite in favorites" :key="favorite.id" :content="favorite")
       Certification(v-if="certification")
+      span(v-else-if="favorites.length === 0") Vous retrouverez ici vos favoris
 </template>
 
 <script>

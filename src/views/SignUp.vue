@@ -1,23 +1,30 @@
 <template lang="pug">
   div(:class="$style.signUp")
-    h2 Inscris toi à #[span Kiwitas]
-      p ou #[router-link(to="/sign-in") connecte-toi]
-    v-form(:class="$style.form" ref="form" v-model="valid" @submit.prevent="createUser")
-      p(v-if="failLogIn") Tes identifiants ne correspondent pas.©©
-      v-row(:class="$style.dividedColumns")
-        v-col(:class="$style.dividedColumn" :cols="$vuetify.breakpoint.xs ? 12 : 6")
-          v-text-field(v-model="name" :rules="simpleRules" label="Prénom" outlined required)
-        v-col(:class="$style.dividedColumn" :cols="$vuetify.breakpoint.xs ? 12 : 6")
-          v-text-field(v-model="lastName" :rules="simpleRules" label="Nom" outlined required)
-      v-text-field(v-model="username" :rules="simpleRules" label="Pseudo" outlined required)
-      v-text-field(v-model="email" :rules="emailRules" label="E-mail" outlined required)
-      v-text-field(v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="passwordRules" :type="show1 ? 'text' : 'password'" @click:append="show1 = !show1" label="Mot de passe" outlined required)
-      v-btn(:disabled="!valid" color="primary" @click="createUser") Je m'inscris
+    loader(v-if="isLoading" :class="$style.loader")
+    template(v-else)
+      h2 Inscris toi à #[span Kiwitas]
+        p ou #[router-link(to="/sign-in") connecte-toi]
+      v-form(:class="$style.form" ref="form" v-model="valid" @submit.prevent="createUser")
+        p(v-if="failLogIn") Tes identifiants ne correspondent pas.©©
+        v-row(:class="$style.dividedColumns")
+          v-col(:class="$style.dividedColumn" :cols="$vuetify.breakpoint.xs ? 12 : 6")
+            v-text-field(v-model="name" :rules="simpleRules" label="Prénom" outlined required)
+          v-col(:class="$style.dividedColumn" :cols="$vuetify.breakpoint.xs ? 12 : 6")
+            v-text-field(v-model="lastName" :rules="simpleRules" label="Nom" outlined required)
+        v-text-field(v-model="username" :rules="simpleRules" label="Pseudo" outlined required)
+        v-text-field(v-model="email" :rules="emailRules" label="E-mail" outlined required)
+        v-text-field(v-model="password" :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'" :rules="passwordRules" :type="show1 ? 'text' : 'password'" @click:append="show1 = !show1" label="Mot de passe" outlined required)
+        v-btn(:disabled="!valid" color="primary" @click="createUser") Je m'inscris
 </template>
 
 <script>
+import Loader from "@/components/Loader.vue"
+
 export default {
   name: "SignUp",
+  components: {
+    Loader
+  },
   data: () => ({
     valid: true,
     name: "",
@@ -35,7 +42,8 @@ export default {
       v => !!v || "Un mot de passe est requis",
       v => v.length >= 8 || "Votre mot de passe doit contenir au moins 8 caractères"
     ],
-    failLogIn: false
+    failLogIn: false,
+    isLoading: false
   }),
 
   methods: {
@@ -43,6 +51,7 @@ export default {
       this.$refs.form.validate()
     },
     async createUser() {
+      this.isLoading = true
       this.validate()
       const { name, lastName, email, password, username } = this
       // eslint-disable-next-line no-unused-vars
@@ -61,6 +70,7 @@ export default {
         })
         .catch(e => {
           console.log(e)
+          this.isLoading = false
         })
     },
     getUser() {
@@ -86,6 +96,10 @@ export default {
 <style lang="scss" module>
 @import "@/scss/core/colors.scss";
 .signUp {
+  .loader {
+    left: 50%;
+  }
+
   h2 {
     position: relative;
     width: max-content;

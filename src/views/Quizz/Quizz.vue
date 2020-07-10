@@ -8,6 +8,7 @@
         v-stepper-step(
           :step="step"
           :key="'step' + index"
+          :complete="step < currentQuestion"
         )
     v-stepper-items
       v-stepper-content(
@@ -183,6 +184,10 @@ export default {
 
       .v-stepper__step__step {
         width: 100%;
+
+        i {
+          display: none;
+        }
       }
     }
   }
@@ -208,6 +213,10 @@ export default {
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
+
+        img {
+          max-height: 70%;
+        }
 
         @include medium-screen {
           img {
